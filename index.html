@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hasan</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content and News Highlights */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 2; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .news-highlights { 
+            flex: 1; 
+            width: 300px; 
+            background: #fafafa; 
+            padding: 20px; 
+            border-left: 1px solid #e0e0e0; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        .card.hero { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+        .card.hero .header { 
+            text-align: center; 
+            padding: 10px 0; 
+        }
+        .card.hero .header h1 { 
+            margin: 0; 
+            font-size: 2.0em; 
+            color: #2c3e50; 
+        }
+        .card.hero .header .tagline { 
+            font-size: 1.2em; 
+            font-style: italic; 
+            color: #666; 
+            margin: 5px 0; 
+        }
+        .card.hero .content-row { 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 20px; 
+        }
+        .card.hero .profile-img { 
+            flex-shrink: 0; 
+        }
+        .card.hero .profile-img img { 
+            max-width: 330px; 
+            height: 330px; 
+            object-fit: cover; 
+            border-radius: 15px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        }
+        .card.hero .bio { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            min-height: 300px; 
+        }
+        .card.hero .bio .intro { 
+            flex-grow: 1; 
+        }
+        .card.hero .bio .info { 
+            margin-top: auto; 
+            font-size: 0.9em; 
+            color: #666; 
+        }
+        .card.hero .bio p { 
+            font-size: 1.1em; 
+            color: #666; 
+            margin: 0; 
+        }
+        .section-with-img-HAL { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        .section-with-img-HAL img { 
+            width: 200px; 
+            height: auto; 
+            border-radius: 5px; 
+        }
+        .section-with-img-Teaching { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        .section-with-img-Teaching img { 
+            width: 180px; 
+            height: auto; 
+            border-radius: 5px; 
+        }
+        .news-highlights .video-section { 
+            margin-bottom: 20px; 
+            text-align: center; 
+        }
+        .news-highlights .video-section h3 { 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-bottom: 5px; 
+        }
+        .news-highlights .video-section iframe { 
+            width: 260px; 
+            height: 146px; 
+            border-radius: 5px; 
+        }
+        .news-list-wrapper { 
+            max-height: 300px; 
+            overflow-y: auto; 
+        }
+        .news-highlights ul { 
+            list-style: none; 
+            padding: 0; 
+        }
+        .news-highlights li { 
+            margin-bottom: 15px; 
+            font-size: 0.9em; 
+            line-height: 1.3; 
+            padding-left: 10px; 
+        }
+        .news-highlights li strong { 
+            color: #2c3e50; 
+        }
+        /* Add this new rule to center the h2 in the news-highlights card */
+        .news-highlights .card h2 {
+            text-align: center;
+            margin-bottom: 1px; /* Reduces gap between heading and first news item */
+        }
+        a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        .info i {
+            color: #333; /* Matches your default text color */
+            font-size: 1.0em; /* Matches the text size */
+            margin-right: 5px; /* Space between icon and text */
+            vertical-align: middle; /* Aligns icon with text */
+        }
+        .info a:hover i {
+            color: #3498db; /* Matches your link hover color */
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .card.hero { 
+                flex-direction: column; 
+                text-align: center; 
+                min-height: auto; 
+            }
+            .card.hero .header { 
+                margin-bottom: 15px; 
+            }
+            .card.hero .content-row { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .card.hero .profile-img img { 
+                height: auto; 
+                width: 100%; 
+                max-width: 250px; 
+            }
+            .card.hero .bio { 
+                height: auto; 
+            }
+            .card.hero .bio .info { 
+                margin-top: 10px; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+            .news-highlights { 
+                width: 100%; 
+                border-left: none; 
+                border-top: 1px solid #e0e0e0; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card hero">
+                        <div class="header">
+                            <h1>M. R. Hasan</h1>
+                            <div class="tagline">Advancing Human-Centric AI</div>
+                        </div>
+                        <div class="content-row">
+                            <div class="profile-img">
+                                <img src="assets/images/Hasan-talk-image.jpg" alt="Professor Muhammad Hasan">
+                            </div>
+                            <div class="bio">
+                                <div class="intro">
+                                    <p>
+                                        I am an Assistant Professor, specializing in Big Data and Artificial Intelligence (AI) within the <a href="https://engineering.unl.edu/ece/" target="_blank">Department of Electrical and Computer Engineering (ECE)</a> at the University of Nebraska-Lincoln, where I direct the <b><u>H</u></b>uman-First <b><u>A</u></b>rtificial Intelligence <b><u>L</u></b>ab (HAL 2.0). My research redefines AI by designing reliable multimodal systems aligned with human goals, driving positive societal change. 
+                                    </p>
+                                    <p></p>
+                                    <div class="info">
+                                        <p>
+                                            <i class="fa fa-envelope" style="margin-right: 5px;"></i> 
+                                             <a href="mailto:hasan@unl.edu" aria-label="Email M. R. Hasan at hasan@unl.edu">hasan@unl.edu</a>
+                                        </p>
+                                        
+                                        <p>
+                                            <a href="https://github.com/mrhasan-ai" target="_blank" aria-label="Visit M. R. Hasan's GitHub profile with over 60 tutorials on deep learning, machine learning, and NLP">
+                                                <i class="fa fa-github" style="margin-right: 5px;"></i> GitHub
+                                            </a>
+                                        </p>
+                                        <p>
+                                            <i class="fa fa-map-marker" style="margin-right: 5px;"></i> 
+                                             <a href="https://engineering.unl.edu/building-maps-scott-engineering-center/" target="_blank" aria-label="Office location at Scott Engineering Center C290EE">Scott Engineering Center C290EE</a>
+                                        </p>
+                                    </div>
+                                    <!--
+                                    <div class="info">
+                                        <p>Email: <a href="mailto:hasan@unl.edu">hasan@unl.edu</a></p>
+                                        <p>Office: <a href="https://engineering.unl.edu/building-maps-scott-engineering-center/" target="_blank">Scott Engineering Center C290EE</a></p>
+                                    </div>
+                                    -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>Research Vision: Multimodal AI for Humanity</h2>
+                        <p>
+                            My foundational research in multimodal AI focuses on developing trustworthy models capable of integrating and reasoning across diverse data modalities, such as text and images. This work aims to enhance our understanding of and interaction with complex human experiences. By bridging cutting-edge AI technologies with insights from philosophy and art, my research contributes to advancements in critical areas including education, healthcare, food security, climate resilience, and algorithmic trust. I address key challenges in AI, such as hallucination, bias, and reliability, to promote transparent, ethically aligned, and beneficial AI-driven decision-making. My research is supported by the National Science Foundation and the University of Nebraska-Lincoln’s Grand Challenges Initiative, reflecting a commitment to designing AI systems that embody diverse human values and foster an inclusive, equitable, and responsible technological future.
+                        </p>
+                        For information on my past and current research projects, visit <a href="research.html" target="_blank">this page</a>.
+                    </div>
+
+                    <div class="card section-with-img-HAL">
+                        <div>
+                            <h2>Human-First AI Lab (HAL 2.0)</h2>
+                            <p>
+                                As the director of the <b><u>H</u></b>uman-First <b><u>A</u></b>rtificial Intelligence <b><u>L</u></b>ab (HAL 2.0), I lead a team of researchers dedicated to pioneering AI technologies that prioritize human values, ethical integrity, and societal benefit. Drawing inspiration from the iconic 1968 film <a href="https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey" target="_blank"><i>2001: A Space Odyssey</i></a>, our lab’s name pays homage to HAL 9000—the film’s AI that serves as a cautionary tale of misalignment—while HAL 2.0 represents a new vision: developing AI that seamlessly aligns with human goals and enhances real-world impact. From transforming education and healthcare to fostering inclusive, trustworthy innovations, our research is shaping AI as a force for social good.
+                                <br><br><a href="people.html">Meet the Team</a> to learn more about our mission-driven community.
+                            </p>
+                        </div>
+                        <img src="assets/images/HAL.jpg" alt="HAL 2.0 Poster">
+                    </div>
+
+                    <div class="card section-with-img-Teaching">
+                        <div>
+                            <h2>Teaching with Passion</h2>
+                            <p>
+                                My passion for teaching is deeply influenced by my mentor, <a href="https://feynman.com/" target="_blank">Richard Feynman</a>. I strive to bring the same joy and curiosity to my lectures on machine learning and deep learning, making complex AI concepts accessible and exciting.
+                                <br><br>Explore my teaching journey and course offerings <a href="teaching.html" target="_blank">here</a>.
+                            </p>
+                        </div>
+                        <img src="assets/images/Feynman.jpg" alt="Richard Feynman">
+                    </div>
+                </div>
+
+                <!-- News Highlights -->
+                <div class="news-highlights">
+                    <div class="video-section">
+                        <h3>Spotlight: Data Conference 2024 Keynote</h3>
+                        <iframe src="https://www.youtube.com/embed/4YT49S5ozzk" title="Professor Hasan Keynote Talk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card">
+                        <h2>AI & Research Highlights</h2>
+                        <div class="news-list-wrapper">
+                            <ul>
+                                <li><strong>07 Mar 2025</strong> Presented an <a href="https://www.instagram.com/nebraskabiz/p/DHEbDVgBn0m/?img_index=5" target="_blank">invited talk</a> titled "<a href="https://business.unl.edu/promo/emerging-tech/" target="_blank">The AI Alignment Problem - Technical Challenges and Society Implications</a>" at UNL College of Business’ Emerging Technology Conference. Read conference news coverage <a href="https://business.unl.edu/news/sold-out-emerging-tech-conference-features-industry-innovators/?contentGroup=social&fbclid=IwY2xjawJBQJxleHRuA2FlbQIxMAABHThGUU2brr-KApIGBKQM45v2itFnKdXQ-lM7W5rGZ3Jqq-BfuAIss5Z2jQ_aem_kGm9KcyHddA8Z3Rq09qwmw" target="_blank">here</a></li>
+                                <li><strong>07 Mar 2025</strong> Our paper on an approach to utilizing large language models for forecasting student engagement in STEM education has been accepted at the 2025 ASEE (American Society for Engineering Education) Annual Conference</li>
+                                <li><strong>27 February 2025</strong> My <a href="https://www.nebraskanewsservice.net/ai-sparks-debate-over-educational-ethics-on-unl-campus/video_2a7b8e14-f585-11ef-b14a-370900fc0766.html" target="_blank">interview on AI in education and ethics</a>  aired on The Nebraska News Service, a UNL College of Journalism initiative.
+                                <li><strong>02 February 2025</strong> Our paper on <i>A Meta-Thinking Approach to Mitigating Linguistic Sycophancy in Vision-Language Models</i> has been accepted for presentation at the <a href="https://pakdd2025.org/" target="_blank">29th Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD)</a>.</li>
+                                <li><strong>29 Nov 2024</strong> Our paper on <i>A Context-Aware Approach for Enhancing Data Imputation with Pre-trained Language Models</i> has been accepted for presentation at <a href="https://aclanthology.org/2025.coling-main.380/" target="_blank">the 31st International Conference on Computational Linguistics (COLING 2025)</a></li>
+                                <li><strong>17 Oct 2024</strong> Presented an invited talk titled <a href="https://newsroom.unl.edu/announce/dber/17980/97522" target="_blank">"The Future is Now – Transforming STEM Education by Leveraging Generative AI to Model Longitudinal Experiential Data"</a> at UNL’s Discipline-Based Education Research seminar</li>
+                                <li><strong>09 Sep 2024</strong> Our paper on <i>Leveraging Language Models for Analyzing Experiential Time-Series Data in Education</i> has been accepted at <a href="https://www.icmla-conference.org/icmla24/index.php" target="_blank">the 2024 International Conference on Machine Learning and Applications (ICMLA)</a></li>
+                                <li><strong>23 Aug 2024</strong> Selected by UNL Chancellor to join a new AI Task Force convened by President Dr. Jeffrey P. Gold. This task force, including experts from all four University of Nebraska campuses, will focus on advancing generative AI and fostering inter-campus collaboration.</li>
+                                <li><strong>31 Jul 2024</strong> Awarded NSF supplemental funding to develop a generative AI tool, using NLP and LLMs to improve the generation of theory-based feedback.</li>
+                                
+                                <li> <a href="news.html" target="_blank">More ...</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>
