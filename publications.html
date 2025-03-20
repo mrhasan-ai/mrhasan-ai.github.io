@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publications</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        /* Publication List Styling */
+        ul { 
+            list-style-type: disc; 
+            padding-left: 20px; 
+        }
+        ul li { 
+            margin-bottom: 15px; 
+            font-size: 1em; 
+            line-height: 1.4; 
+        }
+        h3 { 
+            color: #2c3e50; 
+            font-size: 1.5em; 
+            margin-top: 20px; 
+        }
+        h4 { 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-top: 15px; 
+            margin-bottom: 10px; 
+        }
+        a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <h2>Publications</h2>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+                        <!--
+                        <p>
+                            My research spans multimodal AI, machine learning, and intelligent systems, with publications in top-tier journals and conferences. Below is a curated list of my work, including books, journal articles, and conference papers, reflecting my contributions to advancing human-first AI and its applications in education, healthcare, and beyond. Student advisees are marked with an asterisk (*).
+                        </p>
+                        -->
+
+                        <h3>Books</h3>
+                        <ul>
+                            <!--
+                            <li>
+                                Mohammad Rashedul Hasan, <i>Backpropagation in the Wonderland of Deep Learning</i>, manuscript in preparation.
+                            </li>
+                            -->
+                            <li>
+                                Mohammad Rashedul Hasan, <a href="https://www.amazon.com/Iterative-Cluster-Formation-Routing-Protocol/dp/363916816X" target="_blank"><i>A Context-Aware Convention Formation Framework for Large-Scale Dynamic Networks</i></a>, VDM Verlag Dr. Müller Aktiengesellschaft & Co. KG, Dudweiler Landstr. 99, 66123 Saarbrücken, Germany, 2005.
+                            </li>
+                        </ul>
+
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+                        <h3>Journal Articles</h3>
+                        <p>Student advisees are marked with an asterisk (*).</p>
+
+                        <h4><strong>2023</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan and Bilal Khan, <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0288844" target="_blank">AI-Based Interventions for Improving Undergraduate STEM Learning</a>, <i>PLoS One</i>, 2023.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2022</strong></h4>
+                        <ul>
+                            <li>
+                                I-an Huang*, Di Mei*, Anita Raja, Mohammad Rashedul Hasan, and Ana L. C. Bazzan, <a href="https://doi.org/10.1080/15472450.2022.2074791" target="_blank">Traffic Optimization Using a Coordinated Route Updating Mechanism</a>, <i>Journal of Intelligent Transportation Systems: Technology, Planning, and Operations</i>, 2022.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2021</strong></h4>
+                        <ul>
+                            <li>
+                                Atharva Tendle* and Mohammad Rashedul Hasan, <a href="https://www.sciencedirect.com/science/article/pii/S2666827021000621?via%3Dihub" target="_blank">A Study of the Generalizability of Self-Supervised Representations</a>, <i>Journal of Machine Learning With Applications</i>, 1–19, Elsevier, 2021.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2018</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan, Anita Raja, and Ana L. C. Bazzan, <a href="https://link.springer.com/article/10.1007%2Fs10458-018-9397-9" target="_blank">A Context-Aware Convention Formation Framework for Large-Scale Dynamic Networks</a>, <i>Journal of Autonomous Agents and Multi-Agent Systems</i>, 1–34, 2018, doi:10.1007/s10458-018-9397-9.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2012</strong></h4>
+                        <ul>
+                            <li>
+                                Nayeema Sadeque*, Neva Agarwala*, and Mohammad Rashedul Hasan, <a href="http://www.ijcaonline.org/archives/volume47/number1/7156-9867" target="_blank">An Adaptive Clustering Scheme for Mobile Ad-Hoc Networks</a>, <i>International Journal of Computer Applications</i>, 47(1), 50–56, 2012.
+                            </li>
+                        </ul>
+
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+
+                        <h3>Conference and Workshop Papers</h3>
+                        <p>Student advisees are marked with an asterisk (*).</p>
+
+                        <h4><strong>2025</strong></h4>
+                        <ul>
+                            <li>
+                                Chinh Hoang*, Nathan Roberts*, and Mohammad Rashedul Hasan, <a href="https://pakdd2025.org/" target="_blank"><i>A Meta-Thinking Approach to Mitigating Linguistic Sycophancy in Vision-Language Models</i></a>, The 29th Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD) [accepted].
+                            </li>
+
+                            <li>
+                                Ahatsham Hayat*, Helen Martinez*, Bilal Khan, and Mohammad Rashedul Hasan, <a href="https://www.asee.org/events/Conferences-and-Meetings/2025-Annual-Conference" target="_blank">An Approach to Utilizing Large Language Models for Forecasting Student Engagement in STEM Education</a>, The 2025 ASEE Annual Conference [accepted].
+                            </li>
+
+
+
+                        </ul>
+
+                        <h4><strong>2024</strong></h4>
+                        <ul>
+                            <li>
+                                Ahatsham Hayat* and Mohammad Rashedul Hasan, <a href="https://aclanthology.org/2025.coling-main.380/" target="_blank">A Context-Aware Approach for Enhancing Data Imputation with Pre-trained Language Models</a>, The 31st International Conference on Computational Linguistics (COLING 2025).
+                            </li>
+                            <li>
+                                Ahatsham Hayat*, Bilal Khan, and Mohammad Rashedul Hasan, <a href="https://www.icmla-conference.org/icmla24/index.php" target="_blank">Leveraging Language Models for Analyzing Experiential Time-Series Data in Education</a>, The 2024 International Conference on Machine Learning and Applications (ICMLA), acceptance rate: 24.3%.
+                            </li>
+                            <li>
+                                Ahatsham Hayat*, Bilal Khan, and Mohammad Rashedul Hasan, <a href="https://aclanthology.org/2024.bea-1.13/" target="_blank">Enhancing Transfer Learning for Early Forecasting of Academic Performance by Contextualizing Language Models</a>, The 19th NAACL Workshop on Innovative Use of NLP for Building Educational Applications.
+                            </li>
+                            <li>
+                                Ahatsham Hayat*, Sharif Wayne Akil*, Helen Martinez*, Bilal Khan, and Mohammad Rashedul Hasan, <a href="https://nemo.asee.org/public/conferences/344/papers/42205/view" target="_blank">Enhancing Zero-Shot Learning of Large Language Models for Early Forecasting of STEM Performance</a>, The 2024 ASEE Annual Conference.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2023</strong></h4>
+                        <ul>
+                            <li>
+                                Ahatsham Hayat* and Mohammad Rashedul Hasan, <a href="https://gaied.org/neurips2023/files/12/12_paper.pdf" target="_blank">The Power of Personalization and Contextualization: Early Student Performance Forecasting with Language Models</a>, The 2023 NeurIPS Workshop on Generative AI for Education (GAIED).
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan and Bilal Khan, <a href="https://peer.asee.org/44630" target="_blank">A Trajectory-Clustering Framework for Assessing AI-Based Adaptive Interventions in Undergraduate STEM Learning</a>, The 2023 ASEE Annual Conference.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2022</strong></h4>
+                        <ul>
+                            <li>
+                                Atharva Tendle*, Andrew Little, Stephen Scott, and Mohammad Rashedul Hasan, <a href="https://ieeexplore.ieee.org/document/10069476" target="_blank">Self-Supervised Learning in the Twilight of Noisy Real-World Datasets</a>, The 21st IEEE International Conference on Machine Learning and Applications (ICMLA), 2022.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2021</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan, <a href="https://dl.acm.org/doi/abs/10.1145/3486622.3493962" target="_blank">How to Churn Deep Contextual Models?</a>, The 20th IEEE/WIC/ACM International Joint Conference on Web Intelligence and Intelligent Agent Technology (WI-IAT), 226–233, December 2021.
+                            </li>
+                            <li>
+                                Yuanzhi Chen* and Mohammad Rashedul Hasan, <a href="https://aclanthology.org/2021.emnlp-main.485/" target="_blank">Navigating the Kaleidoscope of COVID-19 Misinformation Using Deep Learning</a>, Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP), 6000–6017, November 2021.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2019</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan and Mohamed Aly*, <a href="https://ieeexplore.ieee.org/document/9071130" target="_blank">Get More From Less: A Hybrid Machine Learning Framework for Improving Early Predictions in STEM Education</a>, The 6th Annual Conference on Computational Science and Computational Intelligence (CSCI), 826–831, 2019.
+                            </li>
+                            <li>
+                                Mohamed Aly* and Mohammad Rashedul Hasan, <a href="https://csce.ucmss.com/cr/books/2019/LFS/CSREA2019/FEC7082.pdf" target="_blank">Improving STEM Performance by Leveraging Machine Learning Models</a>, The 15th International Conference on Frontiers in Education: Computer Science and Computer Engineering (FECS), 2019.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan, <a href="http://www.ifaamas.org/Proceedings/aamas2019/pdfs/p2009.pdf" target="_blank">Towards a "Master Algorithm" for Forming Faster Conventions On Various Networks</a>, Proceedings of the Eighteenth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 2019.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan, Anita Raja, and Ana L. C. Bazzan, <a href="http://www.ifaamas.org/Proceedings/aamas2019/pdfs/p1533.pdf" target="_blank">A Context-Aware Convention Formation Framework for Large-Scale Dynamic Networks</a>, Proceedings of the Eighteenth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 2019.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2016</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan, Ana L. C. Bazzan, Eliyahu Friedman*, and Anita Raja, <a href="http://ieeexplore.ieee.org/document/7795856/" target="_blank">A Multiagent Solution to Overcome Selfish Routing in Transportation Networks</a>, Proceedings of the 2016 IEEE 19th International Conference on Intelligent Transportation Systems (ITSC), 1850–1855, November 2016.
+                            </li>
+                            <li>
+                                Anita Raja, Mohammad Rashedul Hasan, Robert Flowe, and Brendan Fernes, <a href="https://www.researchsymposium.com/conf/app/researchsymposium/unsecured/file/106/Raja,Hasan,Flowe,Fernes_SYM-AM-16-053.pdf" target="_blank">Modeling Uncertainty and Its Implications in Complex Interdependent Networks</a>, Proceedings of Naval Postgraduate Schools 13th Annual Acquisition Research Symposium, 94–113, May 2016.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2015</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan and Anita Raja, <a href="http://ieeexplore.ieee.org/document/7397345/" target="_blank">Establishing Cooperation in Highly-Connected Networks Using Altruistic Agents</a>, Proceedings of the 2015 IEEE/WIC/ACM International Conference on Intelligent Agent Technology (IAT), Vol. 2, 112–119, December 2015.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan, Anita Raja, and Ana L. C. Bazzan, <a href="http://dl.acm.org/citation.cfm?id=2886608" target="_blank">Fast Convention Formation in Dynamic Networks Using Topological Knowledge</a>, Proceedings of the Twenty-Ninth AAAI Conference on Artificial Intelligence, 2067–2073, January 2015.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2014</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan, <a href="http://dl.acm.org/citation.cfm?id=2616157" target="_blank">Communication Convention Formation in Large Multiagent Systems</a>, Proceedings of the Thirteenth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 1747–1748, May 2014.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan, Sherief Abdallah, and Anita Raja, <a href="http://dl.acm.org/citation.cfm?id=2616078" target="_blank">Topology Aware Convention Emergence</a>, Proceedings of the Thirteenth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 1593–1594, May 2014.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2013</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan and Anita Raja, <a href="http://ieeexplore.ieee.org/document/6690810/" target="_blank">Emergence of Cooperation Using Commitments and Complex Network Dynamics</a>, Proceedings of the 2013 IEEE/WIC/ACM International Conference on Intelligent Agent Technology (IAT), Vol. 2, 345–352, November 2013.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan, Mohamed Shehab, and Ali Noorollahiravari, <a href="http://ieeexplore.ieee.org/document/6785683/" target="_blank">Game Theoretic Approach for User Migration in Distributed Social Networks</a>, Proceedings of the 2013 IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM), 28–32, August 2013.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan, M. A. Rony*, S. A. Chowdhury*, and M. A. Rizwan*, <a href="http://ieeexplore.ieee.org/document/6624990/" target="_blank">A Self-Adaptive Super Peer-Based Topology for Unstructured P2P System</a>, EUROCON 2013 IEEE, 218–225, July 2013.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan and Anita Raja, <a href="http://dl.acm.org/citation.cfm?id=2891694" target="_blank">The Role of Complex Network Dynamics in the Emergence of Multiagent Coalition</a>, Proceedings of the Twenty-Seventh AAAI Conference on Artificial Intelligence, 1615–1616, July 2013.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan and Anita Raja, <a href="https://engfac.cooper.edu/pages/araja/uploads/AAMAS-WEINWS-2013.pdf" target="_blank">Emergence of Multiagent Coalition by Leveraging Complex Network Dynamics</a>, Proceedings of AAMAS 2013 Fifth International Workshop on Emergent Intelligence on Networked Agents (WEIN'13), 9–23, May 2013.
+                            </li>
+                            <li>
+                                Mohammad Rashedul Hasan and Anita Raja, <a href="http://dl.acm.org/citation.cfm?id=2485262" target="_blank">Emergence of Privacy Conventions in Online Social Networks</a>, Proceedings of the Twelfth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 1433–1434, May 2013.
+                            </li>
+                            <li>
+                                Anita Raja, Mohammad Rashedul Hasan, Shalini Rajanna, and Ansaf Salleb-Aoussi, <a href="http://www.acquisitionresearch.net/files/FY2013/NPS-AM-13-C10P01R09-038.pdf" target="_blank">Leveraging Structural Characteristics of Interdependent Networks to Model Nonlinear Cascading Risks</a>, Proceedings of Naval Postgraduate Schools 10th Annual Acquisition Research Symposium, 137–152, May 2013.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2012</strong></h4>
+                        <ul>
+                            <li>
+                                Anita Raja, Mohammad Rashedul Hasan, and Maureen Brown, <a href="http://calhoun.nps.edu/bitstream/handle/10945/33882/NPS-AM-12-C9P07R01-056.pdf?sequence=1&isAllowed=y" target="_blank">Facilitating Decision Choices with Cascading Consequences in Interdependent Networks</a>, Proceedings of Naval Postgraduate Schools 9th Annual Acquisition Research Symposium, 137–152, May 2012.
+                            </li>
+                            <li>
+                                Anika Binte Kasem*, Amatus Samiu binte Awal*, and Mohammad Rashedul Hasan, <a href="http://ieeexplore.ieee.org/abstract/document/6220370/?section=abstract" target="_blank">Interference Mitigation in Coexisting Bluetooth and WLAN Network Using Power Efficiency Method</a>, Proceedings of 2012 International Conference on Computer, Information and Telecommunication Systems (CITS), 1–5, May 2012.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2011</strong></h4>
+                        <ul>
+                            <li>
+                                Monami Hassan*, Syed Ashfaqur Rahman*, Kazi Mehedi Hasan*, and Mohammad Rashedul Hasan, <a href="http://ieeexplore.ieee.org/document/6148782/" target="_blank">Rate Adaptive MAC Protocol for Wireless Ad Hoc Networks</a>, Proceedings of Research and Development (SCOReD) 2011 IEEE Student Conference, 454–458, December 2011.
+                            </li>
+                            <li>
+                                Kazi Mehedi Hasan*, Montasir Farhan*, and Mohammad Rashedul Hasan, <a href="http://ieeexplore.ieee.org/document/6152880/" target="_blank">Gateway Placement and Adaptive Overlay in Backhaul Wireless Mesh Network</a>, Proceedings of the 17th Asia-Pacific Conference on Communications (APCC), 609–614, October 2011.
+                            </li>
+                            <li>
+                                M.M. Bhuiyan*, S.M. Salim*, and Mohammad Rashedul Hasan, <a href="http://ieeexplore.ieee.org/document/6152854/" target="_blank">Density Aware Broadcasting Scheme for VANET</a>, Proceedings of the 17th Asia-Pacific Conference on Communications (APCC), 467–471, October 2011.
+                            </li>
+                            <li>
+                                M.S. Mishkat-Ul-Masabih*, M.S. Alam*, and Mohammad Rashedul Hasan, <a href="http://ieeexplore.ieee.org/document/6082548/?reload=true&arnumber=6082548" target="_blank">Adaptive Relay Selection Scheme Using Hybrid Forwarding Protocol</a>, Proceedings of ICT Convergence (ICTC) 2011 International Conference, 46–51, September 2011.
+                            </li>
+                        </ul>
+
+                        <h4><strong>2005</strong></h4>
+                        <ul>
+                            <li>
+                                Mohammad Rashedul Hasan, Towards the Development of Bangladesh Through ICT: Through the Indian "Information Village Centre" Perspective, Proceedings of Business and Government in Bangladesh in the 21st Century Conference, Department of Management, Monash University, Melbourne, November 2005.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

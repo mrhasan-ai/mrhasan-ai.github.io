@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Learning</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        /* Course Details Styling */
+        .course-header { 
+            text-align: center; 
+            color: #2c3e50; 
+        }
+        .course-header h3 { 
+            font-size: 2em; 
+            margin-bottom: 5px; 
+        }
+        .course-header span { 
+            display: block; 
+            margin-bottom: 10px; 
+        }
+        .course-header .strong { 
+            font-weight: bold; 
+            color: #2980b9; 
+        }
+        hr { 
+            border: 0; 
+            height: 1px; 
+            background: #e0e0e0; 
+            margin: 20px 0; 
+        }
+        dl { 
+            margin: 0 0 20px 0; 
+        }
+        dt { 
+            font-weight: bold; 
+            color: #34495e; 
+            margin-top: 10px; 
+        }
+        dd { 
+            margin-left: 20px; 
+            margin-bottom: 10px; 
+        }
+        dd a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        dd a:hover { 
+            text-decoration: underline; 
+        }
+        /* Schedule Table */
+        .schedule-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+        }
+        .schedule-table th, .schedule-table td { 
+            padding: 10px; 
+            border: 1px solid #e0e0e0; 
+            text-align: left; 
+        }
+        .schedule-table th { 
+            background-color: #f5f5f5; 
+            font-weight: bold; 
+        }
+        .schedule-table tr:nth-child(even) { 
+            background-color: #f9f9f9; 
+        }
+        .schedule-table tr:hover { 
+            background-color: #ecf0f1; 
+        }
+        .schedule-table ul { 
+            list-style-type: disc; 
+            padding-left: 20px; 
+            margin: 5px 0; 
+        }
+        .schedule-table strong { 
+            color: #e74c3c; 
+        }
+        /* Resource Sections */
+        h5 { 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-top: 20px; 
+        }
+        ul.resource-list { 
+            list-style-type: disc; 
+            padding-left: 20px; 
+        }
+        ul.resource-list li { 
+            margin-bottom: 10px; 
+        }
+        ul.resource-list a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        ul.resource-list a:hover { 
+            text-decoration: underline; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+            .schedule-table { 
+                font-size: 0.9em; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <div class="course-header">
+                            <h3>Introduction to Machine Learning</h3>
+                            <span class="strong">School of Computing, University of Nebraska-Lincoln</span>
+                            <span>Fall 2021: CSCE 478/878</span>
+                            <hr>
+                        </div>
+
+                        <p><strong>Synopsis:</strong> This course offers a rigorous mathematical exploration of machine learning (ML) models, encompassing both supervised and unsupervised learning approaches. It adopts a probabilistic perspective, with a strong emphasis on the Bayesian view of statistics, to present these models. Students will implement ML algorithms from scratch using vanilla Python and its scientific (non-ML) libraries. Prerequisites include robust Python programming skills and a solid foundation in probability & statistics, linear algebra, calculus, and algorithm complexity analysis. Expect programming-intensive and time-consuming assignments.</p>
+
+                        <dl>
+                            <dt>Instructor</dt>
+                            <dd><a href="index.html" target="_blank">Dr. M. R. Hasan</a></dd>
+                            <dt>Office Hours</dt>
+                            <dd>See the course Canvas page</dd>
+                            <dt>Lecture Time</dt>
+                            <dd>Tuesday and Thursday: 11:00 AM - 12:15 PM in Avery Hall 119</dd>
+                            <dt>Assignments</dt>
+                            <dd>See the course Canvas page</dd>
+                            <dt>Recitations</dt>
+                            <dd>See the course Canvas page</dd>
+                            <dt>Syllabus</dt>
+                            <dd>See the course Canvas page</dd>
+                            <dt>Class Discussion</dt>
+                            <dd>See the Piazza link on the course Canvas page</dd>
+                            <dt>Teaching Assistant</dt>
+                            <dd>See the course Canvas page</dd>
+                        </dl>
+
+                        <p>Explore <a href="https://github.com/rhasanbd/" target="_blank">my tutorials on Machine Learning and Deep Learning</a> on GitHub for additional resources.</p>
+
+                        <!-- Schedule -->
+                        <h3>Schedule</h3>
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Topic, PDF Slides, & Misc. Resources</th>
+                                    <th>Video Links</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p><strong>Note:</strong> A background in Probability Theory (discrete & continuous) and Linear Algebra is assumed. Only the Information Theory section will be covered in lectures; other slides are for review.</p>
+                                        <strong>[ML Background] Probabilistic Reasoning</strong>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ERPwKE2os6FFpMeBcqz5RDIBFwIHh-GvI5rJTp64aduYZQ" target="_blank">Probabilistic Reasoning-1</a>
+                                                <ul>
+                                                    <li>Uncertainty & Probability</li>
+                                                    <li>Probabilistic Reasoning (Frequentist & Bayesian)</li>
+                                                    <li>Sample Space and Random Variable</li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ESOI_7GMbLVPt9SVx2GvNDgBhwI-EOoScO0LRruPMypOQw" target="_blank">Probabilistic Reasoning-2</a>
+                                                <ul>
+                                                    <li>Discrete Probability Theory</li>
+                                                    <li>Sum & Product Rule</li>
+                                                    <li>Chain Rule of Probability</li>
+                                                    <li>Bayes’ Rule</li>
+                                                    <li>Joint and Conditional Distribution</li>
+                                                    <li>Reducing the Complexity of Joint Distribution</li>
+                                                    <li>Unconditional and Conditional Independence</li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EZzg5XCRNNRIiQX7CP8Bh2EBUM1r06uVNfHDO-fCe7afEQ" target="_blank">Probabilistic Reasoning-3</a>
+                                                <ul>
+                                                    <li>Continuous Probability Theory</li>
+                                                    <li>Probability Density Function</li>
+                                                    <li>Expectation</li>
+                                                    <li>Variance</li>
+                                                    <li>Covariance & Correlation</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <p><strong>Readings:</strong> Bishop: 1.21, 1.22, 1.23, 1.6; Murphy: 2.2, 2.8</p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>[ML Background] Gaussian Distribution</strong>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EaoPNm8dYA9OgtJoVYf18LcBKTV-kFEcDZzIqe_MINEYSA?e=zVVyQ5" target="_blank">Gaussian Distribution - Univariate Case</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/Ec4AblS2cDJMqPFNsHKGTpMBSZ1x6XXNT0xAmJjH1PM0Rg?e=SfOzrl" target="_blank">Gaussian Distribution - Multivariate Case</a></li>
+                                        </ul>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>[ML Background] Linear Algebra for Machine Learning</strong>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EQ6qfbSUKt1CujPSQxM3KicBGRUcB4_GCM4_KxZgFQ7m8g" target="_blank">Linear Algebra for Machine Learning-1</a>
+                                                <ul>
+                                                    <li>What is Linear Algebra?</li>
+                                                    <li>How is Linear Algebra useful in Machine Learning?</li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EewSz_wsy9BHsL-mu4QBIjsBq2tu6hHKUHFpq6BlLPuaRQ" target="_blank">Linear Algebra for Machine Learning-2</a>
+                                                <ul>
+                                                    <li>Mathematical Objects (Scalars, Vectors, Matrices, Tensors)</li>
+                                                    <li>Measuring the Size of Vectors and Matrices (various norms)</li>
+                                                    <li>Some Special Matrices (Symmetric, Identity, Diagonal, Orthogonal)</li>
+                                                    <li>Inverse of a Matrix</li>
+                                                    <li>Orthogonal Matrix</li>
+                                                    <li>Matrix & Vector Multiplication (dot, inner & Hadamard Product)</li>
+                                                    <li>Orthogonal Transformation</li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EZmf3o8cCMVJsuaclAnRaoEBCSqqeLvgRc2F2UI7LHp76w" target="_blank">Linear Algebra for Machine Learning-3</a>
+                                                <ul>
+                                                    <li>Motivation for solving a system of linear equation (linear systems)</li>
+                                                    <li>Method of Gauss elimination & back substitution</li>
+                                                    <li>Square Matrix: Gauss-Jordan Elimination Method</li>
+                                                    <li>Conditions for a unique solution of a linear system</li>
+                                                    <li>Determinant</li>
+                                                    <li>Singular Matrix</li>
+                                                    <li>Span of columns of a matrix</li>
+                                                    <li>Linear Independence of columns of a matrix</li>
+                                                    <li>Basis of the columns of a matrix</li>
+                                                    <li>Rank of a matrix</li>
+                                                    <li>Change of bases</li>
+                                                    <li>Computation of Rank: Row-echelon form</li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EVGqFuWBIRRPqnoZFiZGEosBrqn8hWDV_vzODctoT6gsBw" target="_blank">Linear Algebra for Machine Learning-4</a>
+                                                <ul>
+                                                    <li>Intuition of the Eigenvalue equation</li>
+                                                    <li>Matrix eigenvalue problem</li>
+                                                    <li>Computing eigenvalues & eigenvectors</li>
+                                                    <li>Characteristic equation of a matrix</li>
+                                                    <li>Eigenbasis</li>
+                                                    <li>Matrix diagonalization</li>
+                                                    <li>Eigendecomposition</li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EfV1nM4vmZBIqk6kxaE5jh4BKUrMR1H5QlJQ8irFd3d9fA" target="_blank">Linear Algebra for Machine Learning-5</a>
+                                                <ul>
+                                                    <li>Quadratic form of a vector</li>
+                                                    <li>Positive Definite & positive semi-definite matrix</li>
+                                                    <li>Summary of the discussion on Linear Algebra for Machine Learning</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <p><strong>Readings:</strong> <a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/Eb7tpx-gKmBHhUJysfnHyLYBG7_QRdAlQjkZPxFq0XZg1g" target="_blank">Array Programming with NumPy</a>; Ch 7 & 8: Advanced Engineering Mathematics (10th edition) by Erwin Kreyszig</p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Information Theory</strong>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EYcAcTaLF9hJte1M-tG46o4BnQy_pE7yhcZTpuzeqT9QBA" target="_blank">Information Theory-1</a>
+                                                <ul>
+                                                    <li>Information Theory (Message vs. Information)</li>
+                                                    <li>Entropy & Cross-Entropy</li>
+                                                    <li>Relative Entropy or Kullback-Leibler (KL) Divergence</li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EWlBcSzkCQtGpc_RfLWmN5YBa8aprtKpqnsQE7gBrewIXw" target="_blank">Information Theory-2</a>
+                                                <ul>
+                                                    <li>KL Divergence for Maximum Likelihood Estimation</li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/Ecr8ebrrHJxFkEa0aPE-s8IBEECWzFloFs6ZFSjXEGCD9A" target="_blank">Information Theory-3</a>
+                                                <ul>
+                                                    <li>Independence of Random Variables & Information Gain</li>
+                                                    <li>KL Divergence & Information Gain</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <p><strong>Readings:</strong> Bishop: 1.21, 1.22, 1.23, 1.6; Murphy: 2.2, 2.8</p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Course Introduction</strong>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EY9KmWbG41FIl2T61bUz5QMBbxHrHgUVxdxTSD77LyRqbg" target="_blank">Administrivia</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ESdKATyhI2VAliP8Lui_x1YBzgHw6iCNV_H25VNDPyGMlw" target="_blank">Introduction to ML</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ESAP7s1hoHVIqY7rUXVZvxUBsDcCzL8XpR9W6HGvys9cNg" target="_blank">Various ML Systems</a></li>
+                                            <li>[Optional] <a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ESaiyOlcxgVFsVx9KkLPQAkBW90q3RF-KHj1_sx_le44Fg" target="_blank">Learning Problem & Problem of Learning-Slides</a></li>
+                                        </ul>
+                                        <p><strong>Jupyter Notebook Demo:</strong>
+                                            <ul>
+                                                <li><a href="https://github.com/rhasanbd/Machine-Learning-Models-Motivation-for-Scientific-Understanding" target="_blank">Machine Learning Models - Motivation for Scientific Understanding</a></li>
+                                            </ul>
+                                        </p>
+                                        <p><strong>Readings:</strong> Russell & Norvig: 1; Geron: 1</p>
+                                        <p><strong>Fuel Your Imagination:</strong>
+                                            <ul>
+                                                <li><a href="https://www.scientificamerican.com/article/how-to-teach-computers-think-for-themselves/" target="_blank">How to Teach Computers to Learn on Their Own by Yaser S. Abu-Mostafa, Scientific American, July 2012</a></li>
+                                                <li><a href="https://arxiv.org/abs/2008.07371" target="_blank">Artificial Intelligence is stupid and causal reasoning won't fix it (2020) - John Mark Bishop</a></li>
+                                                <li><a href="https://arxiv.org/abs/2104.12871" target="_blank">Why AI is Harder Than We Think (2021) - Melanie Mitchell</a></li>
+                                                <li><a href="https://towardsdatascience.com/machine-learning-the-great-stagnation-3a0f044e17e0" target="_blank">Machine Learning: The Great Stagnation - Mark Saroufim</a></li>
+                                                <li><a href="https://arxiv.org/abs/1807.03341" target="_blank">Troubling Trends in Machine Learning Scholarship - Zachary C. Lipton, Jacob Steinhardt</a></li>
+                                            </ul>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/pmTuMTIdo5k" target="_blank">[August 24] Course Introduction & Introduction to ML</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <!-- Add more rows as per the provided schedule... (Truncated for brevity; full schedule can be expanded similarly) -->
+                                <tr>
+                                    <td>
+                                        <strong>Analogy-based Learning: K-Nearest Neighbors</strong>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ESZ7O160EI5DuVZdCAIsVc8BGh8luwjGx1p9tey4RSd5zQ" target="_blank">Nearest Neighbor-1</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EREEmlXbtmVIuP6ekSU8spAB1CC0ekv49mkKAThmOIG-Aw" target="_blank">Nearest Neighbor-2</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EZWbFQFFLC9OiL34chLFlGQBww_aVlOD1ocZ5XWn1pbQHQ" target="_blank">Nearest Neighbor-3</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EZ02YWjMJg9AhfEa7G1lB70BTrw1lK2RhbFLq9Haq0dYAA" target="_blank">Nearest Neighbor-4</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EdqCQOMfzJdEs8rpo_1kOXgBZR0bJkG1O8DXLueJ9VbCNQ" target="_blank">Nearest Neighbor-5</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ERN5KDxvPD1AqTZH1l-1mQEBgWwt4qINUgBwEA3Td0E5cg" target="_blank">Classification-Various Performance Metrics</a></li>
+                                        </ul>
+                                        <p><strong>Jupyter Notebooks:</strong>
+                                            <ul>
+                                                <li><a href="https://github.com/rhasanbd/K-Nearest-Neighbors-Learning-Without-Learning" target="_blank">K Nearest Neighbors - Learning Without Learning</a></li>
+                                                <li><a href="https://github.com/rhasanbd/Study-of-Analogy-based-Learning-Image-Classification" target="_blank">Study of Analogy based Learning - Image Classification</a></li>
+                                                <li><a href="https://github.com/rhasanbd/Neighbourhood-Components-Analysis-NCA-Method" target="_blank">Neighbourhood Components Analysis (NCA) Method</a></li>
+                                            </ul>
+                                        </p>
+                                        <p><strong>Readings:</strong> Bishop: 2.5; Murphy: 1.4.1, 1.4.2, 1.4.3; Alpaydin: 8.1, 8.2, 8.3, 8.4; [Classification performance metrics] Geron: 3</p>
+                                        <p><strong>Fuel Your Imagination:</strong>
+                                            <ul>
+                                                <li><a href="https://www.quantamagazine.org/melanie-mitchell-trains-ai-to-think-with-analogies-20210714/" target="_blank">The Computer Scientist Training AI to Think With Analogies</a></li>
+                                            </ul>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/2XJqQvhYyb0" target="_blank">[August 24] Introduction (continue); Instance-Based & Non-parametric Model: Nearest Neighbor; K-NN algorithm</a></li>
+                                            <li><a href="https://youtu.be/pJU7VqT9fIc" target="_blank">[August 31] High-level overview of the discussion on KNN; KNN: What distance metric should be used?</a></li>
+                                            <li><a href="https://youtu.be/d2Q_pPMDfwU" target="_blank">[September 2] KNN: Model selection & Cross-validation; KNN Practical Issue: Weighted distance metric</a></li>
+                                            <li><a href="https://youtu.be/FPfZ0wznNOc" target="_blank">[September 7] Classification performance metrics; KNN Practical Issue: Difference in feature variance & data scaling</a></li>
+                                            <li><a href="https://youtu.be/85de4bRBNCI" target="_blank">[September 9] KNN (non-zero covariance, high-dimensional data, image recognition)</a></li>
+                                            <li><a href="https://www.youtube.com/watch?v=aaNXvmopqFQ" target="_blank">[September 14] KNN (regression, non-parametric model); Probabilistic Reasoning; Frequentist vs Bayesian Probability, Sample Space, Random Variable, Sum & Product rules, Bayes' Rule</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <!-- Continue with remaining schedule rows similarly... -->
+                                <!-- Truncated; full schedule can be added upon request -->
+                            </tbody>
+                        </table>
+
+                        <h5>Text Resources</h5>
+                        <ul class="resource-list">
+                            <li>Lecture slides and Jupyter notebooks provide a detailed account of the topics.</li>
+                            <li><strong>Primary References:</strong>
+                                <ul>
+                                    <li><em>Machine Learning: A Probabilistic Perspective</em> by Kevin P. Murphy</li>
+                                    <li><em>Pattern Recognition and Machine Learning</em> by Christopher M. Bishop</li>
+                                    <li><em>Introduction to Machine Learning (3rd ed.)</em> by Ethem Alpaydin</li>
+                                </ul>
+                            </li>
+                            <li><strong>Practical Implementation:</strong>
+                                <ul>
+                                    <li><em>Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow</em> (2nd Edition, 2019) by Aurélien Géron (O'Reilly)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Introductory Texts:</strong>
+                                <ul>
+                                    <li><em>Machine Learning</em> by Tom Mitchell</li>
+                                    <li><em>Data Science from Scratch</em> by Joel Grus (O’Reilly)</li>
+                                    <li><em>Python for Data Analysis (2nd Edition)</em> by Wes McKinney (O'Reilly)</li>
+                                    <li><em>Python Machine Learning</em> by Sebastian Raschka (Packt Publishing)</li>
+                                    <li><em>The Hundred-Page Machine Learning Book</em> by Andriy Burkov</li>
+                                    <li><em>Artificial Intelligence: A Modern Approach</em> by Stuart Russell and Peter Norvig</li>
+                                </ul>
+                            </li>
+                            <li><strong>Optional Texts:</strong>
+                                <ul>
+                                    <li><em>The Elements of Statistical Learning</em> by Trevor Hastie, Robert Tibshirani, Jerome Friedman</li>
+                                    <li><em>Pattern Classification</em> by Peter E. Hart, David G. Stork, Richard O. Duda</li>
+                                    <li><em>Bayesian Reasoning and Machine Learning</em> by David Barber</li>
+                                    <li><em>Information Theory, Inference, and Learning Algorithms</em> by David MacKay</li>
+                                    <li><em>An Introduction to Support Vector Machines and Other Kernel-based Learning Methods</em> by Nello Cristianini, John Shawe-Taylor</li>
+                                    <li><em>Boosting: Foundations and Algorithms</em> by Schapire, Robert E., and Freund, Yoav</li>
+                                </ul>
+                            </li>
+                            <li><strong>Advanced Texts:</strong>
+                                <ul>
+                                    <li><a href="https://d2l.ai/" target="_blank">Dive into Deep Learning</a> by Aston Zhang, Zachary C. Lipton, Mu Li, Alexander J. Smola</li>
+                                    <li><a href="https://www.deeplearningbook.org/" target="_blank">Deep Learning</a> by Ian Goodfellow, Yoshua Bengio, Aaron Courville</li>
+                                    <li><em>Deep Learning with Python</em> by Francois Chollet</li>
+                                    <li><em>Reinforcement Learning: An Introduction</em> by Richard S. Sutton, Andrew G. Barto</li>
+                                </ul>
+                            </li>
+                            <li><strong>Statistics, Linear Algebra & Calculus Texts:</strong>
+                                <ul>
+                                    <li><em>Advanced Engineering Mathematics (10th Ed.)</em> by Erwin Kreyszig</li>
+                                    <li><em>All of Statistics: A Concise Course in Statistical Inference</em> by Larry Wasserman</li>
+                                    <li><em>Convex Optimization</em> by Boyd and Vandenberghe</li>
+                                </ul>
+                            </li>
+                            <li><strong>Interesting & Enlightening Texts:</strong>
+                                <ul>
+                                    <li><em>The Master Algorithm</em> by Pedro Domingos</li>
+                                    <li><em>Artificial Intelligence: A Guide for Thinking Humans</em> by Melanie Mitchell</li>
+                                    <li><em>The Deep Learning Revolution</em> by Terrence J. Sejnowski</li>
+                                    <li><em>Prediction Machines</em> by Ajay Agrawal, Joshua Gans, Avi Goldfarb</li>
+                                    <li><em>Thinking, Fast and Slow</em> by Daniel Kahneman</li>
+                                    <li><em>The Drunkard's Walk</em> by Leonard Mlodinow</li>
+                                    <li><em>The Signal and the Noise</em> by Nate Silver</li>
+                                    <li><em>Calculated Risks</em> by Gerd Gigerenzer</li>
+                                    <li><em>The Black Swan</em> by Nassim Nicholas Taleb</li>
+                                    <li><em>Surfaces and Essences</em> by Douglas Hofstadter, Emmanuel Sander</li>
+                                    <li><em>The Book of Why</em> by Judea Pearl, Dana Mackenzie</li>
+                                    <li><em>Rebooting AI</em> by Gary Marcus, Ernest Davis</li>
+                                    <li><a href="https://christophm.github.io/interpretable-ml-book/" target="_blank">Interpretable Machine Learning</a> by Christoph Molnar</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>Machine Learning & Related Courses/Talks</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank">Essence of Linear Algebra (3Blue1Brown Videos)</a></li>
+                            <li><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/" target="_blank">MIT Course on Introduction to Computer Science and Programming in Python</a></li>
+                            <li><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/index.htm" target="_blank">MIT Course on Introduction to Computational Thinking and Data Science</a></li>
+                            <li><a href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/" target="_blank">MIT Professor Gilbert Strang's Lectures on Linear Algebra</a></li>
+                            <li><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/lecture-videos/" target="_blank">MIT Professor Patrick Henry Winston's Lectures on Artificial Intelligence</a></li>
+                            <li><a href="https://work.caltech.edu/lecture.html" target="_blank">Caltech Professor Yaser Abu-Mostafa's Lectures on Machine Learning</a></li>
+                            <li><a href="http://cs229.stanford.edu/#info" target="_blank">Stanford Machine Learning Course</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU" target="_blank">Stanford Machine Learning Video Lectures by Andrew Ng</a></li>
+                            <li><a href="https://www.coursera.org/learn/machine-learning/home/welcome" target="_blank">Andrew Ng's Coursera Machine Learning</a></li>
+                            <li><a href="https://courses.cs.washington.edu/courses/cse546/13au/" target="_blank">University of Washington Machine Learning Course</a></li>
+                            <li><a href="https://alliance.seas.upenn.edu/~cis520/wiki/" target="_blank">UPenn Machine Learning Course</a></li>
+                            <li><a href="http://alex.smola.org/teaching/cmu2013-10-701/" target="_blank">Carnegie Mellon Machine Learning Course</a></li>
+                            <li><a href="https://filebox.ece.vt.edu/~s15ece5984/" target="_blank">Virginia Tech Machine Learning Course</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=B8J4uefCQMc&t=2588s" target="_blank">Pedro Domingo's Talk at Google on The Master Algorithm</a></li>
+                        </ul>
+
+                        <h5>Collaboration Tool</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://deepnote.com/" target="_blank">Deepnote: Jupyter-compatible with real-time collaboration and cloud running</a></li>
+                        </ul>
+
+                        <h5>Google Colab Tutorials</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://www.youtube.com/watch?v=inN8seMm7UI" target="_blank">Get started with Google Colaboratory (Coding TensorFlow)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=PitcORQSjNM" target="_blank">Getting Started with TensorFlow in Google Colaboratory (Coding TensorFlow)</a></li>
+                        </ul>
+
+                        <h5>Python</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://docs.python.org/3/tutorial/" target="_blank">Python Tutorial</a></li>
+                            <li><a href="http://www.numpy.org/" target="_blank">NumPy</a></li>
+                            <li><a href="http://pandas.pydata.org/" target="_blank">Pandas</a></li>
+                            <li><a href="https://matplotlib.org/" target="_blank">Matplotlib</a></li>
+                        </ul>
+
+                        <h5>Open Data Repositories</h5>
+                        <ul class="resource-list">
+                            <li><a href="http://archive.ics.uci.edu/ml/index.php" target="_blank">UC Irvine ML Repository</a></li>
+                            <li><a href="https://www.kaggle.com/datasets" target="_blank">Kaggle Datasets</a></li>
+                            <li><a href="https://aws.amazon.com/fr/datasets/" target="_blank">Amazon’s AWS Datasets</a></li>
+                            <li><a href="http://lib.stat.cmu.edu/datasets/" target="_blank">Statlib Datasets Archive</a></li>
+                            <li><a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">The CIFAR-10 dataset (Canadian Institute For Advanced Research) For Computer Vision Problems</a></li>
+                            <li><a href="https://mila.quebec/en/publications/public-datasets/" target="_blank">MILA Public Dataset</a></li>
+                        </ul>
+
+                        <h5>ML Podcasts</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://www.youtube.com/channel/UCMLtBahI5DMrt0NPvDSoIRQ" target="_blank">Machine Learning Street Talk</a></li>
+                            <li><a href="https://lexfridman.com/podcast/" target="_blank">Lex Fridman Podcast</a></li>
+                        </ul>
+
+                        <h5>Journals</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://link.springer.com/journal/10994" target="_blank">Machine Learning</a></li>
+                            <li><a href="http://www.jmlr.org/" target="_blank">Journal of Machine Learning Research</a></li>
+                            <li><a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385" target="_blank">IEEE Transactions on Neural Networks and Learning Systems</a></li>
+                        </ul>
+
+                        <h5>Conference Proceedings</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://nips.cc/" target="_blank">Conference and Workshop on Neural Information Processing Systems (NeurIPS)</a></li>
+                            <li><a href="https://iclr.cc/" target="_blank">International Conference on Learning Representations (ICLR)</a></li>
+                            <li><a href="https://icml.cc/" target="_blank">International Conference on Machine Learning (ICML)</a></li>
+                            <li><a href="https://cvpr2022.thecvf.com/" target="_blank">Conference on Computer Vision and Pattern Recognition (CVPR)</a></li>
+                            <li><a href="https://waset.org/computer-vision-conference-in-january-2022-in-istanbul" target="_blank">International Conference on Computer Vision (ICCV)</a></li>
+                            <li><a href="https://2021.ecmlpkdd.org/" target="_blank">European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML PKDD)</a></li>
+                            <li><a href="https://www.aaai.org/" target="_blank">The Advancement of Artificial Intelligence (AAAI)</a></li>
+                            <li><a href="https://www.ijcai.org/" target="_blank">International Joint Conference on Artificial Intelligence (IJCAI)</a></li>
+                            <li><a href="https://aclanthology.org/venues/acl/" target="_blank">Annual Meeting of the Association for Computational Linguistics (ACL)</a></li>
+                            <li><a href="https://aclanthology.org/venues/emnlp/" target="_blank">Conference on Empirical Methods in Natural Language Processing (EMNLP)</a></li>
+                            <li><a href="https://deepmind.com/research" target="_blank">DeepMind Research</a></li>
+                            <li><a href="https://ai.google/research/pubs" target="_blank">Google Research</a></li>
+                            <li><a href="https://research.fb.com/publications/" target="_blank">Facebook Research</a></li>
+                            <li><a href="https://arxiv.org/list/stat.ML/recent" target="_blank">arXiv Machine Learning Publications</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Past Projects</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        /* Section Headers */
+        h3 { 
+            text-align: center; 
+            color: #2c3e50; 
+            font-size: 2em; 
+            margin-bottom: 20px; 
+        }
+        h5 { 
+            color: #2c3e50; 
+            font-size: 1.5em; 
+            margin-top: 30px; 
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #3498db; 
+            padding-bottom: 5px; 
+        }
+        h5 span { 
+            color: #DE2C06; 
+        }
+        h6 { 
+            color: #34495e; 
+            font-size: 1.2em; 
+            margin-top: 20px; 
+            margin-bottom: 10px; 
+            font-weight: 600; 
+        }
+        /* Project Sections */
+        .project-section { 
+            margin-bottom: 40px; 
+        }
+        .project-section p { 
+            margin: 10px 0; 
+            text-align: justify; 
+        }
+        .project-section a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        .project-section a:hover { 
+            text-decoration: underline; 
+        }
+        /* Lists for Publications, News, Funding, Collaborations */
+        ul.project-list { 
+            list-style-type: disc; 
+            padding-left: 25px; 
+            margin: 10px 0; 
+        }
+        ul.project-list li { 
+            margin-bottom: 12px; 
+            font-size: 1.0em; 
+        }
+
+    
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <h2>Past Projects</h2>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+
+                        <!--
+                        <p>
+                            Below is a collection of past research projects conducted under my leadership at HAL 2.0 and earlier in my career. These projects span diverse domains, including AI for social good, computer vision, software engineering, and multi-agent systems, reflecting my commitment to advancing AI technologies that address societal challenges and lay the groundwork for future innovations.
+                        </p>
+                        -->
+
+                        <h5>Health-related Misinformation Detection from Social Media Data using Deep Learning (2019 - 2023) <span>AI for Social Good</span></h5>
+                        <div class="project-section">
+                            <p>
+                                This project focused on developing deep learning techniques to detect health-related misinformation on social media platforms, addressing the growing challenge of false information that impacts public health decisions. By leveraging advanced natural language processing and multimodal data analysis, we created models to identify and flag misleading content, contributing to safer online information ecosystems.
+                            </p>
+                            <h6>Broader Impacts</h6>
+                            <p>
+                                Our work has helped combat the spread of health misinformation, empowering communities with reliable information and supporting public health initiatives. This research underscores the potential of AI to serve as a tool for social good, particularly in mitigating the harmful effects of misinformation during public health crises.
+                            </p>
+
+                            <h6>Publications</h6>
+                            <p>Student advisees are marked with an asterisk (*).</p>
+                            <ul class="project-list">
+                                <li> Yuanzhi Chen* and Mohammad Rashedul Hasan, <a href="https://aclanthology.org/2021.emnlp-main.485/" target="_blank">Navigating the Kaleidoscope of COVID-19 Misinformation Using Deep Learning</a>, Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP), 6000–6017, November 2021.</li>
+
+
+                            </ul>
+                            <h6>Collaborators</h6>
+                            <ul class="project-list">
+                                <li>Dr. Ming (Bryan) Wang (College of Journalism and Mass Communication, UNL)</li>
+                                <li>Daisy Dai (Professor, Associate Dean of Research, COPH, UNMC)</li>
+                                <li>Dr. Kelly Cawcutt (Division of Infectious Diseases and Pulmonary and Critical Care Medicine, University of Nebraska Medical Center)</li>
+                            </ul>
+                            <h6>Funding</h6>
+                            <ul class="project-list">
+                                <li><a href="https://mailchi.mp/unl/november2022_ngtc_newsletter-13884473?e=[UNIQID]" target="_blank">2022 Nebraska Governance and Technology Center at the UNL</a></li>
+                                <li><a href="https://news.unl.edu/newsrooms/today/article/nebraska-governance-and-technology-center-announces-new-supplemental/" target="_blank">2020 Nebraska Governance and Technology Center at the UNL</a></li>
+                                <li>Undergraduate Creative Activities and Research Experience (UCARE) fellowship, UNL</li>
+                            </ul>
+                            <h6>In the News</h6>
+                            <ul class="project-list">
+                                <li>Article on our misinformation detection research published in <a href="https://news.unl.edu/newsrooms/today/article/huskers-use-code-to-slow-spread-of-fake-news/" target="_blank">Nebraska Today</a>.</li>
+                            </ul>
+                        </div>
+
+                        <h5>Cezanne: A Novel Multi-Modal AI For Vision-Language Models (2022 - 2023)</h5>
+                        <div class="project-section">
+                            <p>
+                                The Cezanne project aimed to develop a groundbreaking multi-modal AI system to enhance the generalizability of vision-language models. Inspired by Paul Cezanne’s "lived perspective" in his still-life paintings, this approach integrated experiential and distorted visual representations with language models to better capture the solidity and presence of objects, improving model performance across diverse tasks.
+                            </p>
+                            <h6>Broader Impacts</h6>
+                            <p>
+                                By improving the generalizability of vision-language models, Cezanne has contributed to more robust AI systems capable of handling complex, real-world scenarios, with potential applications in education, assistive technologies, and creative industries, paving the way for more adaptive and context-aware AI.
+                            </p>
+                            <h6>Funding</h6>
+                            <ul class="project-list">
+                                <li>Undergraduate Creative Activities and Research Experience (UCARE) fellowship, UNL</li>
+                            </ul>
+                            <h6>In the News</h6>
+                            <ul class="project-list">
+                                <li>Undergraduate Research Assistant Nathan Roberts received the Undergraduate Honors Award for the most original research in <a href="https://news.unl.edu/newsrooms/today/article/undergraduate-and-graduate-research-days-winners-announced/" target="_blank">the 2023 Student Research Days Poster Sessions and Creative Exhibitions</a>.</li>
+                            </ul>
+                        </div>
+
+                        <h5>Generalizable Representations Leveraging Self-Supervised Learning (2020 - 2022) <span>Computer Vision</span></h5>
+                        <div class="project-section">
+                            <p>
+                                This project explored self-supervised learning techniques to develop generalizable representations for computer vision tasks, aiming to reduce reliance on labeled data and improve model performance across diverse visual domains. Our approach enhanced the robustness of vision models, making them more adaptable to real-world applications.
+                            </p>
+                            <h6>Broader Impacts</h6>
+                            <p>
+                                By advancing self-supervised learning, this work has contributed to more efficient and scalable computer vision systems, with applications in fields like autonomous navigation, surveillance, and environmental monitoring, where labeled data is often scarce or expensive to obtain.
+                            </p>
+
+                            <h6>Publications</h6>
+                            <p>Student advisees are marked with an asterisk (*).</p>
+                            <ul class="project-list">
+                                <li> Atharva Tendle* and Mohammad Rashedul Hasan, <a href="https://www.sciencedirect.com/science/article/pii/S2666827021000621?via%3Dihub" target="_blank">A Study of the Generalizability of Self-Supervised Representations</a>, <i>Journal of Machine Learning With Applications</i>, 1–19, Elsevier, 2021.</li>
+
+
+                            </ul>
+
+                        </div>
+
+                        <h5>Generalizable Deep Learning Framework for Identifying Wild Animals from Camera-trap Images (2019 - 2022) <span>Computer Vision</span></h5>
+                        <div class="project-section">
+                            <p>
+                                This project developed a generalizable deep learning framework to identify wild animals in camera-trap images, supporting wildlife conservation efforts. By addressing challenges like varying lighting, occlusion, and species diversity, our models improved the accuracy of automated wildlife monitoring, aiding researchers in tracking animal populations and behaviors.
+                            </p>
+                            <h6>Broader Impacts</h6>
+                            <p>
+                                Our framework has supported conservation efforts by providing reliable tools for monitoring wildlife, contributing to biodiversity preservation and informing ecological research. This work demonstrates the power of AI in addressing environmental challenges and promoting sustainable practices.
+                            </p>
+
+                            <h6>Publications</h6>
+                            <p>Student advisees are marked with an asterisk (*).</p>
+                            <ul class="project-list">
+                                <li>Atharva Tendle*, Andrew Little, Stephen Scott, and Mohammad Rashedul Hasan, <a href="https://ieeexplore.ieee.org/document/10069476" target="_blank">Self-Supervised Learning in the Twilight of Noisy Real-World Datasets</a>, The 21st IEEE International Conference on Machine Learning and Applications (ICMLA), 2022.</li>
+
+
+                            </ul>
+
+
+                            <h6>Collaborators</h6>
+                            <ul class="project-list">
+                                <li>Dr. Andrew Little (School of Natural Resources, UNL)</li>
+                                <li>Dr. Stephen Scott (School of Computing, UNL)</li>
+                            </ul>
+                            <h6>Funding</h6>
+                            <ul class="project-list">
+                                <li>Undergraduate Creative Activities and Research Experience (UCARE) fellowship, UNL</li>
+                            </ul>
+                            <h6>In the News</h6>
+                            <ul class="project-list">
+                                <li>Article on our camera-trap image recognition research published in <a href="https://news.unl.edu/newsrooms/today/article/huskers-track-protect-wildlife-through-deep-learning-tech/" target="_blank">Nebraska Today</a>.</li>
+                            </ul>
+                        </div>
+
+                        <h5>Machine Learning based Developer Expertise Prediction System in Software Engineering using Eye Movement Data (2019 - 2020) <span>Software Engineering</span></h5>
+                        <div class="project-section">
+                            <p>
+                                This project utilized machine learning to predict developer expertise in software engineering by analyzing eye movement data, providing insights into cognitive processes during coding tasks. Our system identified patterns in visual attention to assess skill levels, offering a novel approach to understanding and improving developer performance.
+                            </p>
+                            <h6>Broader Impacts</h6>
+                            <p>
+                                By linking eye movement data to expertise, this research has informed the development of adaptive training tools and improved software engineering education, helping to bridge the gap between novice and expert developers and enhancing productivity in software development.
+                            </p>
+                            <h6>Collaborators</h6>
+                            <ul class="project-list">
+                                <li>Dr. Bonita Sharif (School of Computing, UNL)</li>
+                            </ul>
+                        </div>
+
+                        <h5>Convention Formation in Multi-Agent Systems (2014 - 2018)</h5>
+                        <div class="project-section">
+                            <p>
+                                This research explored convention formation in multi-agent systems through two sub-projects: "Fast Convention Formation in Large Networks" and "A Multiagent Solution to Overcome Selfish Routing in Transportation Networks." We developed algorithms to enable agents to quickly establish shared conventions in large-scale networks and proposed multi-agent solutions to optimize routing in transportation systems, reducing congestion and improving efficiency.
+                            </p>
+                            <h6>Broader Impacts</h6>
+                            <p>
+                                Our findings have advanced the understanding of coordination in multi-agent systems, with applications in distributed computing, transportation logistics, and social network analysis, contributing to more efficient and scalable systems in real-world scenarios.
+                            </p>
+                            <h6>Projects</h6>
+                            <ul class="project-list">
+                                <li>Fast Convention Formation in Large Networks</li>
+                                <li>A Multiagent Solution to Overcome Selfish Routing in Transportation Networks</li>
+                            </ul>
+
+                            <h6>Publications</h6>
+                            
+                            <ul class="project-list">
+                                    <li> Mohammad Rashedul Hasan, Anita Raja, and Ana L. C. Bazzan, <a href="https://link.springer.com/article/10.1007%2Fs10458-018-9397-9" target="_blank">A Context-Aware Convention Formation Framework for Large-Scale Dynamic Networks</a>, <i>Journal of Autonomous Agents and Multi-Agent Systems</i>, 1–34, 2018, doi:10.1007/s10458-018-9397-9.</li>
+
+                                    <li>Mohammad Rashedul Hasan, Anita Raja, and Ana L. C. Bazzan, <a href="http://www.ifaamas.org/Proceedings/aamas2019/pdfs/p1533.pdf" target="_blank">A Context-Aware Convention Formation Framework for Large-Scale Dynamic Networks</a>, Proceedings of the Eighteenth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 2019. </li>
+
+                                    <li> Mohammad Rashedul Hasan, Ana L. C. Bazzan, Eliyahu Friedman*, and Anita Raja, <a href="http://ieeexplore.ieee.org/document/7795856/" target="_blank">A Multiagent Solution to Overcome Selfish Routing in Transportation Networks</a>, Proceedings of the 2016 IEEE 19th International Conference on Intelligent Transportation Systems (ITSC), 1850–1855, November 2016. </li>
+
+                                    <li>Mohammad Rashedul Hasan and Anita Raja, <a href="http://ieeexplore.ieee.org/document/7397345/" target="_blank">Establishing Cooperation in Highly-Connected Networks Using Altruistic Agents</a>, Proceedings of the 2015 IEEE/WIC/ACM International Conference on Intelligent Agent Technology (IAT), Vol. 2, 112–119, December 2015.</li>
+                                    <li>Mohammad Rashedul Hasan, Anita Raja, and Ana L. C. Bazzan, <a href="http://dl.acm.org/citation.cfm?id=2886608" target="_blank">Fast Convention Formation in Dynamic Networks Using Topological Knowledge</a>, Proceedings of the Twenty-Ninth AAAI Conference on Artificial Intelligence, 2067–2073, January 2015.</li>
+
+                                    <li>Mohammad Rashedul Hasan, <a href="http://dl.acm.org/citation.cfm?id=2616157" target="_blank">Communication Convention Formation in Large Multiagent Systems</a>, Proceedings of the Thirteenth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 1747–1748, May 2014.</li>
+                                    <li>Mohammad Rashedul Hasan, Sherief Abdallah, and Anita Raja, <a href="http://dl.acm.org/citation.cfm?id=2616078" target="_blank">Topology Aware Convention Emergence</a>, Proceedings of the Thirteenth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 1593–1594, May 2014.</li>
+
+                                    <li>Mohammad Rashedul Hasan and Anita Raja, <a href="http://ieeexplore.ieee.org/document/6690810/" target="_blank">Emergence of Cooperation Using Commitments and Complex Network Dynamics</a>, Proceedings of the 2013 IEEE/WIC/ACM International Conference on Intelligent Agent Technology (IAT), Vol. 2, 345–352, November 2013.</li>
+                                    <li>Mohammad Rashedul Hasan, M. A. Rony*, S. A. Chowdhury*, and M. A. Rizwan*, <a href="http://ieeexplore.ieee.org/document/6624990/" target="_blank">A Self-Adaptive Super Peer-Based Topology for Unstructured P2P System</a>, EUROCON 2013 IEEE, 218–225, July 2013.</li>
+                                    <li>Mohammad Rashedul Hasan and Anita Raja, <a href="http://dl.acm.org/citation.cfm?id=2891694" target="_blank">The Role of Complex Network Dynamics in the Emergence of Multiagent Coalition</a>, Proceedings of the Twenty-Seventh AAAI Conference on Artificial Intelligence, 1615–1616, July 2013.</li>
+                                    <li>Mohammad Rashedul Hasan and Anita Raja, <a href="https://engfac.cooper.edu/pages/araja/uploads/AAMAS-WEINWS-2013.pdf" target="_blank">Emergence of Multiagent Coalition by Leveraging Complex Network Dynamics</a>, Proceedings of AAMAS 2013 Fifth International Workshop on Emergent Intelligence on Networked Agents (WEIN'13), 9–23, May 2013.</li>
+                                    <li>Mohammad Rashedul Hasan and Anita Raja, <a href="http://dl.acm.org/citation.cfm?id=2485262" target="_blank">Emergence of Privacy Conventions in Online Social Networks</a>, Proceedings of the Twelfth International Conference on Autonomous Agents and Multiagent Systems (AAMAS), 1433–1434, May 2013.</li>
+                                                            
+                                </ul>
+
+
+                            <h6>Collaborators</h6>
+                            <ul class="project-list">
+                                <li>Dr. Anita Raja (City University of New York)</li>
+                                <li>Dr. Ana Bazzan (Universidade Federal do Rio Grande do Sul, Brazil)</li>
+                            </ul>
+                        </div>
+
+                        <h5>Modeling Uncertainty and Its Implications in Complex Interdependent Networks (2014 - 2016)</h5>
+                        <div class="project-section">
+                            <p>
+                                This project investigated the modeling of uncertainty in complex interdependent networks, focusing on its implications for system reliability and decision-making. We developed frameworks to quantify and mitigate uncertainty, enhancing the robustness of networked systems in critical applications like infrastructure and cybersecurity.
+                            </p>
+                            <h6>Broader Impacts</h6>
+                            <p>
+                                By addressing uncertainty in interdependent networks, this research has improved the design of resilient systems, with applications in infrastructure management, cybersecurity, and disaster response, ensuring better preparedness and response to systemic failures.
+                            </p>
+
+                            <h6>Publications</h6>
+                            <ul class="project-list">
+                                <li>Anita Raja, Mohammad Rashedul Hasan, Robert Flowe, and Brendan Fernes, <a href="https://www.researchsymposium.com/conf/app/researchsymposium/unsecured/file/106/Raja,Hasan,Flowe,Fernes_SYM-AM-16-053.pdf" target="_blank">Modeling Uncertainty and Its Implications in Complex Interdependent Networks</a>, Proceedings of Naval Postgraduate Schools 13th Annual Acquisition Research Symposium, 94–113, May 2016.</li>
+
+                                <li>Anita Raja, Mohammad Rashedul Hasan, Shalini Rajanna, and Ansaf Salleb-Aoussi, <a href="http://www.acquisitionresearch.net/files/FY2013/NPS-AM-13-C10P01R09-038.pdf" target="_blank">Leveraging Structural Characteristics of Interdependent Networks to Model Nonlinear Cascading Risks</a>, Proceedings of Naval Postgraduate Schools 10th Annual Acquisition Research Symposium, 137–152, May 2013.</li>
+
+                                <li>Anita Raja, Mohammad Rashedul Hasan, and Maureen Brown, <a href="http://calhoun.nps.edu/bitstream/handle/10945/33882/NPS-AM-12-C9P07R01-056.pdf?sequence=1&isAllowed=y" target="_blank">Facilitating Decision Choices with Cascading Consequences in Interdependent Networks</a>, Proceedings of Naval Postgraduate Schools 9th Annual Acquisition Research Symposium, 137–152, May 2012.</li>
+
+                            </ul>
+                            <h6>Collaborators</h6>
+                            <ul class="project-list">
+                                <li>Dr. Anita Raja (City University of New York)</li>
+                                <li>Dr. Ansaf Salleb-Aouissi (Columbia University)</li>
+                            </ul>
+                            <h6>Funding</h6>
+                            <ul class="project-list">
+                                <li>Office of Naval Research (ONR)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

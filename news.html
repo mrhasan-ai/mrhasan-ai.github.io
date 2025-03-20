@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; /* Expanded to full width since news-highlights is removed */
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        .news-list-wrapper { 
+            max-height: none; /* Remove height restriction since this is the main content */
+            overflow-y: visible; /* No need for scrolling */
+        }
+        .main-content ul { 
+            list-style: none; 
+            padding: 0; 
+        }
+        .main-content li { 
+            margin-bottom: 15px; 
+            font-size: 0.9em; 
+            line-height: 1.3; 
+            padding-left: 10px; 
+        }
+        .main-content li strong { 
+            color: #2c3e50; 
+        }
+        a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <h2>AI & Research Updates</h2>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+                        <div class="news-list-wrapper">
+                            <ul>
+                           
+                            
+                            
+                                <li><strong>07 Mar 2025</strong> Presented an <a href="https://www.instagram.com/nebraskabiz/p/DHEbDVgBn0m/?img_index=5" target="_blank">invited talk</a> titled "<a href="https://business.unl.edu/promo/emerging-tech/" target="_blank">The AI Alignment Problem - Technical Challenges and Society Implications</a>" at UNL College of Business’ Emerging Technology Conference. Read conference news coverage <a href="https://business.unl.edu/news/sold-out-emerging-tech-conference-features-industry-innovators/?contentGroup=social&fbclid=IwY2xjawJBQJxleHRuA2FlbQIxMAABHThGUU2brr-KApIGBKQM45v2itFnKdXQ-lM7W5rGZ3Jqq-BfuAIss5Z2jQ_aem_kGm9KcyHddA8Z3Rq09qwmw" target="_blank">here</a></li>
+                                <li><strong>07 Mar 2025</strong> Our paper on an approach to utilizing large language models for forecasting student engagement in STEM education has been accepted at the 2025 ASEE (American Society for Engineering Education) Annual Conference</li>
+                                <li><strong>27 February 2025</strong> My <a href="https://www.nebraskanewsservice.net/ai-sparks-debate-over-educational-ethics-on-unl-campus/video_2a7b8e14-f585-11ef-b14a-370900fc0766.html" target="_blank">interview on AI in education and ethics</a>  aired on The Nebraska News Service, a UNL College of Journalism initiative.
+                                <li><strong>02 February 2025</strong> Our paper on <i>A Meta-Thinking Approach to Mitigating Linguistic Sycophancy in Vision-Language Models</i> has been accepted for presentation at the <a href="https://pakdd2025.org/" target="_blank">29th Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD)</a>.</li>
+                                <li><strong>29 Nov 2024</strong> Our paper on <i>A Context-Aware Approach for Enhancing Data Imputation with Pre-trained Language Models</i> has been accepted for presentation at <a href="https://aclanthology.org/2025.coling-main.380/" target="_blank">the 31st International Conference on Computational Linguistics (COLING 2025)</a></li>
+                                <li><strong>17 Oct 2024</strong> Presented an invited talk titled <a href="https://newsroom.unl.edu/announce/dber/17980/97522" target="_blank">"The Future is Now – Transforming STEM Education by Leveraging Generative AI to Model Longitudinal Experiential Data"</a> at UNL’s Discipline-Based Education Research seminar</li>
+                                <li><strong>09 Sep 2024</strong> Our paper on <i>Leveraging Language Models for Analyzing Experiential Time-Series Data in Education</i> has been accepted at <a href="https://www.icmla-conference.org/icmla24/index.php" target="_blank">the 2024 International Conference on Machine Learning and Applications (ICMLA)</a></li>
+                                <li><strong>23 Aug 2024</strong> Selected by UNL Chancellor to join a new AI Task Force convened by President Dr. Jeffrey P. Gold. This task force, including experts from all four University of Nebraska campuses, will focus on advancing generative AI and fostering inter-campus collaboration.</li>
+                                <li><strong>31 Jul 2024</strong> Awarded NSF supplemental funding to develop a generative AI tool, using NLP and LLMs to improve the generation of theory-based feedback.</li>
+                                <li><strong>23-26 Jun 2024</strong> Presented our paper on <a href="https://nemo.asee.org/public/conferences/344/papers/42205/view" target="_blank">enhancing zero-shot learning capabilities of Large Language Models</a> at the 2024 ASEE (American Society for Engineering Education) Annual Conference in Portland, Oregon</li>
+                                <li><strong>20 Jun 2024</strong> Delivered a tutorial titled "How Can AI Innovations Drive Effective Healthcare Applications?" at <a href="/heartsounds-ai-workshop/" target="_blank">the Heartland Workshop on Heart Sounds and AI</a>, hosted by the University of Nebraska Medical Center</li>
+                                <li><strong>05 May 2024</strong> Congratulations, Helen Martinez, on receiving the 2024-2025 UCARE (Undergraduate Creative Activities and Research Experience) award!</li>
+                                <li><strong>17 Apr 2024</strong> Congratulations, Ahatsham, on being awarded the College of Engineering Milton E. Mohr Fellowship for the academic year 2024-25!</li>
+                                <li><strong>17 Apr 2024</strong> Presented a keynote speech titled <a href="https://www.youtube.com/watch?v=4YT49S5ozzk" target="_blank">"The Future is Behind Us: Close Encounters of the First Kind with Artificial Intelligence"</a> at <a href="https://nebraskadataconference2024.sched.com/" target="_blank">the Nebraska Data Conference</a> hosted by the Nebraska Department of Education</li>
+                                <li><strong>15 Apr 2024</strong> Our paper on <i>Enhancing Transfer Learning for Early Forecasting of Academic Performance by Contextualizing Language Models</i> has been accepted for presentation at <a href="https://sig-edu.org/bea/2024#accepted-papers" target="_blank">the 19th NAACL (North American Chapter of the Association for Computational Linguistics) Workshop on Innovative Use of NLP for Building Educational Applications</a></li>
+                                <li><strong>Apr 2024</strong> Participated in an NSF panel focused on Natural Language Processing</li>
+                                <li><strong>26 Mar 2024</strong> Participated as a speaker in UNL Office of Research and Innovation's Faculty Connector Program <a href="https://events.unl.edu/eas/2024/03/26/177579/" target="_blank">Panel Discussion on the use of AI in research and creative endeavors</a></li>
+                                <li><strong>22 Mar 2024</strong> Gave a talk on "Navigating the Rapidly Evolving Terrain of AI Research" at the Advisory Board Meeting of the Department of Electrical and Computer Engineering at UNL</li>
+                                <li><strong>13 Mar 2024</strong> Our research on AI-based intervention systems is spotlighted in <a href="https://www.the74million.org/article/ai-support-can-prevent-college-students-from-failing-stem-classes-study-shows/" target="_blank">The 74</a></li>
+                                <li><strong>10 Mar 2024</strong> Our paper on enhancing zero-shot learning capabilities of Large Language Models has been accepted at the 2024 ASEE (American Society for Engineering Education) Annual Conference</li>
+                                <li><strong>22 Feb 2024</strong> Gave a talk on <a href="/downloads/files/ECE Graduate Seminar-2024-Fall.pdf" target="_blank">"Can Language Models Serve as Interfaces in the Design of Intelligent Systems?"</a> at UNL's Department of Electrical and Computer Engineering's Graduate student seminar</li>
+                                <li><strong>15 Dec 2023</strong> My <a href="https://www.nebraskanewsservice.net/multimedia/podcasts/ai-a-podcast-about-the-modern-use-of-artificial-intelligence/article_a1440dc1-b76b-5930-9009-567c8dd47374.html" target="_blank">interview on the use of Artificial Intelligence in academia</a> was featured on Nebraska News Service's AI Podcast at UNL’s College of Journalism and Mass Communications’ Experience Lab</li>
+                                <li><strong>10-16 Dec 2023</strong> Attended the <a href="https://neurips.cc/" target="_blank">2023 Conference on Neural Information Processing Systems (NeurIPS)</a> to present our paper at the <a href="https://gaied.org/neurips2023/#:~:text=the%20latest%20content.-,Overview,generative%20AI%20for%20enhancing%20education." target="_blank">Generative AI for Education (GAIED) Workshop</a></li>
+                                <li><strong>15 Nov 2023</strong> Joined a <a href="https://research.unl.edu/blog/panelists-offer-tips-advice-on-grand-challenges-projects/" target="_blank">panel discussion at UNL as a speaker</a> to suggest strategies to Nebraska researchers for developing a winning Grand Challenges proposal</li>
+                                <li><strong>13 Nov 2023</strong> A story on the impact of our AI research is published in <a href="https://news.unl.edu/newsrooms/today/article/experiment-finds-ai-based-intervention-helps-undergrads-pass-stem-course/" target="_blank">the UNL Nebraska Today's "Pocket Science" series</a></li>
+                                <li><strong>09 Nov 2023</strong> Gave a talk on "Towards a Human-First AI: My Journey with Hal 2.0" at <a href="https://research.unl.edu/blog/tan-wins-faculty-slam-clinches-cojmcs-three-peat/" target="_blank">the Faculty Research and Creativity Slam in UNL’s annual Nebraska Research Days</a></li>
+                                <li><strong>08 Nov 2023</strong> Gave a talk on <a href="/downloads/files/2023-MME Seminar-Hasan.pdf" target="_blank">"Decoding Language Models: Unveiling Challenges in Building Intelligent Applications"</a> at UNL's Department of Mechanical and Materials Engineering Pierson Graduate seminar</li>
+                                <li><strong>19 Oct 2023</strong> Selected to give a talk on my research on Generative AI and Language Models at <a href="https://newsroom.unl.edu/announce/coeupdates/16497/91222" target="_blank">UNL’s annual Nebraska Research Days</a>. A link to the <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fresearch.unl.edu%2F&embeds_referring_origin=https%3A%2F%2Fresearch.unl.edu&source_ve_path=MzY4NDIsMTY0OTksMjg2NjQsMTY0NTAz&feature=emb_share&v=HSA9uXhPXc0" target="_blank">teaser video</a></li>
+                                <li><strong>18 Oct 2023</strong> Our paper titled "The Power of Personalization and Contextualization: Early Student Performance Forecasting with Language Models" is accepted at the <a href="https://gaied.org/neurips2023/#:~:text=the%20latest%20content.-,Overview,generative%20AI%20for%20enhancing%20education." target="_blank">NeurIPS'23 Workshop on Generative AI for Education (GAIED)</a></li>
+                                <li><strong>15 Sep 2023</strong> Gave an invited talk on Generative AI and Large Language Models at <a href="https://www.bairdholm.com/events/baird-holms-2023-technology-and-data-protection-forum/" target="_blank">Baird Holm’s 2023 Technology and Data Protection Forum</a></li>
+                                <li><strong>28 Aug 2023</strong> We received the <a href="https://research.unl.edu/grandchallenges/2023-planning-grant-teams/" target="_blank">2023 UNL Grand Challenges Planning Grant Award</a> for our research on Participatory Artificial Intelligence for behavior change to improve climate resilience and food security via a tribal non-tribal community partnership</li>
+                                <li><strong>09 Aug 2023</strong> Gave a presentation on "ChatGPT and Limits of AI" to the Lincoln Public Schools (LPS) science teachers at the UNL-LPS STEM Connector event</li>
+                                <li><strong>Aug 2023</strong> Chinh Hoang joined my lab as a Ph.D. student. Welcome!</li>
+                                <li><strong>Aug 2023</strong> Congratulations to Nathan Roberts and Sharif Akil for obtaining the 2023-2024 UCARE (Undergraduate Creative Activities and Research Experience) award!</li>
+                                <li><strong>19 Jul 2023</strong> Our article on AI-based intervention is published in PLoS One</li>
+                                <li><strong>13 Jul 2023</strong> Gave an invited talk on "Modern AI, its discontents, and how I am using it for social good" at LES (Lincoln Electric System)'s PluggedIn event which is targeted for a future leadership development group</li>
+                                <li><strong>06 Jul 2023</strong> Received the Research Development Fellows Program (RDFP) Award</li>
+                                <li><strong>25-28 Jun 2023</strong> Presented our paper on the Trajectory-Clustering Framework for Assessing AI-Based Adaptive Interventions at the 2023 ASEE (American Society for Engineering Education) Annual Conference in Baltimore, Maryland</li>
+                                <li><strong>09 Jun 2023</strong> Congratulations Ahatsham for obtaining the <a href="https://hcc.unl.edu/david-swanson-memorial-osg-travel-award" target="_blank">David Swanson Memorial Open Science Grid (OSG) Travel Award</a>!</li>
+                                <li><strong>30 May 2023</strong> Congratulations to Keyik Annagulyyeva and Yusup Orazov for obtaining the UCARE (Undergraduate Creative Activities and Research Experience) award! Welcome to the team</li>
+                                <li><strong>23 May 2023</strong> Received the Faculty Affairs award for the External Mentoring Program</li>
+                                <li><strong>19 May 2023</strong> My undergraduate research assistant Nathan Roberts received the <a href="https://news.unl.edu/newsrooms/today/article/undergraduate-and-graduate-research-days-winners-announced/" target="_blank">Undergraduate Honors Award for the most original research</a> in the 2023 Student Research Days Poster Sessions and Creative Exhibitions. Congratulations, Nathan!</li>
+                                <li><strong>03 Apr 2023</strong> Our paper on AI-based adaptive interventions has been accepted at the 2023 ASEE (American Society for Engineering Education) Annual Conference</li>
+                                <li><strong>28 Mar 2023</strong> My undergraduate research assistant Nathan Roberts (sponsored by UCARE) presented <a href="/downloads/files/Nathan-2023 Spring Student Research Days.pdf" target="_blank">a poster</a> on his research on the generalizability of deep learning vision models during the UNL 2023 Spring Student Research Days. Well done, Nathan!</li>
+                                <li><strong>24 Mar 2023</strong> Received the <a href="/downloads/events/FacultyStaffAwards/2023-Engineering-EmployeeAwardRecipients.pdf" target="_blank">2023 College of Engineering Holling Family Distinguished Teaching Award for Excellence in Inclusive Teaching</a></li>
+                                <li><strong>26 Feb 2023</strong> My interview on <a href="https://www.youtube.com/watch?v=-67Ni3CMZEA&t=4s" target="_blank">Artificial Intelligence and Ethics</a> was hosted on a UNL podcast</li>
+                                <li><strong>Jan 2023</strong> Ahatsham joined my lab as a Ph.D. student. Welcome!</li>
+                                <li><strong>02 Sep 2022</strong> Received a grant from the <a href="https://mailchi.mp/unl/november2022_ngtc_newsletter-13884473?e=[UNIQID]" target="_blank">Nebraska Governance and Technology Center (NGTC)</a> at the UNL for preliminary research on building an AI to combat misinformation in social media</li>
+                                <li><strong>11-15 Dec 2022</strong> Presented our paper on self-supervised learning (SSL) at the <a href="https://www.icmla-conference.org/icmla22/" target="_blank">21st IEEE International Conference in Machine Learning and Applications (ICMLA)</a> in Nassau, Bahamas</li>
+                                <li><strong>19 Oct 2022</strong> Received the UNL College of Engineering (COE) 2021-2022 Research Excellence Award</li>
+                                <li><strong>03 Oct 2022</strong> Selected as the <a href="https://research.unl.edu/blog/ored-selects-2022-23-research-development-fellows-program-cohort/" target="_blank">2022-2023 Research Development Fellows Program (RDFP) fellow</a> at UNL</li>
+                                <li><strong>Sep 2022</strong> Served as an NSF panelist</li>
+                                <li><strong>07 Sep 2022</strong> Congratulations Nathan Roberts for obtaining the UCARE (Undergraduate Creative Activities and Research Experience) award! Welcome to the team</li>
+                                <li><strong>02 Sep 2022</strong> Our paper titled "Self-Supervised Learning in the Twilight of Noisy Real-World Datasets" has been accepted at the <a href="https://www.icmla-conference.org/icmla22/" target="_blank">21st IEEE International Conference on Machine Learning and Applications (ICMLA)</a></li>
+                                <li><strong>02 Sep 2022</strong> Received <a href="https://rdar.unl.edu/voucher-awardees" target="_blank">a grant from UNL's Longitudinal Networks Core (LNC)</a> for preliminary research on the AI-based psychological intervention system</li>
+                                <li><strong>05 Aug 2022</strong> My student Thomas Walton (Summer 2022 UCARE) presented <a href="/downloads/files/Poster-Tom.pdf" target="_blank">a poster</a> on his research on the neural network during the UNL COE Summer Undergraduate Research Fair (SURF). Well done, Tom!</li>
+                                <li><strong>25 Jul 2022</strong> Story of our NSF-sponsored research on AI for behavioral intervention is published in the <a href="https://news.unl.edu/newsrooms/today/article/husker-researchers-developing-ai-based-app-to-boost-stem-grades/" target="_blank">Nebraska Today</a></li>
+                                <li><strong>21 Jun 2022</strong> Received the UNL Collaboration Initiative Grant. Role: Co-PI. Project: An Innovative AI-Augmented Real-Time Remote Access Engineering Lab Using Robotics and Computer Vision</li>
+                                <li><strong>07 Jun 2022</strong> Received the UNL Collaboration Initiative Grant. Role: Co-PI. Project: Artificial intelligence-based condition monitoring and fault detection for power system equipment</li>
+                                <li><strong>01-03 Jun 2022</strong> Attended the <a href="https://www.aaas-iuse.org/" target="_blank">NSF AAAS-Improving Undergraduate STEM Education (IUSE) Initiative summit</a> in Washington DC</li>
+                                <li><strong>12 May 2022</strong> Session chair at the <a href="https://aamas2022-conference.auckland.ac.nz/program/program-overview/" target="_blank">2022 International Conference on Autonomous Agents and Multiagent Systems (AAMAS)</a></li>
+                                <li><strong>23 Mar 2022</strong> Congratulations Thomas Walton for obtaining the Summer 2022 UCARE award!</li>
+                                <li><strong>13 Feb 2022</strong> Article accepted in the <a href="https://doi.org/10.1080/15472450.2022.2074791" target="_blank">Journal of Intelligent Transportation Systems: Technology, Planning, and Operations</a></li>
+                                <li><strong>17 Jan 2022</strong> Submitted 3 grant applications for AI-based projects to <a href="https://nebraska.edu/-/media/projects/unca/docs/collaboration-initiative/collaboration-initiative-2021-2022-rfa.pdf?la=en" target="_blank">the UNL Collaboration Initiative</a></li>
+                                <li><strong>17 Dec 2021</strong> Received a grant from the <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=2142558&HistoricalAwards=false" target="_blank">National Science Foundation (NSF) for designing an AI-based psychological just-in-time intervention system to improve STEM performance</a></li>
+                                <li><strong>15 Dec 2021</strong> Presented our paper at the <a href="https://www.wi-iat.com/wi-iat2021/pdf/WI-IAT-21-Tech-Program.pdf" target="_blank">20th IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology (WI-IAT 2021)</a></li>
+                                <li><strong>01 Dec 2021</strong> Congratulations to Rojina Deuja for successfully defending her M.S. thesis on <em>Semantically Meaningful Sentence Embeddings</em></li>
+                                <li><strong>08 Nov 2021</strong> Presented our paper at the <a href="https://aclanthology.org/2021.emnlp-main.485/" target="_blank">2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)</a></li>
+                                <li><strong>04 Nov 2021</strong> Joined a panel discussion on <i>Racial Bias in Artificial Intelligence Models</i> as part of the Cooper Community Conversation at the UNL</li>
+                                <li><strong>21 Oct 2021</strong> Paper accepted at the 20th IEEE/WIC/ACM International Joint Conference on Web Intelligence and Intelligent Agent Technology (WI-IAT 2021)</li>
+                                <li><strong>24 Sep 2021</strong> Talk given at the <a href="https://www.leadershiplincoln.org/" target="_blank">Youth Leadership Lincoln seminar "Arts and Media"</a> on <i>My Students, Online Misinformation, and AI</i></li>
+                                <li><strong>26 Aug 2021</strong> Paper accepted at the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)</li>
+                                <li><strong>28 Jul 2021</strong> Article published in <a href="https://doi.org/10.1016/j.mlwa.2021.100124" target="_blank">the Journal of Machine Learning With Applications</a></li>
+                                <li><strong>13 May 2021</strong> Received the UNL <a href="https://newsroom.unl.edu/announce/cse/12943/74982" target="_blank">CSE Department Students Choice Award for Outstanding Teaching of Graduate-Level Courses</a></li>
+                                <li><strong>22 Apr 2021</strong> Congratulations to Atharva Tendle for successfully defending his M.S. thesis on <em>"The Revolution Will Not be Supervised": An Investigation of the Efficacy and Reasoning Process of Self-Supervised Representations</em></li>
+                                <li><strong>13 Apr 2021</strong> Congratulations to Yuanzhi Chen for successfully defending his M.S. thesis on <em>Towards a Machine Learning-based Generalizable Framework for Detecting COVID-19 Misinformation on Social Media</em></li>
+                                <li><strong>06 Apr 2021</strong> Received a grant from the <a href="https://news.unl.edu/newsrooms/today/article/nebraska-governance-and-technology-center-announces-new-supplemental/" target="_blank">Nebraska Governance and Technology Center (NGTC)</a> at the UNL for developing a Deep Learning framework to identify health-related misinformation from online social media</li>
+                                <li><strong>13 Nov 2020</strong> Talk given at the <a href="https://www.infotec.org/" target="_blank">INFOTEC Conference by AIM Institute</a> on <i>Challenges of AI to Detect Misinformation</i></li>
+                                <li><strong>Oct 2019</strong> Paper accepted at the <a href="https://ieeexplore.ieee.org/document/9071130" target="_blank">2019 International Conference on Computational Science and Computational Intelligence (CSCI 2019)</a></li>
+                                <li><strong>Aug 2019</strong> Our paper is presented by Mohamed Aly (undergraduate research assistant) at the <a href="https://csce.ucmss.com/cr/books/2019/LFS/CSREA2019/FEC7082.pdf" target="_blank">15th International Conference on Frontiers in Education: Computer Science and Computer Engineering (FECS 2019), Las Vegas, USA</a></li>
+                                <li><strong>May 2019</strong> Presented our paper at the <a href="https://www.ifaamas.org/Proceedings/aamas2019/pdfs/p1533.pdf" target="_blank">18th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2019), Montreal, Canada</a></li>
+                                <li><strong>May 2019</strong> Poster presented at the <a href="https://www.ifaamas.org/Proceedings/aamas2019/pdfs/p2009.pdf" target="_blank">18th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2019), Montreal, Canada</a></li>
+                                <li><strong>Mar 2019</strong> Article published in the <a href="https://doi.org/10.1007/s10458-018-9397-9" target="_blank">Journal of Autonomous Agents and Multiagent Systems</a></li>
+                                <li><strong>24 Oct 2018</strong> Talk given on <a href="https://newsroom.unl.edu/announce/nextatnebraska/8666/49995" target="_blank">"Technology & Democratic Engagement" at the Broader Considerations of Technology Series Public Lecture organized by UNL CSE Ambassadors</a></li>
+                                <li><strong>04 Apr 2018</strong> Talk given on <a href="https://newsroom.unl.edu/announce/cse/7893/45196" target="_blank">"AI & Employment" at the Broader Considerations of Technology Series Public Lecture organized by UNL CSE Ambassadors</a></li>
+                                <li><strong>May 2017</strong> Received the UNL <a href="https://computing.unl.edu/2017-cse-awards-winners-announced-0" target="_blank">CSE Department Students Choice Award for Outstanding Teaching of Undergraduate-Level Courses</a></li>
+                                <li><strong>Aug 2016</strong> Paper accepted at the <a href="https://ieeexplore.ieee.org/document/7795856" target="_blank">19th International IEEE Conference on Intelligent Transportation Systems (ITSC 2016)</a></li>
+                                <li><strong>Dec 2015</strong> Presented our paper at the <a href="https://ieeexplore.ieee.org/document/7397345" target="_blank">2015 IEEE/WIC/ACM International Conference on Intelligent Agent Technology (IAT-2015)</a></li>
+                                <li><strong>May 2015</strong> Received the UNL <a href="https://newsroom.unl.edu/announce/cse/4375/24583" target="_blank">CSE Department Students Choice Award for Outstanding Teaching of Undergraduate-Level Courses</a></li>
+                                <li><strong>Feb 2015</strong> Received the <a href="https://www.unl.edu/english/faculty-staff-honored-contributions-students" target="_blank">UNL Parents Association Award (Certificate of Recognition for Contributions to Students)</a></li>
+                                <li><strong>Jan 2015</strong> Presented our paper at the <a href="https://dl.acm.org/doi/10.5555/2886521.2886608" target="_blank">29th AAAI Conference on Artificial Intelligence, Austin, Texas</a></li>
+                                <li><strong>Aug 2014</strong> Joined the UNL as <a href="https://newsroom.unl.edu/announce/cse/3606/19923" target="_blank">an Assistant Professor of Practice in the Department of Computer Science and Engineering (CSE)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

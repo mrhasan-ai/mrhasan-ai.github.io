@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teaching</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        /* Highlighted Courses Section */
+        .highlighted-courses {
+            background: linear-gradient(135deg, #e6f0fa, #f5f7fa); /* Soft blue to light gray gradient */
+            padding: 25px;
+            border: 2px solid #3498db; /* Subtle blue border to match link color */
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle elevation */
+            position: relative;
+            overflow: hidden;
+        }
+        .highlighted-courses h5 {
+            color: #2c3e50; /* Dark blue for readability */
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .highlighted-courses ul {
+            list-style-type: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .highlighted-courses li {
+            margin-bottom: 0;
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .highlighted-courses li:hover {
+            transform: translateY(-2px); /* Slight lift on hover for interactivity */
+        }
+        .highlighted-courses li a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .highlighted-courses li a:hover {
+            text-decoration: underline;
+        }
+        .highlighted-courses li::before {
+            content: "🔍"; /* Default icon (magnifying glass) */
+            margin-right: 10px;
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+        .highlighted-courses li:nth-child(1)::before { content: "⚙️"; } /* Gear for Practical ML */
+        .highlighted-courses li:nth-child(2)::before { content: "🧠"; } /* Neural network for ML */
+        .highlighted-courses li:nth-child(3)::before { content: "🌐"; } /* Network for DL */
+        .highlighted-courses li:nth-child(4)::before { content: "📊"; } /* Chart for Data Science */
+
+        /* Online Tutorials Section */
+        .online-tutorials {
+            background: #f5f7fa; /* Light gray background for subtle highlight */
+            padding: 20px;
+            border: 2px solid #3498db; /* Thinner blue border */
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Smaller shadow */
+            position: relative;
+        }
+        .online-tutorials h5 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .online-tutorials p {
+            margin: 0;
+            text-align: center;
+        }
+        .online-tutorials a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .online-tutorials a:hover {
+            text-decoration: underline;
+        }
+        .online-tutorials i {
+            margin-right: 8px;
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+        /* Course Sections */
+        h5 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        ul.course-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        ul.course-list li {
+            margin-bottom: 10px;
+        }
+        ul.course-list a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        ul.course-list a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <!--
+                        <h3 style="text-align: center; color: #2c3e50;">Teaching Experience</h3>
+                        -->
+                        <h2>Teaching Experience</h2>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+
+                        <div class="highlighted-courses">
+                            <h5>Spotlight: Machine Learning | Deep Learning | Data Science & Modeling</h5>
+                            <ul>
+                                <li><a href="https://canvas.unl.edu/courses/180372" target="_blank">Practical Machine Learning</a> (ECEN 478/878)</li>
+                                <li><a href="introduction-to-machine-learning.html" target="_blank">Introduction to Machine Learning</a> (CSCE 478/878)</li>
+                                <li><a href="deep-learning.html" target="_blank">The "Black" Art & "Elusive" Science of Training Deep Neural Networks</a> (CSCE 496/896)</li>
+                                <li><a href="https://canvas.unl.edu/courses/114301" target="_blank">Data Modeling for Systems Development</a> (CSCE 411/811)</li>
+                            </ul>
+                        </div>
+
+                        <div class="online-tutorials">
+                            <h5>Online Tutorials <i class="fa fa-github"></i></h5>
+                            <p>
+                                
+                                Explore over 60 tutorials on data science, machine learning, deep learning, and NLP on my <a href="https://github.com/mrhasan-ai" target="_blank">GitHub page</a>, designed to support students and researchers in mastering AI techniques.
+                            </p>
+                        </div>
+
+                        <h5>Undergraduate Computer Science & Engineering Courses Taught at the University of Nebraska-Lincoln</h5>
+                        <ul class="course-list">
+                            <li>Computer Science I (ECEN 155E): Fall 2023</li>
+    
+                            <li>Computer Science I - Systems Engineering Focus (CSCE 155E): Spring 2015, Fall 2015, Spring 2016, Fall 2016, Spring 2017, Summer 2017, Fall 2017, Summer 2018, Summer 2019, Spring 2020, Spring 2021, Spring 2022</li>
+                            <li>Computer Science II (CSCE 156): Fall 2014, Spring 2015, Fall 2015, Spring 2016, Fall 2016, Fall 2017, Spring 2018, Fall 2018, Fall 2019</li>
+                            <li>Computer Science II Honors (CSCE 156H): Spring 2018</li>
+                            <li>Introduction to Discrete Structures (CSCE 235): Fall 2014, Spring 2015, Fall 2015, Spring 2016, Fall 2016, Spring 2017, Summer 2017, Fall 2017, Fall 2018, Spring 2019, Fall 2019</li>
+                        </ul>
+
+                        <h5>Graduate Computer Science & Engineering Courses Taught at the University of Nebraska-Lincoln</h5>
+                        <ul class="course-list">
+                            <li><a href="introduction-to-machine-learning.html" target="_blank">Introduction to Machine Learning</a> (CSCE 478/878): Summer 2018, Spring 2019, Fall 2019, Fall 2020, Fall 2021</li>
+                            <li><a href="https://canvas.unl.edu/courses/180372" target="_blank">Practical Machine Learning</a> (ENGR 491/891, ECEN 498/898, ECEN 478/878): Spring 2021, Spring 2022, Fall 2022, Fall 2024</li>
+                            <li><a href="deep-learning.html" target="_blank">The "Black" Art & "Elusive" Science of Training Deep Neural Networks</a> (CSCE 496/896): Spring 2021 (3-week session)</li>
+                            <li><a href="https://canvas.unl.edu/courses/114301" target="_blank">Data Modeling for Systems Development</a> (CSCE 411/811): Spring 2020, Fall 2020, Fall 2021</li>
+                            <li>Internet Systems & Programming (CSCE 464/864): Fall 2014, Summer 2015, Spring 2016, Summer 2016, Spring 2017, Spring 2018, Spring 2019, Summer 2019</li>
+                        </ul>
+
+                        <h5>Graduate Course Taught at the University of North Carolina at Charlotte</h5>
+                        <ul class="course-list">
+                            <li>Network Based Application Development (ITIS 4166/5166): Fall 2013</li>
+                        </ul>
+
+                        <h5>Undergraduate Electrical and Communication Engineering Courses Taught at <a href="http://www.northsouth.edu/" target="_blank">North South University</a></h5>
+                        <ul class="course-list">
+                            <li>Theory of Electromagnetic Fields: Fall 2008, Spring 2009, Summer 2009, Fall 2009, Spring 2010, Summer 2010, Fall 2010, Spring 2011, Summer 2011</li>
+                            <li>Advanced Electronics and Communications LAB II: Spring 2010, Summer 2010, Fall 2010, Spring 2011, Summer 2011</li>
+                            <li>Analog Electronics: Fall 2007, Spring 2008, Fall 2008, Spring 2009, Summer 2009, Fall 2009</li>
+                            <li>Electrical and Electronics Circuit Design Lab II: Spring 2008, Summer 2008, Fall 2008, Spring 2009, Summer 2009, Fall 2009, Spring 2010, Summer 2010, Fall 2010, Spring 2011, Summer 2011</li>
+                            <li>Digital and Microprocessor Design Lab: Summer 2010</li>
+                            <li>Thermodynamics: Summer 2008</li>
+                            <li>Electricity and Magnetism: Summer 2007</li>
+                            <li>Mechanics: Fall 2007, Summer 2008</li>
+                            <li>Introduction to Engineering: Summer 2007</li>
+                            <li>Introduction to Telecommunication and Computer Engineering: Fall 2010, Spring 2011, Summer 2011</li>
+                            <li>Introduction to Linear Algebra: Summer 2007</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

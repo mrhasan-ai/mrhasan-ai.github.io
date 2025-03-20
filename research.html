@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Research</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        /* Section Headers */
+        h3 { 
+            text-align: center; 
+            color: #2c3e50; 
+            font-size: 2em; 
+            margin-bottom: 20px; 
+        }
+        h5 { 
+            color: #2c3e50; 
+            font-size: 1.5em; 
+            margin-top: 30px; 
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #3498db; 
+            padding-bottom: 5px; 
+        }
+        /* Project List */
+        ul.project-list { 
+            list-style-type: disc; 
+            padding-left: 25px; 
+            margin: 10px 0; 
+        }
+        ul.project-list li { 
+            margin-bottom: 12px; 
+            font-size: 1.0em; 
+        }
+        ul.project-list a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        ul.project-list a:hover { 
+            text-decoration: underline; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        
+                        
+                        <h2> Research</h2>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+                  
+                        <!--
+                        <h3>Research at Human-First Artificial Intelligence Lab (HAL 2.0)</h3>
+                        <p>
+                            As the director of the Human-First Artificial Intelligence Lab (HAL 2.0) at the University of Nebraska-Lincoln, I lead interdisciplinary teams to advance multimodal AI systems that are inclusive, trustworthy, and responsive to societal needs. My research integrates expertise from sociology, educational psychology, agricultural economics, university libraries, and tribal and non-tribal community organizations. Since joining the ECE Department in 2022, I have secured $660,000 in National Science Foundation (NSF) funding across three grants, received seven internal university grants, including the Grand Challenges Planning Grant, and published two journal articles and seven conference papers. I have also delivered 11 invited talks to diverse audiences—ranging from legal professionals to educators—and signed a book contract with Taylor & Francis Group (CRC Press) for a comprehensive work on AI, set for publication by August 2025.
+                        </p>
+                        -->
+
+                        <h5>Current Research Projects</h5>
+                        <p>
+                            My current research at HAL 2.0 focuses on developing innovative AI frameworks that address real-world challenges through multimodal learning, trustworthiness, and community-driven approaches. Explore the following projects to learn more about our ongoing efforts:
+                        </p>
+                        <ul class="project-list">
+                            <li><a href="le-multimodal-ai.html">A Multimodal AI Approach to Modeling Human Behavior From Longitudinal Experiential Data</a>: Pioneering AI techniques to understand human behavior over time using noisy, multimodal longitudinal data, with applications in education and healthcare.</li>
+                            <li><a href="trustworthy-ai.html">Reliable Multimodal AI Systems</a>: Enhancing the trustworthiness of vision-language models by addressing critical reliability issues like object hallucination and linguistic sycophancy, ensuring safe deployment in high-stakes domains.</li>
+                            <li><a href="subaltern_ai.html">Subaltern AI: Co-Creating Grounded Knowledge with Nebraska's Communities</a>: Developing culturally grounded AI models through participatory methods, empowering Nebraska’s rural and tribal communities to address food security and climate resilience.</li>
+                        </ul>
+
+                        <h5>Past Research Projects</h5>
+                     
+                        <p>
+                            My previous research has driven advancements in AI across diverse domains, including AI for social good, computer vision, software engineering, multi-agent systems, and network uncertainty modeling, establishing a strong foundation for my current interdisciplinary work. To explore these past projects, <a href="past-projects.html" style="color:  #3498db;">visit this link</a>.
+                        </p>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

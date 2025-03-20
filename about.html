@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Me</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Styles for Images */
+        .book-image, .elias-image {
+            display: block;
+            margin: 20px auto; /* Center the images */
+            max-width: 205px; /* Constrain image size */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            transition: transform 0.3s ease, opacity 0.5s ease; /* Animation for engagement */
+            opacity: 0; /* Start hidden for fade-in effect */
+        }
+        .book-image img, .elias-image img {
+            max-width: 200px; /* Smaller size on mobile */
+        }
+        .book-image {
+            border: 0.1px solid #f0f2f4;
+        }
+        .elias-image {
+            border: 2px solid #f4f0f0fb; 
+            text-align: center; /* Center the caption */
+        }
+        .book-image:hover, .elias-image:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+        .image-caption {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px; /* Space between image and caption */
+            font-style: italic;
+        }
+        /* Fade-in animation on scroll */
+        .fade-in {
+            opacity: 1;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+            .book-image, .elias-image {
+                
+                width: 200px; 
+            height: auto; 
+            border-radius: 5px; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Fade-in animation for images on scroll
+            const images = document.querySelectorAll('.book-image, .elias-image');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            images.forEach(image => observer.observe(image));
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <h2>My Academic Journey & <a href="https://uofnelincoln-my.sharepoint.com/personal/mhasan2_unl_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmhasan2%5Funl%5Fedu%2FDocuments%2FCV%2FCV%2DLatex%2FCV%2DHasan%2Epdf&parent=%2Fpersonal%2Fmhasan2%5Funl%5Fedu%2FDocuments%2FCV%2FCV%2DLatex&ga=1" target="_blank">CV</a></h2>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+                        <div class="book-image">
+                            <img src="assets/images/Godel-Escher-Bach.jpg" alt="Cover of Gödel, Escher, Bach by Douglas Hofstadter">
+                        </div>
+                        <section>
+                            <p>I am trained as a Theoretical Physicist, but Douglas Hofstadter's <a href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank">Gödel, Escher, Bach: An Eternal Golden Braid</a> changed my life eternally!</p>
+                            <p>I went to the University of North Carolina at Charlotte (UNCC) in 2011 to understand modern Artificial Intelligence. However, I completed my reluctant Ph.D. in Computing and Information Systems within three otherwise enlightening years in 2014. UNCC has an astonishingly rich library! Before joining the Department of Electrical and Computer Engineering at the University of Nebraska-Lincoln (UNL) in 2022 as a tenure-track Assistant Professor of Big Data and AI, I taught Computer Science and Engineering courses in the UNL School of Computing from 2014 to 2022 as a Data Science Assistant Professor of Practice. I have also taught at the University of North Carolina at Charlotte and North South University (Bangladesh). I earned a Master's degree in Applied Information Technology from Monash University (Australia).</p>
+                            <p>In my earlier life, I pursued Theoretical Physics and obtained a Bachelor of Science and a Master of Science in Physics. My passion for Physics was sparked by my mentor and the great Bengali novelist <a href="https://en.wikipedia.org/wiki/Akhteruzzaman_Elias" target="_blank">Akhteruzzaman Elias</a>. I wanted to be a novelist, but Elias lured me into the wonderful world of Physics!</p>
+                            <div class="elias-image">
+                                <img src="assets/images/Akhteruzzaman_Elias.jpg" alt="Portrait of Akhteruzzaman Elias">
+                                <div class="image-caption">My mentor, Akhteruzzaman Elias</div>
+                            </div>
+                        </section>
+                        <section>
+                            <h2>Entrepreneurial Venture</h2>
+                            <p>Before my reincarnation in modern AI, I co-created a tech startup, <strong>Global Village.Com</strong>, in 2001 to provide Internet-based telecommunication services to rural areas of Bangladesh. Its mission was to bring the benefits of Internet-based technologies to the "computer-illiterate" people of underdeveloped regions.</p>
+                        </section>
+                        <section>
+                            <p>For more details, see my <a href="https://uofnelincoln-my.sharepoint.com/personal/mhasan2_unl_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmhasan2%5Funl%5Fedu%2FDocuments%2FCV%2FCV%2DLatex%2FCV%2DHasan%2Epdf&parent=%2Fpersonal%2Fmhasan2%5Funl%5Fedu%2FDocuments%2FCV%2FCV%2DLatex&ga=1" target="_blank">CV</a>.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trustworthy AI</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        /* Section Headers */
+        h3 { 
+            text-align: center; 
+            color: #2c3e50; 
+            font-size: 2em; 
+            margin-bottom: 20px; 
+        }
+        h5 { 
+            color: #2c3e50; 
+            font-size: 1.5em; 
+            margin-top: 30px; 
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #3498db; 
+            padding-bottom: 5px; 
+        }
+        h6 { 
+            color: #34495e; 
+            font-size: 1.2em; 
+            margin-top: 20px; 
+            margin-bottom: 10px; 
+            font-weight: 600; 
+        }
+        /* Project Sections */
+        .project-section { 
+            margin-bottom: 40px; 
+        }
+        .project-section p { 
+            margin: 10px 0; 
+            text-align: justify; 
+        }
+        .project-section a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        .project-section a:hover { 
+            text-decoration: underline; 
+        }
+        .project-image { 
+            display: block; 
+            margin: 15px auto; 
+            max-width: 50%; 
+            height: auto; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+        /* Lists for Publications, News, Funding, Collaborations */
+        ul.project-list { 
+            list-style-type: disc; 
+            padding-left: 25px; 
+            margin: 10px 0; 
+        }
+        ul.project-list li { 
+            margin-bottom: 12px; 
+            font-size: 1.0em; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <h3>Research at Human-First Artificial Intelligence Lab (HAL 2.0)</h3>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+
+                        <h5>Reliable Multimodal AI Systems</h5>
+                        <div class="project-section">
+                            <p>
+                                Vision-Language Models (VLMs) have revolutionized the integration of visual perception and natural language understanding, excelling in tasks like image captioning and visual question answering, thanks to Transformer-based large language models (LLMs). Despite this remarkable progress, a critical challenge remains: ensuring the trustworthiness of these powerful models. Current VLMs often struggle with fundamental reliability issues, exhibiting "hallucinations" where they generate non-existent objects, particularly in hypothetical scenarios. They also demonstrate "linguistic sycophancy," inappropriately prioritizing user feedback over visual evidence, which can lead to inaccurate and potentially harmful outputs. These shortcomings significantly hinder the safe and ethical deployment of VLMs, especially in high-stakes domains such as healthcare and assistive technologies. At the Human-First Artificial Intelligence Lab (HAL 2.0), we are directly addressing these reliability concerns by rigorously investigating VLMs’ visual causal reasoning capabilities—probing their ability to infer cause-effect relationships, counterfactuals, and commonsense implications—and developing innovative methods to mitigate both hypothetical object hallucination and linguistic sycophancy, as visually illustrated in <a href="#fig1">Figure 1</a>, <a href="#fig2">Figure 2</a>, and <a href="#fig3">Figure 3</a>.
+                            </p>
+                            
+                            <img id="fig1" src="assets/images/Factual-causal-reasoning.jpg" alt="Factual and Causal Reasoning in VLMs" class="project-image">
+                            <img id="fig2" src="assets/images/Hypothetical-object-hallucination.jpg" alt="Hypothetical Object Hallucination in VLMs" class="project-image">
+                            <img id="fig3" src="assets/images/Sycophancy.jpg" alt="Linguistic Sycophancy in VLMs" class="project-image">
+
+                            <p>
+                                We are pioneering novel techniques to enhance the reasoning capabilities and overall trustworthiness of VLMs. Our current work introduces a training-free meta-thinking approach, inspired by human System 2 reasoning as described by Daniel Kahneman, which utilizes carefully crafted prompts to guide VLMs toward more structured and context-aware decision-making. This method effectively mitigates both hypothetical object hallucination and linguistic sycophancy by encouraging deeper reasoning. Building upon this foundation, we are developing a fine-tuning method designed to directly address object hallucination. This approach focuses on grounding textual outputs in verifiable visual evidence, dynamically penalizing hallucinated content during training, and incorporating reasoning supervision to ensure the model's outputs are consistently aligned with the correct visual context. This comprehensive strategy aims to significantly improve the reasoning abilities of VLMs in complex multimodal scenarios.
+                            </p>
+                            <h6>Broader Impacts</h6>
+                            <p>
+                                By significantly enhancing the reliability and trustworthiness of VLMs, this research will have a profound and multifaceted impact. Ensuring that these models deliver accurate, reliable, and contextually appropriate outputs is paramount for their safe and ethical deployment across diverse applications. This includes enhancing the accuracy and dependability of assistive technologies for the visually impaired, improving the precision of diagnostic tools in healthcare, and ensuring the integrity of information in educational settings. Furthermore, by tackling the fundamental challenges of hypothetical object hallucination and linguistic sycophancy, our work directly contributes to the ongoing efforts in AI alignment. Improving the factual accuracy and reducing undesirable behaviors in VLMs ensures these systems are more aligned with human intentions and values, thus fostering the development of more ethical AI. This research sets new benchmarks for building dependable multimodal AI systems that can be confidently and responsibly integrated into critical aspects of society, ultimately leading to more beneficial and trustworthy AI technologies for all.
+                            </p>
+
+                            <h6>Publications</h6>
+                            <p>Student advisees are marked with an asterisk (*).</p>
+                            <ul class="project-list">
+                                <li>Chinh Hoang*, Nathan Roberts*, and Mohammad Rashedul Hasan, <a href="https://pakdd2025.org/" target="_blank"><i>A Meta-Thinking Approach to Mitigating Linguistic Sycophancy in Vision-Language Models</i></a>, The 29th Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD) [accepted].</li>
+                            </ul>
+
+                            <h6>Funding</h6>
+                            <ul class="project-list">
+                                <li>UNL College of Engineering</li>
+                                <li>Undergraduate Creative Activities and Research Experience (UCARE) fellowship, UNL</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        /* Section Headers */
+        h3 { 
+            text-align: center; 
+            color: #2c3e50; 
+            font-size: 2em; 
+            margin-bottom: 20px; 
+        }
+        h5 { 
+            color: #2c3e50; 
+            font-size: 1.5em; 
+            margin-top: 30px; 
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #3498db; 
+            padding-bottom: 5px; 
+        }
+        h6 { 
+            color: #34495e; 
+            font-size: 1.2em; 
+            margin-top: 20px; 
+            margin-bottom: 10px; 
+            font-weight: 600; 
+        }
+        /* Student Lists */
+        ul.student-list { 
+            list-style-type: disc; 
+            padding-left: 25px; 
+            margin: 0; 
+        }
+        ul.student-list li { 
+            margin-bottom: 12px; 
+            font-size: 1.0em; 
+        }
+        ul.student-list a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        ul.student-list a:hover { 
+            text-decoration: underline; 
+        }
+        /* Current PhD Student Cards */
+        .student-card-container { 
+            display: flex; 
+            flex-direction: column; /* Changed to vertical layout */
+            gap: 20px; 
+            margin-bottom: 20px; 
+        }
+        .student-card { 
+            background: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            transition: transform 0.3s ease; 
+        }
+        .student-card:hover { 
+            transform: translateY(-3px); 
+        }
+        .student-card img { 
+            width: 120px; 
+            height: 150px; 
+            object-fit: cover; 
+            
+            
+        
+            border-radius: 0; /* Removed circular styling */
+        }
+        .student-card .info { 
+            flex: 1; 
+        }
+        .student-card .info h6 { 
+            margin: 0 0 5px; 
+            font-size: 1.1em; 
+            color: #2c3e50; 
+        }
+        .student-card .info p { 
+            margin: 0 0 5px; 
+            font-size: 0.95em; 
+            color: #555; 
+        }
+        .student-card .info a { 
+            color: #3498db; 
+            text-decoration: none; 
+            font-size: 0.9em; 
+        }
+        .student-card .info a:hover { 
+            text-decoration: underline; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+            .student-card { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            .student-card img { 
+                margin: 0 auto; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <h2>Students & Mentees</h2>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+                        <!--
+                        <h3>Students & Mentees</h3>
+                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
+                        -->
+
+                        <h5>Current Students</h5>
+                        <h6>PhD Students</h6>
+                        <div class="student-card-container">
+                            <div class="student-card">
+                                <img src="assets/images/Ahatsham.jpg" alt="Ahatsham">
+                                <div class="info">
+                                    <h6>Ahatsham</h6>
+                                    <p>Electrical and Computer Engineering (Spring 2023 - Present)</p>
+                                    <a href="mailto:aahatsham2@huskers.unl.edu">aahatsham2@huskers.unl.edu</a>
+                                </div>
+                            </div>
+                            <div class="student-card">
+                                <img src="assets/images/Chinh.jpg" alt="Chinh Hoang">
+                                <div class="info">
+                                    <h6>Chinh Hoang</h6>
+                                    <p>Electrical and Computer Engineering (Fall 2023 - Present)</p>
+                                    <a href="mailto:choang3@huskers.unl.edu">choang3@huskers.unl.edu</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6>Undergraduate Students</h6>
+                        
+                        <div class="student-card">
+                            <img src="assets/images/Helen.jpg" alt="Chinh Hoang">
+                            <div class="info">
+                                <h6>Helen Martinez</h6>
+                                <p>Mathematics (Spring 2024 - Present)</p>
+                                
+                            </div>
+                        </div>
+
+                        <h5>Past Students</h5>
+                        <!--
+                        <h6>PhD Students Supervised at the University of Nebraska-Lincoln</h6>
+                        <ul class="student-list">
+                            <li>[No completed PhD students listed as of March 2025]</li>
+                        </ul>
+                        -->
+
+                        <h6>Master's Students Supervised at the School of Computing, University of Nebraska-Lincoln</h6>
+                        <ul class="student-list">
+                            
+                            
+                            
+                            <li>Atharva Tendle (2019 - 2021)</li>
+                            <li>Yuanzhi Chen (2019 - 2021)</li>
+                            <li>Rojina Deuja (2020 - 2021)</li>
+                            <li>Eric Le (2021)</li>
+                            <li>Yan Xia (Spring 2017)</li>
+                            <li>Pamungkas Prahara (Summer 2017)</li>
+                        </ul>
+
+                        <h6>Undergraduate Students at the University of Nebraska-Lincoln</h6>
+                        <ul class="student-list">
+                            <li>Helen Martinez, Mathematics (Spring 2024 - Summer 2024), sponsored by the McNair Scholars Program</li>
+                            <li>Sharif Akil, Electrical and Computer Engineering (Fall 2022)</li>
+                            <li>Eric Le, School of Computing (Fall 2018 - Fall 2019)</li>
+                            <li><a href="https://news.unl.edu/newsrooms/today/article/huskers-track-protect-wildlife-through-deep-learning-tech/" target="_blank">Rahul Prajapati, School of Computing (Summer 2019)</a></li>
+                        </ul>
+
+                        <h6>Undergraduate Creative Activities and Research Experience (UCARE) Students at the University of Nebraska-Lincoln</h6>
+                        <ul class="student-list">
+                            <li>Helen Martinez, Mathematics (Fall 2024 - Spring 2025)</li>
+                            <li>Sharif Akil, Electrical and Computer Engineering (Fall 2023 - Spring 2024)</li>
+                            <li><a href="https://news.unl.edu/newsrooms/today/article/undergraduate-and-graduate-research-days-winners-announced/" target="_blank">Nathan Roberts, Electrical and Computer Engineering (Fall 2022 - Spring 2024)</a></li>
+                            <li>Yusup Orazov, School of Computing (Summer 2023)</li>
+                            <li>Keyik Annagulyyeva, School of Computing (Summer 2023)</li>
+                            <li><a href="/downloads/files/Poster-Tom-2.pdf" target="_blank">Thomas Walton, School of Computing (Summer 2022)</a></li>
+                            <li>Taher Ahmed, School of Computing (Summer 2020)</li>
+                            <li>Fateh Karan Singh Sandhu, School of Computing (Summer 2020)</li>
+                            <li><a href="https://newsroom.unl.edu/announce/cse/11511/67386" target="_blank">Eylon Caplan, School of Computing (Summer 2020)</a></li>
+                            <li><a href="https://news.unl.edu/newsrooms/today/article/huskers-track-protect-wildlife-through-deep-learning-tech/" target="_blank">Brian Chong, School of Computing (Summer 2019)</a></li>
+                            <li>Mohamed Aly, School of Computing (Summer 2018 - Fall 2019)</li>
+                            <li>Hung Chu, School of Computing (Summer 2018 - Spring 2019)</li>
+                            <li>Vy Doan, School of Computing (Summer 2018 - Present)</li>
+                            <li>Trieu Hung Tran, School of Computing (Fall 2017 - Spring 2018)</li>
+                            <li>Sk Nasimul Gani, School of Computing (Summer 2017)</li>
+                            <li>Ayush Manish Agrawal, School of Computing (Fall 2016 - Spring 2018)</li>
+                            <li>Jeevan Rajagopal, School of Computing (Summer 2016)</li>
+                        </ul>
+
+                        <h6>Undergraduate Thesis Supervised at the School of Computing, University of Nebraska-Lincoln</h6>
+                        <ul class="student-list">
+                            <li>Alec Schneider (Spring 2019 - Fall 2019)</li>
+                        </ul>
+
+                        <h6>Undergraduate Thesis Supervised at North South University</h6>
+                        <ul class="student-list">
+                            <li>Multiple Relay Selection Scheme for Optimized Power Distribution among the Relays in a Cooperative Diversity Network (Summer 2011)</li>
+                            <li>Cognitive Radio for Wireless Nodes in IEEE 802.11 Based Wireless Mesh Network (Spring 2011)</li>
+                            <li>Interference Mitigation Technique for Performance Enhancement in Coexisting Bluetooth and WLAN (Spring 2011)</li>
+                            <li>Rate Adaptive MAC Protocol for Wireless Ad Hoc Network (Spring 2011)</li>
+                            <li>Packet Segmentation for Efficient Data Transmission in a Bluetooth Piconet (Spring 2011)</li>
+                            <li>Interference Aware Gateway Placement Algorithm for Wireless Mesh Network (Spring 2011)</li>
+                            <li>Adaptive Multiple Relay Selection Scheme for OFDMA Relay Networks (Fall 2010)</li>
+                            <li>Broadcast-Storm Mitigation in Intelligent Traffic Information System for Vehicular Ad Hoc Networks (VANET) (Fall 2010)</li>
+                            <li>Integration of Cellular-IP with Wireless Mesh Network (WMN) for Future Generation Radio Access Networks (Fall 2010)</li>
+                            <li>Design of Efficient Scheduling Algorithm for Scatternets (Fall 2010)</li>
+                            <li>Cross-Layer Security Enhancement in Distributed Wireless Sensor Network (Summer 2010)</li>
+                            <li>Efficient Search Algorithm for Peer-to-Peer Network (Summer 2010)</li>
+                            <li>QoS Enabled MAC Protocol for Wireless Sensor Network (Summer 2010)</li>
+                            <li>Dynamic Channel Allocation through Base Station Coordination in Relay-Enhanced OFDMA Cellular Network (Spring 2010)</li>
+                            <li>Delaunay Triangulation Algorithm Based on Fractal Topology for Reliable Optical Radio Access Network (Spring 2010)</li>
+                            <li>A Scatternet Based Wireless Sensor Network for Traffic Monitoring (Spring 2010)</li>
+                            <li>Passive Optical Transmission Model for Smart Dust Network (Fall 2009)</li>
+                            <li>Energy-Efficient and QoS Enabled Multipath Routing Protocol for MANET (Fall 2009)</li>
+                            <li>Battery-Power Level Based Multiple Access Algorithm for the MAC Layer in MANET (Fall 2009)</li>
+                            <li>Hierarchical Foreign-Agent Based Solution for Smooth Handoff in Mobile IP (Fall 2009)</li>
+                            <li>Energy-Efficient Coordinated Scatternet Formation Protocol (Fall 2009)</li>
+                            <li>Congestion Control and Bandwidth Reallocation in a Cluster Based Wireless Sensor Network (Summer 2009)</li>
+                            <li>Design of Adaptable MANET to Combat Link-Failure (Fall 2008)</li>
+                            <li>An Adaptive Clustering Scheme for Mobile Ad-Hoc Networks (Fall 2007)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>

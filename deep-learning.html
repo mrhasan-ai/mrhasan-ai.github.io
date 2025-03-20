@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Learning</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            background-color: #FFFFFF; 
+            color: #333; 
+            line-height: 1.6; 
+            box-sizing: border-box; 
+        }
+        /* Navbar */
+        .navbar { 
+            background: #f5f5f5; 
+            padding: 10px 20px; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .navbar .navbar-content { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .navbar .logo { 
+            margin-right: 20px; 
+        }
+        .navbar .logo img { 
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            flex-grow: 1; 
+        }
+        .navbar .nav-menu a { 
+            color: #333; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: normal; 
+            font-size: 1.0em; 
+        }
+        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
+            color: #3498db; 
+            transition: 0.3s; 
+        }
+        .navbar .navbar-toggle { 
+            display: none; 
+            background: #ecf0f1; 
+            border: none; 
+            padding: 5px 10px; 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-left: 20px; 
+        }
+        /* Container with Side Space */
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            min-height: calc(100vh - 110px); 
+            margin-top: 70px; 
+            padding: 0 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        /* Main Content */
+        .content-wrapper { 
+            display: flex; 
+            flex: 1; 
+            border: 1px solid #e0e0e0; 
+        }
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            background: #ffffff; 
+        }
+        .card { 
+            background: #ffffff; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border: 1px solid #e0e0e0; 
+        }
+        /* Course Details Styling */
+        .course-header { 
+            text-align: center; 
+            color: #2c3e50; 
+        }
+        .course-header h3 { 
+            font-size: 2em; 
+            margin-bottom: 5px; 
+        }
+        .course-header span { 
+            display: block; 
+            margin-bottom: 10px; 
+        }
+        .course-header .strong { 
+            font-weight: bold; 
+            color: #2980b9; 
+        }
+        hr { 
+            border: 0; 
+            height: 1px; 
+            background: #e0e0e0; 
+            margin: 20px 0; 
+        }
+        dl { 
+            margin: 0 0 20px 0; 
+        }
+        dt { 
+            font-weight: bold; 
+            color: #34495e; 
+            margin-top: 10px; 
+        }
+        dd { 
+            margin-left: 20px; 
+            margin-bottom: 10px; 
+        }
+        dd a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        dd a:hover { 
+            text-decoration: underline; 
+        }
+        /* Schedule Table */
+        .schedule-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+        }
+        .schedule-table th, .schedule-table td { 
+            padding: 10px; 
+            border: 1px solid #e0e0e0; 
+            text-align: left; 
+        }
+        .schedule-table th { 
+            background-color: #f5f5f5; 
+            font-weight: bold; 
+        }
+        .schedule-table tr:nth-child(even) { 
+            background-color: #f9f9f9; 
+        }
+        .schedule-table tr:hover { 
+            background-color: #ecf0f1; 
+        }
+        .schedule-table ul { 
+            list-style-type: disc; 
+            padding-left: 20px; 
+            margin: 5px 0; 
+        }
+        .schedule-table strong { 
+            color: #e74c3c; 
+        }
+        /* Philosophy Section */
+        .philosophy { 
+            background: #f9f9f9; 
+            padding: 15px; 
+            border-left: 4px solid #e74c3c; 
+            margin: 20px 0; 
+        }
+        .philosophy strong { 
+            color: #e74c3c; 
+        }
+        /* Resource Sections */
+        h5 { 
+            color: #2c3e50; 
+            font-size: 1.2em; 
+            margin-top: 20px; 
+        }
+        ul.resource-list { 
+            list-style-type: disc; 
+            padding-left: 20px; 
+        }
+        ul.resource-list li { 
+            margin-bottom: 10px; 
+        }
+        ul.resource-list a { 
+            color: #3498db; 
+            text-decoration: none; 
+        }
+        ul.resource-list a:hover { 
+            text-decoration: underline; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo { 
+                display: none; 
+            }
+            .navbar .navbar-content { 
+                justify-content: flex-start; 
+            }
+            .navbar .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 50px; 
+                left: 0; 
+                width: 100%; 
+                background: #f5f5f5; 
+                padding: 10px 0; 
+            }
+            .navbar .nav-menu.active { 
+                display: flex; 
+            }
+            .navbar .navbar-toggle { 
+                display: block; 
+            }
+            .content { 
+                padding: 0; 
+            }
+            .content-wrapper { 
+                flex-direction: column; 
+            }
+            .schedule-table { 
+                font-size: 0.9em; 
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Highlight current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="about.html">About Me & CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="content-wrapper">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="card">
+                        <div class="course-header">
+                            <h3>The "Black" Art & "Elusive" Science of Training Deep Neural Networks</h3>
+                            <span class="strong">School of Computing, University of Nebraska-Lincoln</span>
+                            <span>Spring 2021 (3-week session): CSCE 496/896</span>
+                            <hr>
+                        </div>
+
+                        <p><strong>Synopsis:</strong> Deep Learning, a cornerstone of modern Artificial Intelligence, tackles complex challenges in computer vision, natural language processing, and speech recognition. Deep Neural Networks (DNNs)—vast networks of artificial neurons arranged in hierarchical layers—uncover intricate patterns by creating increasingly meaningful data representations. Unlocking their potential requires a deep understanding of effective architectures, learning algorithms, and optimization strategies. Often dubbed a "black art" due to its complexity, training DNNs can feel like summoning a genie. This course aims to demystify this process, exploring state-of-the-art DNN architectures and delving into the "black" art and "elusive" science of training them.</p>
+
+                        <div class="philosophy">
+                            <p><strong>Philosophy:</strong> Inspired by my mentor <a href="http://www.richardfeynman.com/" target="_blank">Richard Feynman</a>'s philosophy on learning—“What I cannot create, I do not understand”—this course emphasizes hands-on implementation. True mastery of DNN training comes from building models from scratch, without high-level libraries like Scikit-Learn, Keras, or PyTorch. Begin with a Multi-Layer Perceptron (MLP) using NumPy (<a href="https://github.com/rhasanbd/Handcrafting-MLP-using-NumPy" target="_blank">pseudocode</a>), then tackle a Convolutional Neural Network (CNN) using NumPy (<a href="https://github.com/rhasanbd/Convolutional-Neural-Networks" target="_blank">pseudocode</a>).</p>
+                        </div>
+
+                        <dl>
+                            <dt>Instructor</dt>
+                            <dd><a href="index.html" target="_blank">Dr. M. R. Hasan</a></dd>
+                            <dt>Office Hours</dt>
+                            <dd>See the course Canvas page</dd>
+                            <dt>Lecture Time</dt>
+                            <dd>Monday through Friday: 10:00 AM - 11:30 AM via Zoom</dd>
+                        </dl>
+
+                        <p>Explore my <a href="https://github.com/rhasanbd/" target="_blank">GitHub tutorials on Machine Learning and Deep Learning</a> for additional resources. Key repositories include:</p>
+                        <ul>
+                            <li><a href="https://github.com/rhasanbd/Convolutional-Neural-Networks" target="_blank">Convolutional Neural Networks</a></li>
+                            <li><a href="https://github.com/rhasanbd/Recurrent-Neural-Networks/" target="_blank">Recurrent Neural Networks</a></li>
+                            <li><a href="https://github.com/rhasanbd/Smooth-Taste-of-Keras--Journey-Through-MLPs" target="_blank">Using TensorFlow-Keras for Building Effective MLP Classifiers</a></li>
+                            <li><a href="https://github.com/rhasanbd/CNN-Image-Classification-Tricks-of-the-Trade" target="_blank">CNN: Image Classification - Tricks of the Trade</a></li>
+                            <li><a href="https://github.com/rhasanbd/Data-Augmentation-for-Deep-Learning" target="_blank">Data Augmentation for Deep Learning</a></li>
+                            <li><a href="https://github.com/rhasanbd/Efficient-Methodology-for-Deep-Learning" target="_blank">Efficient Methodology for Deep Learning</a></li>
+                        </ul>
+
+                        <!-- Schedule -->
+                        <h3>Schedule</h3>
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Date</th>
+                                    <th>Topic & PDF Slides</th>
+                                    <th>Video Links</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jan 4</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EfBSIj1Wd31FiXYQUyEptZcBkZJwb9iN15T-i3ofOBNJrg?e=GafB85" target="_blank">Introduction</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EZHYBUe-V9BGnnC__TPdJZoBYHEPg1qMtu6mzQW37EZOeA?e=H7pPup" target="_blank">Linear Neural Networks - Linear Regression</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/WTLKLAaXIc4" target="_blank">[Jan 4] Course Introduction (from 2:40)</a></li>
+                                            <li><a href="https://youtu.be/iGVIzQzaRuA" target="_blank">[Jan 4] Introduction to Deep Learning (from 9:00)</a></li>
+                                            <li><a href="https://youtu.be/IB3F_NRs_WU" target="_blank">[Jan 4] Linear Neural Network - Linear Regression</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jan 5</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EaW1Xxa8_xxGprxh2yrZ15gBNL_9J_G0eFCzqHxYXHuXMw?e=hKac9U" target="_blank">Linear Neural Networks - Logistic Regression</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/sh2SjFs4ZW4" target="_blank">[Jan 5] Review of Previous Lecture</a></li>
+                                            <li><a href="https://youtu.be/9IwRKjTWQeI" target="_blank">[Jan 5] Linear Neural Network - Regression - Gradient Descent</a></li>
+                                            <li><a href="https://youtu.be/l-eiXI-SlAg" target="_blank">[Jan 5] Linear Neural Network - Binary Classification - Introduction</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jan 6</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EaiyumWEZXdHml6Ow6QxyksBoM6ntkM5MnoG3JQtVhnYSw?e=OxmlaL" target="_blank">Linear Neural Networks - Softmax Regression</a></li>
+                                        </ul>
+                                        <p><strong>Jupyter Notebook:</strong></p>
+                                        <ul>
+                                            <li><a href="https://github.com/rhasanbd/Linear-Neural-Networks" target="_blank">Linear Neural Networks using TensorFlow-Keras</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/hrXpUuF_UmY" target="_blank">[Jan 6] Review of Previous Lecture</a></li>
+                                            <li><a href="https://youtu.be/dj4P8Ytox80" target="_blank">[Jan 6] Linear Neural Network - Logistic Regression - Binary Cross Entropy Loss</a></li>
+                                            <li><a href="https://youtu.be/zDOMt1v3Lzs" target="_blank">[Jan 6] Linear Neural Network - Logistic Regression - TensorFlow Demo</a></li>
+                                            <li><a href="https://youtu.be/5bQ9hW1mmQM" target="_blank">[Jan 6] Linear Neural Network - Softmax Regression</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jan 7</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ESNkZXtPDmlAjRvIwz9vcPYBM8DSPExgnWgNJJ2uumJD3Q?e=OxlDag" target="_blank">Multi-Layer Perceptron (MLP): Introduction</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EXEj4LatH3JPqSlyUiYRup4B4dLZsHAYpmuCHTNg3QmSPQ?e=xr1fOX" target="_blank">Multi-Layer Perceptron (MLP): Training - Backpropagation Algorithm I</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/-3g_t3gWfcI" target="_blank">[Jan 7] Review: On the Horizon of LNNs</a></li>
+                                            <li><a href="https://youtu.be/sXJ2Fr1_8EY" target="_blank">[Jan 7] Nonlinear Neural Network - Multi-Layer Perceptron</a></li>
+                                            <li><a href="https://youtu.be/p8wrQVYi1Tg" target="_blank">[Jan 7] MLP Training: The Backpropagation Algorithm</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jan 8</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EfnipodBmJJDsiNMbfe2ACkBaIHOwNwgMu8kmIQCytCkZQ?e=1dgray" target="_blank">Multi-Layer Perceptron (MLP): Training - Backpropagation Algorithm II</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ER6JN-uBTVZEpUhb12VU5TcBza59xQFyHaRFYB0fcbCblg?e=caBV1f" target="_blank">Art & Science of Training Deep MLPs-1</a></li>
+                                        </ul>
+                                        <p><strong>Jupyter Notebooks:</strong></p>
+                                        <ul>
+                                            <li><a href="https://github.com/rhasanbd/Handcrafting-MLP-using-NumPy" target="_blank">Handcrafting MLP using NumPy</a></li>
+                                            <li><a href="https://github.com/rhasanbd/Smooth-Taste-of-Keras--Journey-Through-MLPs" target="_blank">Using TensorFlow-Keras for Building Effective MLP Classifiers</a></li>
+                                            <li><a href="https://github.com/rhasanbd/Multi-Layer-Perceptron-Curious-Dabbling" target="_blank">MLP - Curious Dabbling</a></li>
+                                            <li><a href="https://github.com/rhasanbd/Artificial-Neural-Network-Investigation-of-Translation-Invariance-Property" target="_blank">MLP - Investigation of the Spatial Invariance Property</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/XS0jpaZNb1Y" target="_blank">[Jan 8] Review: Backpropagation Algorithm</a></li>
+                                            <li><a href="https://youtu.be/ViDH8XeQadk" target="_blank">[Jan 8] Backpropagation Algorithm, Loss Function, Final Layer Activation</a></li>
+                                            <li><a href="https://youtu.be/UHhSMa6gWAE" target="_blank">[Jan 8] Art & Science of Training Deep MLPs</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jan 9</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EfZSbSzf9elEquWLGQnzcYcBWbdzF4SnzPU_P1j2PNrOXA?e=o3pkES" target="_blank">Art & Science of Training Deep MLPs-2</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/WByre1sUnrM" target="_blank">[Jan 9] Vanishing & Exploding Gradient Problem-I</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jan 11</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EaNxjX6c6DpHsQfQjfKzBksBlM4rS8BV4tWYwgUcsB9R3A?e=FY4h5S" target="_blank">Hidden Layer Activation Functions</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ET4siFHNOLFJhNfiPFPJZHcBKHfgnppfohxW5s0Hz9nuHA?e=QidXUg" target="_blank">Art & Science of Training Deep MLPs-3</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EZ9b7XdJQ9VPhFsIP-mE0xQBzXDTXQSAC-UW9Ft92U99Dw?e=FafEU6" target="_blank">Art & Science of Training Deep MLPs-4</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/1V-G1TxJbo4" target="_blank">[Jan 11] Review: Hidden Layer Activations (sigmoid, tanh, ReLU) & Weight Initializers (LeCun, Glorot)</a></li>
+                                            <li><a href="https://youtu.be/Vs3USFvpDHQ" target="_blank">[Jan 11] Vanishing & Exploding Gradient Problem-II: ReLU, He Initializer, Variants of ReLU</a></li>
+                                            <li><a href="https://youtu.be/rLvnx48MRYk" target="_blank">[Jan 11] Vanishing & Exploding Gradient Problem-III: Gradient Clipping & Batch Normalization</a></li>
+                                            <li><a href="https://youtu.be/g7p9M0ENA7k" target="_blank">[Jan 11] Achilles' Heel of SGD: Learning Rate Schedule and Optimal Learning Rate by Hessian</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jan 12</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EbRbhYGTgs9Pspvnm6FvcOEBuBX_vQml1bk8r3a8Qpod6w?e=DPfRAk" target="_blank">Art & Science of Training Deep MLPs-5</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EVn2KhkYwm9IicHXWYvPBPcBD4yEEEBWKWEl22E2tinKMw?e=BeT9w1" target="_blank">CNN-1-Introduction</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/3ZSqAkcd-ZM" target="_blank">[Jan 12] Review: Achilles' Heel of SGD</a></li>
+                                            <li><a href="https://youtu.be/8W2muGagNsQ" target="_blank">[Jan 12] Achilles' Heel of SGD: Topology of Cost Function</a></li>
+                                            <li><a href="https://youtu.be/mJHKj-xpnhA" target="_blank">[Jan 12] Fast Optimizers</a></li>
+                                            <li><a href="https://youtu.be/dnz76W1vxKw" target="_blank">[Jan 12] Convolutional Neural Networks (CNNs): Limitations of Dense MLPs</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jan 13</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EWU1ed0t3QxDu-gwZmhNaqgBXSqv-s8YFNpo5E2arqf8nA?e=S7Rbxo" target="_blank">CNN-2-Convolution</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/NRooBXFtDZc" target="_blank">[Jan 13] CNN: Introduction & Architecture</a></li>
+                                            <li><a href="https://youtu.be/DN8rNBRtIi0" target="_blank">[Jan 13] CNN: Convolution</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jan 14</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EWfH4DShFFxCr3UCTK4OKTkBa8V31Af1j1uDEcEjQ9nq6Q?e=ZEspgZ" target="_blank">CNN-3-Padding</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EdML3S9mNZBIi6KKU-sb6_EBp4mqKEfxVf1JqHUcMScwtA?e=TN95NF" target="_blank">CNN-4-Pooling</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/ljALdxD3buo" target="_blank">[Jan 14] CNN: Convolution (continued)</a></li>
+                                            <li><a href="https://youtu.be/xBlblTDXIsw" target="_blank">[Jan 14] CNN: Padding</a></li>
+                                            <li><a href="https://youtu.be/8XBPLItsZww" target="_blank">[Jan 14] CNN: Pooling</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jan 15</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EWT5Ose59JZErQBgh4pFDisBH2WH6x7_M_4f_Hu5YAnddw?e=t62e7m" target="_blank">CNN-5-Training-I</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EU-UNy7r1CJMpTFvsNIOR1kBGf6iJq0oOaHas0El9Lqbbg?e=HUCEBJ" target="_blank">CNN-6-Training-II</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EeAlYG3JWLhOhNNtG2iGszEBzZiQxBa-OB46DLZiYXwjcw?e=HjqcOj" target="_blank">CNN-7-Cheat Sheet</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EQyWC15KXsJHoy__ciINIXkB8y8nDsGKzgskL_-bYz1uIA?e=WnK2lK" target="_blank">CNN-8-Notable Architectures-I</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/LZzKlK5KwwU" target="_blank">[Jan 15] CNN: Global Average Pooling; Depthwise Pooling</a></li>
+                                            <li><a href="https://youtu.be/9SvvoJmid3U" target="_blank">[Jan 15] CNN: Cheat Sheet, Study of LeNet-5</a></li>
+                                            <li><a href="https://youtu.be/IY5QkIvuiKk" target="_blank">[Jan 15] CNN: ResNet</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jan 17</td>
+                                    <td></td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/iYf-hcVuGxw" target="_blank">[Jan 17] CNN: Notable Architectures-I</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Jan 18</td>
+                                    <td><strong>Martin Luther King Holiday</strong></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Jan 19</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ESwUFNUiM_pGk3khFBWbG-0BsLdmFM3-OT3W41LooA31BA?e=Yrmm0K" target="_blank">CNN-9-Notable Architectures-II</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ETEK2IIUtIJDvuFnX_zyPf8BFBusK__Ruzh529dxA9D17Q?e=dz9azq" target="_blank">RNN-1-Introduction</a></li>
+                                        </ul>
+                                        <p><strong>CNN Visualization:</strong></p>
+                                        <ul>
+                                            <li><a href="https://poloclub.github.io/cnn-explainer/" target="_blank">CNN Interactive Visualization</a></li>
+                                            <li><a href="https://www.deeplearningbook.org/" target="_blank">Read Chollet: ch 5.4</a></li>
+                                            <li><a href="https://arxiv.org/pdf/1311.2901.pdf" target="_blank">Zeiler & Fergus (2013) Visualizing and Understanding Convolutional Networks</a></li>
+                                            <li><a href="https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html" target="_blank">How Convolutional Neural Networks See the World</a></li>
+                                            <li><a href="https://arxiv.org/pdf/1610.02391.pdf" target="_blank">Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization</a></li>
+                                        </ul>
+                                        <p><strong>Jupyter Notebooks:</strong></p>
+                                        <ul>
+                                            <li><a href="https://github.com/rhasanbd/CNN-Image-Classification-Tricks-of-the-Trade" target="_blank">CNN: Image Classification - Tricks of the Trade</a></li>
+                                            <li><a href="https://github.com/rhasanbd/Data-Augmentation-for-Deep-Learning" target="_blank">Data Augmentation for Deep Learning</a></li>
+                                            <li><a href="https://github.com/rhasanbd/Convolutional-Neural-Networks" target="_blank">CNN: A Tour</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/FffFi6vk-H0" target="_blank">[Jan 19] CNN: Notable Architectures-II</a></li>
+                                            <li><a href="https://youtu.be/QqxuRaAcnZQ" target="_blank">[Jan 19] CNN: Training & Visualization</a></li>
+                                            <li><a href="https://youtu.be/PaYrOx6DfIM" target="_blank">[Jan 19] Recurrent Neural Networks (RNN): Introduction</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Jan 20</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/Ea3YpJjN6_VHsp4YdBp8VC0BqwZiN7YWpYRk9rLqLZi8FQ?e=NOIG86" target="_blank">RNN-2-Architecture</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EVRG2_HxoEZNmHFwGtYJPN8B1oAXG-njgSlugJfq9qGTTw?e=r7FbqB" target="_blank">RNN-3-Training</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/Y_PaXv_TnMU" target="_blank">[Jan 20] RNN: Review</a></li>
+                                            <li><a href="https://youtu.be/UYE7A5_IWT8" target="_blank">[Jan 20] RNN: Architecture</a></li>
+                                            <li><a href="https://youtu.be/5i_hgs9a4Ns" target="_blank">[Jan 20] RNN: Training</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Jan 21</td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EdZ-lza6RVRMlyrEqOHv4VEBGsr11iIiprSsq2ePx9wVNA?e=xzDcKV" target="_blank">RNN-4-Training Issues</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EfhsPWcqoMxGjRq4ANH0QlAB_k2QARUVLxNzDSBdjBovaA?e=18PKwt" target="_blank">RNN-5-Preventing Unstable Gradients</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EZzXQ5ZWcCxOlGXhOOJpIpQB4oGFRkV4Z4ho9ThCGlNXng?e=bYWZmC" target="_blank">RNN-6-Gated RNNs</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/EZ-AkYpmLmhAnfPBh7n6fskBO1ez2gLnVaktNJWJvb3f3A?e=gizzXQ" target="_blank">RNN-7-Gated RNNs-Prevent Vanishing Gradient</a></li>
+                                            <li><a href="https://uofnelincoln-my.sharepoint.com/:b:/g/personal/mhasan2_unl_edu/ESSimcJfvLJNhZpr-wELpSEBHJz2smxHIl35PXny12gaTA?e=BDlqzS" target="_blank">RNN-8-Effective RNN Design</a></li>
+                                        </ul>
+                                        <p><strong>Jupyter Notebooks:</strong></p>
+                                        <ul>
+                                            <li><a href="https://github.com/rhasanbd/Recurrent-Neural-Networks" target="_blank">RNN: A Tour</a></li>
+                                            <li><a href="https://github.com/rhasanbd/Efficient-Methodology-for-Deep-Learning" target="_blank">Efficient Methodology for Deep Learning</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li><a href="https://youtu.be/oXMviLJ5gAo" target="_blank">[Jan 21] RNN: Interpretation of Loss Gradient</a></li>
+                                            <li><a href="https://youtu.be/sdjnZh62aWM" target="_blank">[Jan 21] RNN: Training Issues</a></li>
+                                            <li><a href="https://youtu.be/aKTxK4X4_TI" target="_blank">[Jan 21] RNN: Preventing Unstable Gradients</a></li>
+                                            <li><a href="https://youtu.be/zQcoYzjcAcc" target="_blank">[Jan 21] RNN: Gated RNNs</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Text Resources</h5>
+                        <ul class="resource-list">
+                            <li>Lecture slides and Jupyter notebooks provide a thorough and extensive account of the topics.</li>
+                            <li><strong>Core Deep Learning Texts:</strong>
+                                <ul>
+                                    <li><a href="https://d2l.ai/" target="_blank">Dive into Deep Learning</a> by Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola</li>
+                                    <li><a href="https://www.deeplearningbook.org/" target="_blank">Deep Learning</a> by Ian Goodfellow, Yoshua Bengio, and Aaron Courville</li>
+                                    <li><em>Deep Learning with Python</em> by Francois Chollet</li>
+                                    <li><em>Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow</em> (2nd Edition, 2019) by Aurélien Géron (O'Reilly)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Foundational Machine Learning Texts:</strong>
+                                <ul>
+                                    <li><em>Machine Learning: A Probabilistic Perspective</em> by Kevin P. Murphy</li>
+                                    <li><em>Pattern Recognition and Machine Learning</em> by Christopher M. Bishop</li>
+                                    <li><em>Introduction to Machine Learning (3rd ed.)</em> by Ethem Alpaydin</li>
+                                </ul>
+                            </li>
+                            <li><strong>Python Refresher/Introduction:</strong>
+                                <ul>
+                                    <li><em>Data Science from Scratch</em> by Joel Grus (O’Reilly)</li>
+                                    <li><em>Python for Data Analysis (2nd Edition)</em> by Wes McKinney (O'Reilly)</li>
+                                    <li><em>Python Machine Learning</em> by Sebastian Raschka (Packt Publishing)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Statistics, Linear Algebra & Calculus:</strong>
+                                <ul>
+                                    <li><em>Advanced Engineering Mathematics (10th Ed.)</em> by Erwin Kreyszig</li>
+                                    <li><em>All of Statistics: A Concise Course in Statistical Inference</em> by Larry Wasserman</li>
+                                </ul>
+                            </li>
+                            <li><strong>Interesting & Enlightening Texts:</strong>
+                                <ul>
+                                    <li><em>The Master Algorithm</em> by Pedro Domingos</li>
+                                    <li><em>Artificial Intelligence: A Guide for Thinking Humans</em> by Melanie Mitchell</li>
+                                    <li><em>The Deep Learning Revolution</em> by Terrence J. Sejnowski</li>
+                                    <li><em>Rebooting AI: Building Artificial Intelligence We Can Trust</em> by Gary Marcus and Ernest Davis</li>
+                                    <li><em>Thinking, Fast and Slow</em> by Daniel Kahneman</li>
+                                    <li><a href="https://christophm.github.io/interpretable-ml-book/" target="_blank">Interpretable Machine Learning</a> by Christoph Molnar</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h5>Deep Learning Courses Elsewhere</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://deeplearning.cs.cmu.edu/S21/index.html" target="_blank">Introduction to Deep Learning - Carnegie Mellon University</a></li>
+                            <li><a href="http://cs231n.stanford.edu/" target="_blank">Convolutional Neural Networks for Visual Recognition - Stanford University</a></li>
+                            <li><a href="https://cs230.stanford.edu/" target="_blank">Deep Learning - Stanford University</a></li>
+                            <li><a href="https://www.coursera.org/specializations/deep-learning#courses" target="_blank">Deep Learning Specialization - Andrew Ng (Coursera)</a></li>
+                        </ul>
+
+                        <h5>Collaboration Tool</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://deepnote.com/" target="_blank">Deepnote: Jupyter-compatible with real-time collaboration and cloud running</a></li>
+                        </ul>
+
+                        <h5>Google Colab Tutorials</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://www.youtube.com/watch?v=inN8seMm7UI" target="_blank">Get Started with Google Colaboratory (Coding TensorFlow)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=PitcORQSjNM" target="_blank">Getting Started with TensorFlow in Google Colaboratory (Coding TensorFlow)</a></li>
+                        </ul>
+
+                        <h5>Python</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://docs.python.org/3/tutorial/" target="_blank">Python Tutorial</a></li>
+                            <li><a href="http://www.numpy.org/" target="_blank">NumPy</a></li>
+                            <li><a href="http://pandas.pydata.org/" target="_blank">Pandas</a></li>
+                            <li><a href="https://matplotlib.org/" target="_blank">Matplotlib</a></li>
+                        </ul>
+
+                        <h5>Open Data Repositories</h5>
+                        <ul class="resource-list">
+                            <li><a href="http://archive.ics.uci.edu/ml/index.php" target="_blank">UC Irvine ML Repository</a></li>
+                            <li><a href="https://www.kaggle.com/datasets" target="_blank">Kaggle Datasets</a></li>
+                            <li><a href="https://aws.amazon.com/fr/datasets/" target="_blank">Amazon’s AWS Datasets</a></li>
+                            <li><a href="http://lib.stat.cmu.edu/datasets/" target="_blank">Statlib Datasets Archive</a></li>
+                            <li><a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">The CIFAR-10 Dataset (Canadian Institute For Advanced Research) for Computer Vision Problems</a></li>
+                            <li><a href="https://mila.quebec/en/publications/public-datasets/" target="_blank">MILA Public Dataset</a></li>
+                        </ul>
+
+                        <h5>ML Podcasts</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://www.youtube.com/channel/UCMLtBahI5DMrt0NPvDSoIRQ" target="_blank">Machine Learning Street Talk</a></li>
+                            <li><a href="https://lexfridman.com/podcast/" target="_blank">Lex Fridman Podcast</a></li>
+                        </ul>
+
+                        <h5>Journals</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://link.springer.com/journal/10994" target="_blank">Machine Learning</a></li>
+                            <li><a href="http://www.jmlr.org/" target="_blank">Journal of Machine Learning Research</a></li>
+                            <li><a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385" target="_blank">IEEE Transactions on Neural Networks and Learning Systems</a></li>
+                        </ul>
+
+                        <h5>Conference Proceedings</h5>
+                        <ul class="resource-list">
+                            <li><a href="https://nips.cc/" target="_blank">Conference and Workshop on Neural Information Processing Systems (NeurIPS)</a></li>
+                            <li><a href="https://iclr.cc/" target="_blank">International Conference on Learning Representations (ICLR)</a></li>
+                            <li><a href="https://icml.cc/" target="_blank">International Conference on Machine Learning (ICML)</a></li>
+                            <li><a href="https://cvpr2022.thecvf.com/" target="_blank">Conference on Computer Vision and Pattern Recognition (CVPR)</a></li>
+                            <li><a href="https://waset.org/computer-vision-conference-in-january-2022-in-istanbul" target="_blank">International Conference on Computer Vision (ICCV)</a></li>
+                            <li><a href="https://2021.ecmlpkdd.org/" target="_blank">European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML PKDD)</a></li>
+                            <li><a href="https://www.aaai.org/" target="_blank">The Advancement of Artificial Intelligence (AAAI)</a></li>
+                            <li><a href="https://www.ijcai.org/" target="_blank">International Joint Conference on Artificial Intelligence (IJCAI)</a></li>
+                            <li><a href="https://aclanthology.org/venues/acl/" target="_blank">Annual Meeting of the Association for Computational Linguistics (ACL)</a></li>
+                            <li><a href="https://aclanthology.org/venues/emnlp/" target="_blank">Conference on Empirical Methods in Natural Language Processing (EMNLP)</a></li>
+                            <li><a href="https://deepmind.com/research" target="_blank">DeepMind Research</a></li>
+                            <li><a href="https://ai.google/research/pubs" target="_blank">Google Research</a></li>
+                            <li><a href="https://research.fb.com/publications/" target="_blank">Facebook Research</a></li>
+                            <li><a href="https://arxiv.org/list/stat.ML/recent" target="_blank">arXiv Machine Learning Publications</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© M. R. Hasan 2025</div>
+    </footer>
+</body>
+</html>
