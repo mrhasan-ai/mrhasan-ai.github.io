@@ -187,20 +187,102 @@
             height: auto; 
             border-radius: 5px; 
         }
-        .news-highlights .video-section { 
-            margin-bottom: 20px; 
-            text-align: center; 
+
+        /* ===== Redesigned Sidebar Spotlight Section ===== */
+        .sidebar-spotlight {
+            margin-bottom: 20px;
         }
-        .news-highlights .video-section h3 { 
-            color: #2c3e50; 
-            font-size: 1.2em; 
-            margin-bottom: 5px; 
+        .sidebar-spotlight .spotlight-header {
+            text-align: center;
+            font-size: 0.95em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #0f0a0a;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
         }
-        .news-highlights .video-section iframe { 
-            width: 260px; 
-            height: 146px; 
-            border-radius: 5px; 
+
+        /* Book Section */
+        .book-showcase {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e8e8e8;
         }
+        .book-showcase .book-cover-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .book-showcase .book-cover-wrapper img {
+            width: 280px;
+            height: auto;
+            border-radius: 3px;
+            box-shadow: 
+                4px 4px 12px rgba(0,0,0,0.15),
+                1px 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .book-showcase .book-cover-wrapper img:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                6px 6px 18px rgba(0,0,0,0.2),
+                2px 2px 5px rgba(0,0,0,0.12);
+        }
+        .book-showcase .book-badge {
+            display: inline-block;
+            background: #2c3e50;
+            color: #fff;
+            font-size: 0.7em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-bottom: 6px;
+        }
+        .book-showcase .book-title {
+            font-size: 0.88em;
+            font-weight: bold;
+            color: #2c3e50;
+            line-height: 1.3;
+            margin: 6px 0 3px 0;
+        }
+        .book-showcase .book-publisher {
+            font-size: 0.78em;
+            color: #888;
+            margin: 0;
+        }
+
+        /* Talk Section */
+        .talk-showcase {
+            text-align: center;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .talk-showcase .talk-label {
+            font-size: 0.79em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #0b0909;
+            margin-bottom: 8px;
+        }
+        .talk-showcase iframe {
+            width: 260px;
+            height: 146px;
+            border-radius: 5px;
+        }
+        .talk-showcase .talk-title {
+            font-size: 0.8em;
+            color: #555;
+            margin-top: 6px;
+            line-height: 1.3;
+        }
+
         .news-list-wrapper { 
             max-height: 300px; 
             overflow-y: auto; 
@@ -231,13 +313,13 @@
             text-decoration: underline; 
         }
         .info i {
-            color: #333; /* Matches your default text color */
-            font-size: 1.0em; /* Matches the text size */
-            margin-right: 5px; /* Space between icon and text */
-            vertical-align: middle; /* Aligns icon with text */
+            color: #333;
+            font-size: 1.0em;
+            margin-right: 5px;
+            vertical-align: middle;
         }
         .info a:hover i {
-            color: #3498db; /* Matches your link hover color */
+            color: #3498db;
         }
         footer {
             text-align: center;
@@ -302,6 +384,13 @@
                 width: 100%; 
                 border-left: none; 
                 border-top: 1px solid #e0e0e0; 
+            }
+            .book-showcase .book-cover-wrapper img {
+                width: 170px;
+            }
+            .talk-showcase iframe {
+                width: 100%;
+                max-width: 260px;
             }
         }
     </style>
@@ -380,12 +469,6 @@
                                              <a href="https://engineering.unl.edu/building-maps-scott-engineering-center/" target="_blank" aria-label="Office location at Scott Engineering Center C290EE">Scott Engineering Center C290EE</a>
                                         </p>
                                     </div>
-                                    <!--
-                                    <div class="info">
-                                        <p>Email: <a href="mailto:hasan@unl.edu">hasan@unl.edu</a></p>
-                                        <p>Office: <a href="https://engineering.unl.edu/building-maps-scott-engineering-center/" target="_blank">Scott Engineering Center C290EE</a></p>
-                                    </div>
-                                    -->
                                 </div>
                             </div>
                         </div>
@@ -394,7 +477,7 @@
                     <div class="card">
                         <h2>Research Vision: Multimodal AI for Humanity</h2>
                         <p>
-                            My foundational research in multimodal AI focuses on developing trustworthy models capable of integrating and reasoning across diverse data modalities, such as text and images. This work aims to enhance our understanding of and interaction with complex human experiences. By bridging cutting-edge AI technologies with insights from philosophy and art, my research contributes to advancements in critical areas including education, healthcare, food security, climate resilience, and algorithmic trust. I address key challenges in AI, such as hallucination, bias, and reliability, to promote transparent, ethically aligned, and beneficial AI-driven decision-making. My research is supported by the National Science Foundation and the University of Nebraska-Lincoln’s Grand Challenges Initiative, reflecting a commitment to designing AI systems that embody diverse human values and foster an inclusive, equitable, and responsible technological future.
+                            My foundational research in multimodal AI focuses on developing trustworthy models capable of integrating and reasoning across diverse data modalities, such as text and images. This work aims to enhance our understanding of and interaction with complex human experiences. By bridging cutting-edge AI technologies with insights from philosophy and art, my research contributes to advancements in critical areas including education, healthcare, food security, climate resilience, and algorithmic trust. I address key challenges in AI, such as hallucination, bias, and reliability, to promote transparent, ethically aligned, and beneficial AI-driven decision-making. My research is supported by the National Science Foundation and the University of Nebraska-Lincoln's Grand Challenges Initiative, reflecting a commitment to designing AI systems that embody diverse human values and foster an inclusive, equitable, and responsible technological future.
                         </p>
                         For information on my past and current research projects, visit <a href="research.html" target="_blank">this page</a>.
                     </div>
@@ -403,7 +486,7 @@
                         <div>
                             <h2>Human-First AI Lab (HAL 2.0)</h2>
                             <p>
-                                As the director of the <b><u>H</u></b>uman-First <b><u>A</u></b>rtificial Intelligence <b><u>L</u></b>ab (HAL 2.0), I lead a team of researchers dedicated to pioneering AI technologies that prioritize human values, ethical integrity, and societal benefit. Drawing inspiration from the iconic 1968 film <a href="https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey" target="_blank"><i>2001: A Space Odyssey</i></a>, our lab’s name pays homage to HAL 9000—the film’s AI that serves as a cautionary tale of misalignment—while HAL 2.0 represents a new vision: developing AI that seamlessly aligns with human goals and enhances real-world impact. From transforming education and healthcare to fostering inclusive, trustworthy innovations, our research is shaping AI as a force for social good.
+                                As the director of the <b><u>H</u></b>uman-First <b><u>A</u></b>rtificial Intelligence <b><u>L</u></b>ab (HAL 2.0), I lead a team of researchers dedicated to pioneering AI technologies that prioritize human values, ethical integrity, and societal benefit. Drawing inspiration from the iconic 1968 film <a href="https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey" target="_blank"><i>2001: A Space Odyssey</i></a>, our lab's name pays homage to HAL 9000—the film's AI that serves as a cautionary tale of misalignment—while HAL 2.0 represents a new vision: developing AI that seamlessly aligns with human goals and enhances real-world impact. From transforming education and healthcare to fostering inclusive, trustworthy innovations, our research is shaping AI as a force for social good.
                                 <br><br><a href="people.html">Meet the Team</a> to learn more about our mission-driven community.
                             </p>
                         </div>
@@ -422,14 +505,34 @@
                     </div>
                 </div>
 
-                <!-- News Highlights -->
+                <!-- News Highlights Sidebar -->
                 <div class="news-highlights">
-                    <div class="video-section">
-                        <h3>Spotlight: Data Conference 2024 Keynote</h3>
-                        <iframe src="https://www.youtube.com/embed/4YT49S5ozzk" title="Professor Hasan Keynote Talk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                    <!-- Spotlight Section: Book + Talk -->
+                    <div class="sidebar-spotlight">
+                        <div class="spotlight-header">Spotlight</div>
+
+                        <!-- Book Showcase -->
+                        <div class="book-showcase">
+                            <div class="book-cover-wrapper">
+                                <img src="assets/images/Reconceiving_AI.png" alt="Reconceiving AI: The World as an Apple or a Blue Orange - Book Cover">
+                            </div>
+                            <div class="book-badge">Forthcoming &middot; August 2026</div>
+                           <!-- <p class="book-title">Reconceiving AI: The World as an Apple or a Blue Orange</p> -->
+                            <!-- <p class="book-publisher">CRC Press (Taylor &amp; Francis)</p> -->
+                        </div>
+
+                        <!-- Keynote Talk -->
+                        <div class="talk-showcase">
+                            <div class="talk-label">Featured Talk</div>
+                            <iframe src="https://www.youtube.com/embed/4YT49S5ozzk" title="Professor Hasan Keynote Talk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <p class="talk-title">Keynote: Nebraska Data Conference 2024<br><em>The Future is Behind Us: Close Encounters of the First Kind with AI</em></p>
+                        </div>
                     </div>
+
+                    <!-- News Section -->
                     <div class="card">
-                        <h2>AI & Research Highlights</h2>
+                        <h2>AI &amp; Research Highlights</h2>
                         <div class="news-list-wrapper">
                             <ul>
                                 <li><strong>8 February 2026</strong> Our paper <i>Human-Guided Generative AI for Proactive STEM Student Support</i> has been accepted at the <a href="https://www.asee.org/events/Conferences-and-Meetings/2026-Annual-Conference-Exposition" target="_blank">2026 ASEE (American Society for Engineering Education) Annual Conference</a>.</li>
@@ -452,13 +555,13 @@
                                 <li><strong>25 May 2025</strong> Our paper on <i>Modeling behavioral engagement from qualitative longitudinal data via a three-tier LLM framework</i> has been accepted for presentation at the <a href="https://conll.org/" target="_blank">29th Conference on Computational Natural Language Learning (CoNLL 2025)</a>.</li>
                                 <li><strong>07 May 2025</strong> Congratulations, Hunter Tridle, on receiving the 2025-2026 UCARE (Undergraduate Creative Activities and Research Experience) award!</li>
                                 <li><strong>01 April 2025</strong> Our paper on <i>Unlocking Optimal ORM Database Designs: Accelerated Tradeoff Analysis with Transformers</i> has been accepted for presentation at the <a href="https://conf.researchr.org/home/fse-2025" target="_blank">2025 ACM International Conference on the Foundations of Software Engineering (FSE)</a>.</li>
-                                <li><strong>17 Apr 2024</strong> Congratulations, Ahatsham, on being awarded the Dean’s Fellowship for the 2025-2026 academic year!</li>
-                                <li><strong>07 Mar 2025</strong> Presented an <a href="https://www.instagram.com/nebraskabiz/p/DHEbDVgBn0m/?img_index=5" target="_blank">invited talk</a> titled "<a href="https://business.unl.edu/promo/emerging-tech/" target="_blank">The AI Alignment Problem - Technical Challenges and Society Implications</a>" at UNL College of Business’ Emerging Technology Conference. Read conference news coverage <a href="https://business.unl.edu/news/sold-out-emerging-tech-conference-features-industry-innovators/?contentGroup=social&fbclid=IwY2xjawJBQJxleHRuA2FlbQIxMAABHThGUU2brr-KApIGBKQM45v2itFnKdXQ-lM7W5rGZ3Jqq-BfuAIss5Z2jQ_aem_kGm9KcyHddA8Z3Rq09qwmw" target="_blank">here</a></li>
+                                <li><strong>17 Apr 2024</strong> Congratulations, Ahatsham, on being awarded the Dean's Fellowship for the 2025-2026 academic year!</li>
+                                <li><strong>07 Mar 2025</strong> Presented an <a href="https://www.instagram.com/nebraskabiz/p/DHEbDVgBn0m/?img_index=5" target="_blank">invited talk</a> titled "<a href="https://business.unl.edu/promo/emerging-tech/" target="_blank">The AI Alignment Problem - Technical Challenges and Society Implications</a>" at UNL College of Business' Emerging Technology Conference. Read conference news coverage <a href="https://business.unl.edu/news/sold-out-emerging-tech-conference-features-industry-innovators/?contentGroup=social&fbclid=IwY2xjawJBQJxleHRuA2FlbQIxMAABHThGUU2brr-KApIGBKQM45v2itFnKdXQ-lM7W5rGZ3Jqq-BfuAIss5Z2jQ_aem_kGm9KcyHddA8Z3Rq09qwmw" target="_blank">here</a></li>
                                 <li><strong>07 Mar 2025</strong> Our paper on an approach to utilizing large language models for forecasting student engagement in STEM education has been accepted at the 2025 ASEE (American Society for Engineering Education) Annual Conference</li>
                                 <li><strong>27 February 2025</strong> My <a href="https://www.nebraskanewsservice.net/ai-sparks-debate-over-educational-ethics-on-unl-campus/video_2a7b8e14-f585-11ef-b14a-370900fc0766.html" target="_blank">interview on AI in education and ethics</a>  aired on The Nebraska News Service, a UNL College of Journalism initiative.
                                 <li><strong>02 February 2025</strong> Our paper on <i>A Meta-Thinking Approach to Mitigating Linguistic Sycophancy in Vision-Language Models</i> has been accepted for presentation at the <a href="https://pakdd2025.org/" target="_blank">29th Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD)</a>.</li>
                                 <li><strong>29 Nov 2024</strong> Our paper on <i>A Context-Aware Approach for Enhancing Data Imputation with Pre-trained Language Models</i> has been accepted for presentation at <a href="https://aclanthology.org/2025.coling-main.380/" target="_blank">the 31st International Conference on Computational Linguistics (COLING 2025)</a></li>
-                                <li><strong>17 Oct 2024</strong> Presented an invited talk titled <a href="https://newsroom.unl.edu/announce/dber/17980/97522" target="_blank">"The Future is Now – Transforming STEM Education by Leveraging Generative AI to Model Longitudinal Experiential Data"</a> at UNL’s Discipline-Based Education Research seminar</li>
+                                <li><strong>17 Oct 2024</strong> Presented an invited talk titled <a href="https://newsroom.unl.edu/announce/dber/17980/97522" target="_blank">"The Future is Now – Transforming STEM Education by Leveraging Generative AI to Model Longitudinal Experiential Data"</a> at UNL's Discipline-Based Education Research seminar</li>
                                 <li><strong>09 Sep 2024</strong> Our paper on <i>Leveraging Language Models for Analyzing Experiential Time-Series Data in Education</i> has been accepted at <a href="https://www.icmla-conference.org/icmla24/index.php" target="_blank">the 2024 International Conference on Machine Learning and Applications (ICMLA)</a></li>
                                 <li><strong>23 Aug 2024</strong> Selected by UNL Chancellor to join a new AI Task Force convened by President Dr. Jeffrey P. Gold. This task force, including experts from all four University of Nebraska campuses, will focus on advancing generative AI and fostering inter-campus collaboration.</li>
                                 <li><strong>31 Jul 2024</strong> Awarded NSF supplemental funding to develop a generative AI tool, using NLP and LLMs to improve the generation of theory-based feedback.</li>
@@ -474,7 +577,7 @@
 
     <!-- Footer -->
     <footer>
-        <div>© M. R. Hasan 2025</div>
+        <div>&copy; M. R. Hasan 2026</div>
     </footer>
 </body>
 </html>
