@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Awards &amp; Recognition | M. R. Hasan</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #FFFFFF;
+            color: #333;
+            line-height: 1.6;
+            box-sizing: border-box;
+        }
+
+        /* ── Navbar (matches index.html) ── */
+        .navbar {
+            background: #f5f5f5;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar .navbar-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .navbar .logo { margin-right: 20px; }
+        .navbar .logo img { width: 150px; height: auto; }
+        .navbar .nav-menu { display: flex; align-items: center; flex-grow: 1; }
+        .navbar .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: normal;
+            font-size: 1.0em;
+        }
+        .navbar .nav-menu a:hover,
+        .navbar .nav-menu a.active { color: #3498db; transition: 0.3s; }
+        .navbar .navbar-toggle {
+            display: none;
+            background: #ecf0f1;
+            border: none;
+            padding: 5px 10px;
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-left: 20px;
+        }
+
+        /* ── Layout ── */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        /* ── Page header ── */
+        .page-header {
+            text-align: center;
+            margin-bottom: 55px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e8e8e8;
+        }
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6em;
+            color: #2c3e50;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+        }
+        .page-header .subtitle {
+            font-size: 1.05em;
+            color: #777;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── FEATURED (top) award — hero treatment ── */
+        .featured-award {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #fff;
+            border-radius: 8px;
+            padding: 34px 38px;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: flex-start;
+            gap: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .featured-award::before {
+            content: '';
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 160px; height: 160px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+        .featured-award::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -20px;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+        .featured-icon {
+            font-size: 2.8em;
+            flex-shrink: 0;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        .featured-body {}
+        .featured-badge {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+        .featured-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            margin: 0 0 8px 0;
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .featured-body p {
+            margin: 0;
+            font-size: 0.95em;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+        }
+        .featured-year {
+            position: absolute;
+            top: 20px; right: 28px;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2em;
+            font-weight: 700;
+            color: rgba(255,255,255,0.07);
+            line-height: 1;
+        }
+
+        /* ── Category sections ── */
+        .category-section { margin-bottom: 48px; }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        .category-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.0em;
+            flex-shrink: 0;
+            color: #fff;
+        }
+        .icon-research  { background: #2980b9; }
+        .icon-teaching  { background: #27ae60; }
+        .icon-community { background: #8e44ad; }
+        .icon-early     { background: #e67e22; }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        /* ── Award row ── */
+        .award-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        .award-row:last-child { border-bottom: none; }
+        .award-year-pill {
+            flex-shrink: 0;
+            background: #f0f4f8;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.8em;
+            padding: 4px 11px;
+            border-radius: 12px;
+            min-width: 52px;
+            text-align: center;
+            margin-top: 2px;
+        }
+        .award-text { flex: 1; }
+        .award-name {
+            font-size: 0.98em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0 0 3px 0;
+        }
+        .award-context {
+            font-size: 0.86em;
+            color: #777;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Special "double award" callout for Murder in the Makerspace */
+        .award-double {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-left: 3px solid #8e44ad;
+            border-radius: 0 5px 5px 0;
+            padding: 14px 16px;
+            margin: 0;
+        }
+        .award-double .award-double-title {
+            font-size: 0.82em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8e44ad;
+            margin-bottom: 8px;
+        }
+        .award-double .award-double-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+            color: #444;
+            margin-bottom: 4px;
+        }
+        .award-double .award-double-row:last-child { margin-bottom: 0; }
+        .award-double .prize-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #8e44ad;
+            flex-shrink: 0;
+        }
+
+        /* ── Timeline for early career section ── */
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 9px; top: 8px; bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom, #e67e22, #f0d0a8);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+        .timeline-item:last-child { margin-bottom: 0; border-bottom: none; }
+        .timeline-dot {
+            position: absolute;
+            left: -24px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e67e22;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #e67e22;
+        }
+        .timeline-year {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e67e22;
+            margin-bottom: 3px;
+        }
+        .timeline-name {
+            font-size: 0.97em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0 0 3px 0;
+        }
+        .timeline-context {
+            font-size: 0.85em;
+            color: #777;
+            margin: 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .navbar .logo { display: none; }
+            .navbar .navbar-content { justify-content: flex-start; }
+            .navbar .nav-menu {
+                display: none; flex-direction: column;
+                position: absolute; top: 50px; left: 0;
+                width: 100%; background: #f5f5f5; padding: 10px 0;
+            }
+            .navbar .nav-menu.active { display: flex; }
+            .navbar .navbar-toggle { display: block; }
+            .featured-award { flex-direction: column; gap: 16px; }
+            .featured-year { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="talks.html">Talks</a>
+                <a href="awards.html" class="active">Awards</a>
+                <a href="about.html">About Me &amp; CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Page header -->
+        <div class="page-header">
+            <h1>Awards &amp; Recognition</h1>
+            <p class="subtitle">Honors spanning research, teaching, community engagement, and early career milestones</p>
+        </div>
+
+        <!-- ── FEATURED award ── -->
+        <div class="featured-award">
+            <div class="featured-icon">&#127942;</div>
+            <div class="featured-body">
+                <div class="featured-badge">Research &middot; 2026</div>
+                <h2>ICML 2026 Spotlight &mdash; Position Paper Track</h2>
+                <p>Top 5% of all submissions. The paper introduces a framework drawn from Cézanne's painting practice to critique and reconceive evaluation in multimodal AI systems.</p>
+            </div>
+            <div class="featured-year">2026</div>
+        </div>
+
+        <!-- ── RESEARCH AWARDS ── -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon icon-research"><i class="fa fa-flask"></i></div>
+                <h2 class="category-title">Research &amp; Scholarship</h2>
+            </div>
+
+            <div class="award-row">
+                <div class="award-year-pill">2025</div>
+                <div class="award-text">
+                    <p class="award-name">Blue Sky Best Paper Award (Runner-up)</p>
+                    <p class="award-context">27th International Conference on Multimodal Interaction (ICMI 2025), Canberra, Australia. Awarded for the MUSE framework paper.</p>
+                </div>
+            </div>
+
+            <div class="award-row">
+                <div class="award-year-pill">2026</div>
+                <div class="award-text">
+                    <p class="award-name">Silver Reviewer, ICML 2026</p>
+                    <p class="award-context">Recognized among the top reviewers at the International Conference on Machine Learning.</p>
+                </div>
+            </div>
+
+            <div class="award-row">
+                <div class="award-year-pill">2021–22</div>
+                <div class="award-text">
+                    <p class="award-name">UNL College of Engineering Research Excellence Award</p>
+                    <p class="award-context">University of Nebraska-Lincoln College of Engineering.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── TEACHING AWARDS ── -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon icon-teaching"><i class="fa fa-graduation-cap"></i></div>
+                <h2 class="category-title">Teaching Excellence</h2>
+            </div>
+
+            <div class="award-row">
+                <div class="award-year-pill">2023</div>
+                <div class="award-text">
+                    <p class="award-name">Holling Family Distinguished Teaching Award for Excellence in Inclusive Teaching</p>
+                    <p class="award-context">UNL College of Engineering.</p>
+                </div>
+            </div>
+
+            <div class="award-row">
+                <div class="award-year-pill">2020–21</div>
+                <div class="award-text">
+                    <p class="award-name">Students Choice Award &mdash; Outstanding Teaching of Graduate-Level Courses</p>
+                    <p class="award-context">UNL Department of Computer Science and Engineering.</p>
+                </div>
+            </div>
+
+            <div class="award-row">
+                <div class="award-year-pill">2016–17</div>
+                <div class="award-text">
+                    <p class="award-name">Students Choice Award &mdash; Outstanding Teaching of Undergraduate-Level Courses (100–200)</p>
+                    <p class="award-context">UNL Department of Computer Science and Engineering.</p>
+                </div>
+            </div>
+
+            <div class="award-row">
+                <div class="award-year-pill">2014–15</div>
+                <div class="award-text">
+                    <p class="award-name">Students Choice Award &mdash; Outstanding Teaching of Undergraduate-Level Courses (100–200)</p>
+                    <p class="award-context">UNL Department of Computer Science and Engineering.</p>
+                </div>
+            </div>
+
+            <div class="award-row">
+                <div class="award-year-pill">2014</div>
+                <div class="award-text">
+                    <p class="award-name">UNL Parents Association Award</p>
+                    <p class="award-context">Certificate of Recognition for Contributions to Students.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── COMMUNITY ENGAGEMENT ── -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon icon-community"><i class="fa fa-users"></i></div>
+                <h2 class="category-title">Community &amp; Engagement</h2>
+            </div>
+
+            <!-- Double award callout -->
+            <div class="award-row" style="align-items:flex-start;">
+                <div class="award-year-pill" style="margin-top:6px;">2026</div>
+                <div class="award-text">
+                    <div class="award-double">
+                        <div class="award-double-title">Murder in the Makerspace &mdash; UNL College of Engineering</div>
+                        <div class="award-double-row"><div class="prize-dot"></div> 1st Place, Outreach and Engagement Pitch (expert panel)</div>
+                        <div class="award-double-row"><div class="prize-dot"></div> People's Choice Award, Outreach and Engagement Pitch (peer faculty)</div>
+                        <div class="award-double-row"><div class="prize-dot"></div> People's Choice Award, Best Impromptu Pitch</div>
+                    </div>
+                    <p class="award-context" style="margin-top:7px;">Concluding session of the faculty workshop series on community-engaged research. Three awards at a single event.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── EARLY CAREER & ACADEMIC MILESTONES ── -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon icon-early"><i class="fa fa-star"></i></div>
+                <h2 class="category-title">Early Career &amp; Academic Milestones</h2>
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2013</div>
+                    <p class="timeline-name">Chair's Prize, Ph.D. Poster Competition</p>
+                    <p class="timeline-context">Spring 2013 Department of Software and Information Systems Ph.D. Poster Competition, UNC Charlotte.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2006</div>
+                    <p class="timeline-name">Best Student Award</p>
+                    <p class="timeline-context">Highest grade in CSE 5510 (Mobile and Distributed Computing Systems), School of Computer Science and Software Engineering, Monash University, Australia.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2005</div>
+                    <p class="timeline-name">Australian Development Scholarship (AusAID)</p>
+                    <p class="timeline-context">Sole recipient in the Information Technology category from Bangladesh, awarded in recognition of founding and operating a non-profit IT startup for rural development.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2001</div>
+                    <p class="timeline-name">2nd Position with First Class, M.Sc. in Physics</p>
+                    <p class="timeline-context">University of Dhaka, Bangladesh.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div>&copy; M. R. Hasan 2026</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function () {
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

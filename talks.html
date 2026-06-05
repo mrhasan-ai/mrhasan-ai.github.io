@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invited Talks | M. R. Hasan</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *:before, *:after { box-sizing: inherit; }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #FFFFFF;
+            color: #333;
+            line-height: 1.6;
+            box-sizing: border-box;
+        }
+
+        /* ── Navbar (matches index.html exactly) ── */
+        .navbar {
+            background: #f5f5f5;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar .navbar-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .navbar .logo { margin-right: 20px; }
+        .navbar .logo img { width: 150px; height: auto; }
+        .navbar .nav-menu { display: flex; align-items: center; flex-grow: 1; }
+        .navbar .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: normal;
+            font-size: 1.0em;
+        }
+        .navbar .nav-menu a:hover,
+        .navbar .nav-menu a.active { color: #3498db; transition: 0.3s; }
+        .navbar .navbar-toggle {
+            display: none;
+            background: #ecf0f1;
+            border: none;
+            padding: 5px 10px;
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-left: 20px;
+        }
+
+        /* ── Layout ── */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        /* ── Page header ── */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e8e8e8;
+        }
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6em;
+            color: #2c3e50;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+        }
+        .page-header .subtitle {
+            font-size: 1.05em;
+            color: #777;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        .talk-count-badge {
+            display: inline-block;
+            background: #2c3e50;
+            color: #fff;
+            font-size: 0.78em;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-top: 14px;
+        }
+
+        /* ── Filter bar ── */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+            align-items: center;
+        }
+        .filter-bar span {
+            font-size: 0.85em;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-right: 4px;
+        }
+        .filter-btn {
+            border: 1px solid #d0d0d0;
+            background: #fff;
+            color: #555;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #2c3e50;
+            color: #fff;
+            border-color: #2c3e50;
+        }
+
+        /* ── Year group ── */
+        .year-group { margin-bottom: 40px; }
+        .year-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55em;
+            font-weight: 700;
+            color: #2c3e50;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .year-label .year-count {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.5em;
+            font-weight: 400;
+            color: #3498db;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* ── Talk card ── */
+        .talk-card {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        .talk-card:hover { background: #fafcff; }
+        .talk-card:last-child { border-bottom: none; }
+
+        .talk-meta {
+            flex-shrink: 0;
+            width: 90px;
+            text-align: right;
+        }
+        .talk-date {
+            font-size: 0.78em;
+            color: #999;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+
+        .talk-type-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+        .dot-keynote   { background: #e74c3c; }
+        .dot-invited   { background: #3498db; }
+        .dot-workshop  { background: #27ae60; }
+        .dot-panel     { background: #f39c12; }
+
+        .talk-body { flex: 1; }
+        .talk-title {
+            font-size: 1.02em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0 0 5px 0;
+            line-height: 1.4;
+        }
+        .talk-title a { color: inherit; text-decoration: none; }
+        .talk-title a:hover { color: #3498db; text-decoration: underline; }
+        .talk-venue {
+            font-size: 0.88em;
+            color: #666;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .talk-venue a { color: #3498db; text-decoration: none; }
+        .talk-venue a:hover { text-decoration: underline; }
+
+        .talk-tag {
+            display: inline-block;
+            font-size: 0.72em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 9px;
+            border-radius: 3px;
+            margin-top: 7px;
+        }
+        .tag-keynote  { background: #fdecea; color: #c0392b; }
+        .tag-invited  { background: #eaf4fb; color: #2471a3; }
+        .tag-workshop { background: #eafaf1; color: #1e8449; }
+        .tag-panel    { background: #fef9e7; color: #b7770d; }
+
+        /* ── Legend ── */
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            font-size: 0.82em;
+            color: #666;
+        }
+        .legend-item { display: flex; align-items: center; gap: 7px; }
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .navbar .logo { display: none; }
+            .navbar .navbar-content { justify-content: flex-start; }
+            .navbar .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                background: #f5f5f5;
+                padding: 10px 0;
+            }
+            .navbar .nav-menu.active { display: flex; }
+            .navbar .navbar-toggle { display: block; }
+            .talk-card { flex-wrap: wrap; }
+            .talk-meta { width: 100%; text-align: left; display: flex; gap: 10px; align-items: center; }
+            .talk-type-dot { margin-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggle">☰</button>
+            <div class="logo">
+                <img src="assets/images/UNL-logo.jpg" alt="UNL Logo">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="research.html">Research</a>
+                <a href="publications.html">Publications</a>
+                <a href="people.html">People</a>
+                <a href="news.html">News</a>
+                <a href="talks.html" class="active">Talks</a>
+                <a href="awards.html">Awards</a>
+                <a href="about.html">About Me &amp; CV</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Page header -->
+        <div class="page-header">
+            <h1>Invited Talks</h1>
+            <p class="subtitle">Presentations, keynotes, workshops, and panel discussions on AI</p>
+            <div class="talk-count-badge">22 Talks &middot; 2018 &ndash; 2026</div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#e74c3c;"></div> Keynote</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#3498db;"></div> Invited Talk</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#27ae60;"></div> Workshop</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#f39c12;"></div> Panel</div>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="filter-bar" id="filterBar">
+            <span>Filter:</span>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="keynote">Keynote</button>
+            <button class="filter-btn" data-filter="invited">Invited Talk</button>
+            <button class="filter-btn" data-filter="workshop">Workshop</button>
+            <button class="filter-btn" data-filter="panel">Panel</button>
+        </div>
+
+        <!-- ── 2026 ── -->
+        <div class="year-group" data-year="2026">
+            <div class="year-label">2026 <span class="year-count">2 talks</span></div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Mar 2</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">What AI Gets Wrong About Human Experience and Why It Matters for Early Intervention</p>
+                    <p class="talk-venue">
+                        <a href="https://www.unmc.edu/chri/news/aiseminarseries.html" target="_blank">UNMC Child Health Research Institute AI Seminar Series</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 2025 ── -->
+        <div class="year-group" data-year="2025">
+            <div class="year-label">2025 <span class="year-count">3 talks</span></div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Jun 25</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Advancing Multimodal AI Systems for Social Good</p>
+                    <p class="talk-venue">
+                        <a href="https://nlp4social.github.io/NSG/speakers.html" target="_blank">3rd Symposium on NLP for Social Good 2025</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="workshop">
+                <div class="talk-meta">
+                    <div class="talk-date">May 28–29</div>
+                </div>
+                <div class="talk-type-dot dot-workshop" title="Workshop"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Engineering AI 3.0: From Pattern Matching to Intelligent Reasoning</p>
+                    <p class="talk-venue">
+                        <a href="https://newsroom.unl.edu/announce/coeupdates/18842/101692" target="_blank">Two-Day AI Workshop for College of Engineering Faculty, University of Nebraska-Lincoln</a>
+                        <br><em style="font-size:0.9em; color:#888;">Day 1: Vision, Foundation &amp; Realization &nbsp;|&nbsp; Day 2: Hands-On Experience</em>
+                    </p>
+                    <span class="talk-tag tag-workshop">Workshop (Organizer &amp; Speaker)</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Mar 7</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">The AI Alignment Problem: Technical Challenges and Societal Implications</p>
+                    <p class="talk-venue">
+                        <a href="https://business.unl.edu/promo/emerging-tech/" target="_blank">UNL College of Business Emerging Technology Conference</a>
+                        &nbsp;&mdash;&nbsp;
+                        <a href="https://business.unl.edu/news/sold-out-emerging-tech-conference-features-industry-innovators/" target="_blank">Read coverage</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 2024 ── -->
+        <div class="year-group" data-year="2024">
+            <div class="year-label">2024 <span class="year-count">6 talks</span></div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Oct 17</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">The Future is Now: Transforming STEM Education by Leveraging Generative AI to Model Longitudinal Experiential Data</p>
+                    <p class="talk-venue">
+                        <a href="https://newsroom.unl.edu/announce/dber/17980/97522" target="_blank">UNL Discipline-Based Education Research Seminar</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Jun 20</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">How Can AI Innovations Drive Effective Healthcare Applications?</p>
+                    <p class="talk-venue">
+                        <a href="https://engineering.unl.edu/heartsounds-ai-workshop/" target="_blank">Tutorial at the Heartland Workshop on Heart Sounds and AI, University of Nebraska Medical Center</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="keynote">
+                <div class="talk-meta">
+                    <div class="talk-date">Apr 17</div>
+                </div>
+                <div class="talk-type-dot dot-keynote" title="Keynote"></div>
+                <div class="talk-body">
+                    <p class="talk-title">The Future is Behind Us: Close Encounters of the First Kind with Artificial Intelligence</p>
+                    <p class="talk-venue">
+                        <a href="https://nebraskadataconference2024.sched.com/" target="_blank">Keynote, Nebraska Data Conference &mdash; Nebraska Department of Education</a>
+                    </p>
+                    <span class="talk-tag tag-keynote">Keynote</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="panel">
+                <div class="talk-meta">
+                    <div class="talk-date">Mar 26</div>
+                </div>
+                <div class="talk-type-dot dot-panel" title="Panel"></div>
+                <div class="talk-body">
+                    <p class="talk-title">AI in Research and Creative Endeavors</p>
+                    <p class="talk-venue">
+                        <a href="https://events.unl.edu/eas/2024/03/26/177579/" target="_blank">UNL Office of Research and Economic Development Faculty Connector Program Panel Discussion</a>
+                    </p>
+                    <span class="talk-tag tag-panel">Panel</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Mar 22</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Navigating the Rapidly Evolving Terrain of AI Research</p>
+                    <p class="talk-venue">UNL Department of Electrical and Computer Engineering Advisory Board Meeting</p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Feb 22</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Can Language Models Serve as Interfaces in the Design of Intelligent Systems?</p>
+                    <p class="talk-venue">
+                        <a href="https://engineering.unl.edu/downloads/files/ECE%20Graduate%20Seminar-2024-Fall.pdf" target="_blank">UNL ECE Graduate Student Seminar</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 2023 ── -->
+        <div class="year-group" data-year="2023">
+            <div class="year-label">2023 <span class="year-count">7 talks</span></div>
+
+            <div class="talk-card" data-type="panel">
+                <div class="talk-meta">
+                    <div class="talk-date">Nov 15</div>
+                </div>
+                <div class="talk-type-dot dot-panel" title="Panel"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Strategies for Developing a Winning Grand Challenges Proposal</p>
+                    <p class="talk-venue">
+                        <a href="https://research.unl.edu/blog/panelists-offer-tips-advice-on-grand-challenges-projects/" target="_blank">UNL Grand Challenges Panel Discussion</a>
+                    </p>
+                    <span class="talk-tag tag-panel">Panel</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Nov 9</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Towards a Human-First AI: My Journey with HAL 2.0</p>
+                    <p class="talk-venue">
+                        <a href="https://research.unl.edu/blog/tan-wins-faculty-slam-clinches-cojmcs-three-peat/" target="_blank">Faculty Research and Creativity Slam, UNL Nebraska Research Days</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Nov 8</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Decoding Language Models: Unveiling Challenges in Building Intelligent Applications</p>
+                    <p class="talk-venue">
+                        <a href="https://engineering.unl.edu/downloads/files/2023-MME-UNL.pdf" target="_blank">UNL Department of Mechanical and Materials Engineering Pierson Graduate Seminar</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Sep 15</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Generative AI and Large Language Models</p>
+                    <p class="talk-venue">
+                        <a href="https://www.bairdholm.com/events/baird-holms-2023-technology-and-data-protection-forum/" target="_blank">Baird Holm 2023 Technology and Data Protection Forum</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Aug 9</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">ChatGPT and the Limits of AI</p>
+                    <p class="talk-venue">UNL-LPS STEM Connector Event for Lincoln Public Schools Science Teachers</p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Jul 13</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Modern AI, Its Discontents, and How I Am Using It for Social Good</p>
+                    <p class="talk-venue">Lincoln Electric System PluggedIn Event &mdash; Future Leadership Development Group</p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 2021 ── -->
+        <div class="year-group" data-year="2021">
+            <div class="year-label">2021 <span class="year-count">2 talks</span></div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Nov 4</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Racial Bias in Artificial Intelligence Models</p>
+                    <p class="talk-venue">
+                        <a href="https://honors.unl.edu/cooper-conversation-bipoc-women-healthcare" target="_blank">Cooper Community Conversation, University of Nebraska-Lincoln</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Sep 24</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">My Students, Online Misinformation, and AI</p>
+                    <p class="talk-venue">
+                        <a href="https://www.leadershiplincoln.org/" target="_blank">Youth Leadership Lincoln Seminar &mdash; Arts and Media Track</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 2020 ── -->
+        <div class="year-group" data-year="2020">
+            <div class="year-label">2020 <span class="year-count">1 talk</span></div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Nov 13</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Challenges of AI to Detect Misinformation</p>
+                    <p class="talk-venue">
+                        <a href="https://www.infotec.org/" target="_blank">INFOTEC Conference, AIM Institute</a>
+                    </p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 2018 ── -->
+        <div class="year-group" data-year="2018">
+            <div class="year-label">2018 <span class="year-count">2 talks</span></div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Oct 24</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">Technology and Democratic Engagement</p>
+                    <p class="talk-venue">Broader Considerations of Technology Series Public Lecture, UNL CSE Ambassadors</p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+
+            <div class="talk-card" data-type="invited">
+                <div class="talk-meta">
+                    <div class="talk-date">Apr 4</div>
+                </div>
+                <div class="talk-type-dot dot-invited" title="Invited Talk"></div>
+                <div class="talk-body">
+                    <p class="talk-title">AI and Employment</p>
+                    <p class="talk-venue">Broader Considerations of Technology Series Public Lecture, UNL CSE Ambassadors</p>
+                    <span class="talk-tag tag-invited">Invited Talk</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div>&copy; M. R. Hasan 2026</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Navbar toggle
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            toggleButton.addEventListener('click', function () {
+                navMenu.classList.toggle('active');
+            });
+
+            // Filter logic
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const filter = this.dataset.filter;
+                    const cards = document.querySelectorAll('.talk-card');
+                    cards.forEach(card => {
+                        if (filter === 'all' || card.dataset.type === filter) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    // Hide year groups that have no visible cards
+                    document.querySelectorAll('.year-group').forEach(group => {
+                        const visible = group.querySelectorAll('.talk-card[style="display: flex;"], .talk-card:not([style])');
+                        let anyVisible = false;
+                        group.querySelectorAll('.talk-card').forEach(c => {
+                            if (c.style.display !== 'none') anyVisible = true;
+                        });
+                        group.style.display = anyVisible ? 'block' : 'none';
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

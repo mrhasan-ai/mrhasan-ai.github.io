@@ -7,235 +7,367 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-69TBRJN82M');
     </script>
     <meta charset="UTF-8">
-    <title>People</title>
+    <title>People | M. R. Hasan</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         *, *:before, *:after { box-sizing: inherit; }
-        body { 
-            font-family: 'Arial', sans-serif; 
-            margin: 0; 
-            background-color: #FFFFFF; 
-            color: #333; 
-            line-height: 1.6; 
-            box-sizing: border-box; 
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #FFFFFF;
+            color: #333;
+            line-height: 1.6;
+            box-sizing: border-box;
         }
-        /* Navbar */
-        .navbar { 
-            background: #f5f5f5; 
-            padding: 10px 20px; 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 1000; 
-            border-bottom: 1px solid #e0e0e0; 
-            display: flex; 
-            justify-content: center; 
+
+        /* ── Navbar ── */
+        .navbar {
+            background: #f5f5f5;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
         }
-        .navbar .navbar-content { 
-            display: flex; 
-            align-items: center; 
-            max-width: 1200px; 
-            width: 100%; 
+        .navbar .navbar-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
         }
-        .navbar .logo { 
-            margin-right: 20px; 
+        .navbar .logo { margin-right: 20px; }
+        .navbar .logo img { width: 150px; height: auto; }
+        .navbar .nav-menu { display: flex; align-items: center; flex-grow: 1; }
+        .navbar .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: normal;
+            font-size: 1.0em;
         }
-        .navbar .logo img { 
-            width: 150px; 
-            height: auto; 
+        .navbar .nav-menu a:hover,
+        .navbar .nav-menu a.active { color: #3498db; transition: 0.3s; }
+        .navbar .navbar-toggle {
+            display: none;
+            background: #ecf0f1;
+            border: none;
+            padding: 5px 10px;
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-left: 20px;
         }
-        .navbar .nav-menu { 
-            display: flex; 
-            align-items: center; 
-            flex-grow: 1; 
+
+        /* ── Layout ── */
+        .container {
+            display: flex;
+            justify-content: center;
+            min-height: calc(100vh - 110px);
+            margin-top: 70px;
+            padding: 0 20px;
         }
-        .navbar .nav-menu a { 
-            color: #333; 
-            text-decoration: none; 
-            margin: 0 15px; 
-            font-weight: normal; 
-            font-size: 1.0em; 
+        .content { max-width: 1200px; width: 100%; }
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+            border: 1px solid #e0e0e0;
         }
-        .navbar .nav-menu a:hover, .navbar .nav-menu a.active { 
-            color: #3498db; 
-            transition: 0.3s; 
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: #ffffff;
         }
-        .navbar .navbar-toggle { 
-            display: none; 
-            background: #ecf0f1; 
-            border: none; 
-            padding: 5px 10px; 
-            color: #2c3e50; 
-            font-size: 1.2em; 
-            margin-left: 20px; 
+
+        /* ── Page title ── */
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.0em;
+            color: #2c3e50;
+            margin: 0 0 6px 0;
         }
-        /* Container with Side Space */
-        .container { 
-            display: flex; 
-            justify-content: center; 
-            min-height: calc(100vh - 110px); 
-            margin-top: 70px; 
-            padding: 0 20px; 
+        .page-subtitle {
+            font-size: 0.95em;
+            color: #888;
+            margin: 0 0 24px 0;
         }
-        .content { 
-            max-width: 1200px; 
-            width: 100%; 
+        hr.divider {
+            border: 0;
+            height: 1px;
+            background: #e0e0e0;
+            margin: 0 0 32px 0;
         }
-        /* Main Content */
-        .content-wrapper { 
-            display: flex; 
-            flex: 1; 
-            border: 1px solid #e0e0e0; 
+
+        /* ── Era banner ── */
+        .era-banner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            margin-top: 10px;
         }
-        .main-content { 
-            flex: 1; 
-            padding: 20px; 
-            background: #ffffff; 
+        .era-badge {
+            background: #2c3e50;
+            color: #fff;
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            padding: 5px 14px;
+            border-radius: 3px;
+            white-space: nowrap;
         }
-        .card { 
-            background: #ffffff; 
-            padding: 20px; 
-            margin-bottom: 20px; 
-            border-radius: 5px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-            border: 1px solid #e0e0e0; 
+        .era-badge.computing {
+            background: #7f8c8d;
         }
-        /* Section Headers */
-        h3 { 
-            text-align: center; 
-            color: #2c3e50; 
-            font-size: 2em; 
-            margin-bottom: 20px; 
+        .era-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
         }
-        h5 { 
-            color: #2c3e50; 
-            font-size: 1.5em; 
-            margin-top: 30px; 
-            margin-bottom: 15px; 
-            border-bottom: 2px solid #3498db; 
-            padding-bottom: 5px; 
+        .era-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #e8f4fb);
         }
-        h6 { 
-            color: #34495e; 
-            font-size: 1.2em; 
-            margin-top: 20px; 
-            margin-bottom: 10px; 
-            font-weight: 600; 
+        .era-line.grey {
+            background: linear-gradient(to right, #bdc3c7, #f5f5f5);
         }
-        /* Student Lists */
-        ul.student-list { 
-            list-style-type: disc; 
-            padding-left: 25px; 
-            margin: 0; 
+
+        /* ── Section sub-header ── */
+        .section-label {
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #3498db;
+            margin: 28px 0 14px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e8f4fb;
         }
-        ul.student-list li { 
-            margin-bottom: 12px; 
-            font-size: 1.0em; 
+        .section-label.grey {
+            color: #7f8c8d;
+            border-bottom-color: #eee;
         }
-        ul.student-list a { 
-            color: #3498db; 
-            text-decoration: none; 
+
+        /* ── Photo card grid ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 10px;
         }
-        ul.student-list a:hover { 
-            text-decoration: underline; 
+        .card-grid.wide {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         }
-        /* Current PhD Student Cards */
-        .student-card-container { 
-            display: flex; 
-            flex-direction: column; /* Changed to vertical layout */
-            gap: 20px; 
-            margin-bottom: 20px; 
+
+        .person-card {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .student-card { 
-            background: #f9f9f9; 
-            padding: 15px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            transition: transform 0.3s ease; 
+        .person-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.09);
         }
-        .student-card:hover { 
-            transform: translateY(-3px); 
+        .person-card .photo-wrap {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #e8e8e8;
+            position: relative;
         }
-        .student-card img { 
-            width: 120px; 
-            height: 150px; 
-            object-fit: cover; 
-            
-            
-        
-            border-radius: 0; /* Removed circular styling */
+        .person-card .photo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
         }
-        .student-card .info { 
-            flex: 1; 
+
+        /* Status badge overlaid on photo */
+        .status-badge {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            font-size: 0.65em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 3px 9px;
+            border-radius: 3px;
+            color: #fff;
         }
-        .student-card .info h6 { 
-            margin: 0 0 5px; 
-            font-size: 1.1em; 
-            color: #2c3e50; 
+        .badge-current   { background: #27ae60; }
+        .badge-alumni    { background: rgba(44,62,80,0.80); }
+        .badge-postdoc   { background: #2471a3; }
+        .badge-hs        { background: #d35400; }
+        .badge-visiting  { background: #7d3c98; }
+
+        .person-card .card-body {
+            padding: 13px 14px 14px;
         }
-        .student-card .info p { 
-            margin: 0 0 5px; 
-            font-size: 0.95em; 
-            color: #555; 
+        .person-card .card-name {
+            font-size: 0.97em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0 0 3px 0;
+            line-height: 1.3;
         }
-        .student-card .info a { 
-            color: #3498db; 
-            text-decoration: none; 
-            font-size: 0.9em; 
+        .person-card .card-name a {
+            color: inherit;
+            text-decoration: none;
         }
-        .student-card .info a:hover { 
-            text-decoration: underline; 
+        .person-card .card-name a:hover { color: #3498db; text-decoration: underline; }
+        .person-card .card-role {
+            font-size: 0.8em;
+            color: #666;
+            margin: 0 0 4px 0;
+            line-height: 1.35;
         }
+        .person-card .card-period {
+            font-size: 0.75em;
+            color: #999;
+            margin: 0 0 5px 0;
+        }
+        .person-card .card-now {
+            font-size: 0.78em;
+            color: #2471a3;
+            margin: 4px 0 0 0;
+            font-style: italic;
+            line-height: 1.35;
+        }
+        .person-card .card-now a { color: #2471a3; }
+        .person-card .card-email {
+            font-size: 0.78em;
+            margin: 4px 0 0 0;
+        }
+        .person-card .card-email a { color: #3498db; text-decoration: none; }
+        .person-card .card-email a:hover { text-decoration: underline; }
+
+        /* No-photo card variant */
+        .person-card.no-photo .photo-wrap {
+            display: none;
+        }
+        .person-card.no-photo {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            gap: 12px;
+        }
+        .person-card.no-photo .avatar-initial {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #2c3e50;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .person-card.no-photo .card-body {
+            padding: 0;
+            flex: 1;
+        }
+        .person-card.no-photo .inline-status {
+            display: inline-block;
+            font-size: 0.65em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            color: #fff;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        /* ── Pre-2022 compact list ── */
+        .pre-era-section {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            padding: 22px 26px;
+            margin-bottom: 24px;
+        }
+        .pre-era-section h4 {
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #7f8c8d;
+            margin: 0 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .pre-era-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            columns: 2;
+            column-gap: 30px;
+        }
+        .pre-era-section ul li {
+            font-size: 0.88em;
+            color: #555;
+            padding: 4px 0;
+            border-bottom: 1px dotted #ececec;
+            break-inside: avoid;
+            line-height: 1.4;
+        }
+        .pre-era-section ul li:last-child { border-bottom: none; }
+        .pre-era-section ul li a { color: #3498db; text-decoration: none; }
+        .pre-era-section ul li a:hover { text-decoration: underline; }
+        .pre-era-section ul li .period {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        /* Thesis list — single column, more detail */
+        .pre-era-section ul.thesis-list {
+            columns: 1;
+        }
+        .pre-era-section ul.thesis-list li {
+            padding: 5px 0;
+        }
+
+        /* ── Footer ── */
         footer {
             text-align: center;
             padding: 20px 0;
             font-size: 0.9em;
             color: #666;
         }
-        /* Responsive Design */
+
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .navbar .logo { 
-                display: none; 
+            .navbar .logo { display: none; }
+            .navbar .navbar-content { justify-content: flex-start; }
+            .navbar .nav-menu {
+                display: none; flex-direction: column;
+                position: absolute; top: 50px; left: 0;
+                width: 100%; background: #f5f5f5; padding: 10px 0;
             }
-            .navbar .navbar-content { 
-                justify-content: flex-start; 
-            }
-            .navbar .nav-menu { 
-                display: none; 
-                flex-direction: column; 
-                position: absolute; 
-                top: 50px; 
-                left: 0; 
-                width: 100%; 
-                background: #f5f5f5; 
-                padding: 10px 0; 
-            }
-            .navbar .nav-menu.active { 
-                display: flex; 
-            }
-            .navbar .navbar-toggle { 
-                display: block; 
-            }
-            .content { 
-                padding: 0; 
-            }
-            .content-wrapper { 
-                flex-direction: column; 
-            }
-            .student-card { 
-                flex-direction: column; 
-                text-align: center; 
-            }
-            .student-card img { 
-                margin: 0 auto; 
-            }
+            .navbar .nav-menu.active { display: flex; }
+            .navbar .navbar-toggle { display: block; }
+            .content { padding: 0; }
+            .content-wrapper { flex-direction: column; }
+            .main-content { padding: 18px; }
+            .card-grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); }
+            .pre-era-section ul { columns: 1; }
+            .era-title { font-size: 1.1em; }
         }
     </style>
     <script>
@@ -245,19 +377,15 @@
             toggleButton.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
             });
-
-            // Highlight current page link
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) link.classList.add('active');
             });
         });
     </script>
 </head>
 <body>
+
     <!-- Navbar -->
     <div class="navbar">
         <div class="navbar-content">
@@ -272,7 +400,9 @@
                 <a href="publications.html">Publications</a>
                 <a href="people.html">People</a>
                 <a href="news.html">News</a>
-                <a href="about.html">About Me & CV</a>
+                <a href="talks.html">Talks</a>
+                <a href="awards.html">Awards</a>
+                <a href="about.html">About Me &amp; CV</a>
             </div>
         </div>
     </div>
@@ -280,137 +410,252 @@
     <div class="container">
         <div class="content">
             <div class="content-wrapper">
-                <!-- Main Content -->
                 <div class="main-content">
-                    <div class="card">
-                        <h2>Students & Mentees</h2>
-                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
-                        <!--
-                        <h3>Students & Mentees</h3>
-                        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 20px 0;">
-                        -->
 
-                        <h5>Current Students</h5>
-                        <h6>PhD Students</h6>
-                        <div class="student-card-container">
-                            <div class="student-card">
+                    <h1 class="page-title">Students &amp; Mentees</h1>
+                    <!--<p class="page-subtitle">A record of the people I have had the privilege of working with across two institutions and over fifteen years.</p>-->
+                    <hr class="divider">
+
+                    <!-- ════════════════════════════════════════════
+                         ERA 1 — HAL 2.0 / ECE, UNL (2022 – Present)
+                    ═════════════════════════════════════════════ -->
+                    <div class="era-banner">
+                        <div class="era-badge">2022 &ndash; Present</div>
+                        <h2 class="era-title">Human-First AI Lab (HAL 2.0) &nbsp;&middot;&nbsp; ECE, University of Nebraska-Lincoln</h2>
+                        <div class="era-line"></div>
+                    </div>
+
+                    <!-- Current -->
+                    <div class="section-label">Current Members</div>
+                    <div class="card-grid wide">
+
+                        <!-- Chinh Hoang — current PhD -->
+                        <div class="person-card">
+                            <div class="photo-wrap">
                                 <img src="assets/images/Chinh.jpg" alt="Chinh Hoang">
-                                <div class="info">
-                                    <h6>Chinh Hoang</h6>
-                                    <p>Electrical and Computer Engineering (Fall 2023 - Present)</p>
-                                    <a href="mailto:choang3@huskers.unl.edu">choang3@huskers.unl.edu</a>
-                                </div>
+                                <span class="status-badge badge-current">Current</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-name">Chinh Hoang</p>
+                                <p class="card-role">PhD Student &mdash; Electrical &amp; Computer Engineering</p>
+                                <p class="card-period">Fall 2023 &ndash; Present</p>
+                                <p class="card-email"><a href="mailto:choang3@huskers.unl.edu"><i class="fa fa-envelope" style="margin-right:4px;"></i>choang3@huskers.unl.edu</a></p>
                             </div>
                         </div>
 
-                        <h6>Undergraduate Students</h6>
-                        
-                        <div class="student-card">
-                            <img src="assets/images/Hunter.jpg" alt="Hunter">
-                            <div class="info">
-                                <h6>Hunter Tridle (sponsored by UCARE)</h6>
-                                <p>Electrical and Computer Engineering (Summer 2025 - Present)</p>
-                                
+                        <!-- Edward Zhang — current HS/YNS -->
+                        <div class="person-card">
+                            <div class="photo-wrap">
+                                <img src="assets/images/Edward.jpg" alt="Edward Zhang">
+                                <span class="status-badge badge-hs">YNS &middot; Summer 2026</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-name">Edward Zhang</p>
+                                <p class="card-role">High School Researcher &mdash; EPSCoR Young Nebraska Scientists (YNS) Program</p>
+                                <p class="card-period">Summer 2026</p>
+                                <p class="card-now">Phillips Academy Andover</p>
                             </div>
                         </div>
 
-                        <h5>Past Students</h5>
-                        
-                        <h6>PhD Students</h6>
-                        <div class="student-card-container">
-                            <div class="student-card">
-                                <img src="assets/images/Ahatsham.jpg" alt="Ahatsham">
-                                <div class="info">
-                                    <h6><a href="https://ahatsham.github.io/" target="_blank">Ahatsham Hayat</a></h6>
-                                    <p>Electrical and Computer Engineering (Spring 2023 - Spring 2026)</p>
-                                    <p>Now Postdoctoral Researcher, <a href="https://datascience.harvard.edu/" target="_blank">Harvard Data Science Initiative</a>, Harvard Medical School</p>
-                                </div>
+                    </div>
+
+                    <!-- Alumni -->
+                    <div class="section-label">Lab Alumni</div>
+                    <div class="card-grid">
+
+                        <!-- Ahatsham Hayat — PhD alumni -->
+                        <div class="person-card">
+                            <div class="photo-wrap">
+                                <img src="assets/images/Ahatsham.jpg" alt="Ahatsham Hayat">
+                                <span class="status-badge badge-postdoc">Postdoctoral Fellow</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-name"><a href="https://ahatsham.github.io/" target="_blank">Ahatsham Hayat</a></p>
+                                <p class="card-role">PhD &mdash; Electrical &amp; Computer Engineering</p>
+                                <p class="card-period">Spring 2023 &ndash; Spring 2026</p>
+                                <p class="card-now">Now: Postdoctoral Researcher, <a href="https://datascience.harvard.edu/" target="_blank">Harvard Data Science Initiative</a>, Harvard Medical School</p>
                             </div>
                         </div>
 
-                        <h6>Master's Students Supervised at the School of Computing, University of Nebraska-Lincoln</h6>
-                        <ul class="student-list">
-                            
-                            
-                            
-                            <li>Atharva Tendle (2019 - 2021)</li>
-                            <li>Yuanzhi Chen (2019 - 2021)</li>
-                            <li>Rojina Deuja (2020 - 2021)</li>
-                            <li>Eric Le (2021)</li>
-                            <li>Yan Xia (Spring 2017)</li>
-                            <li>Pamungkas Prahara (Summer 2017)</li>
-                        </ul>
+                        <!-- Hunter Tridle -->
+                        <div class="person-card">
+                            <div class="photo-wrap">
+                                <img src="assets/images/Hunter.jpg" alt="Hunter Tridle">
+                                <span class="status-badge badge-alumni">Alumni</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-name">Hunter Tridle</p>
+                                <p class="card-role">Undergraduate Researcher (UCARE Award)</p>
+                                <p class="card-period">Summer 2025 &ndash; Spring 2026</p>
+                                <p class="card-role" style="margin-top:3px;">Electrical &amp; Computer Engineering</p>
+                            </div>
+                        </div>
 
-                        <h6>Undergraduate Students at the University of Nebraska-Lincoln</h6>
-                        <ul class="student-list">
-                            <li>Helen Martinez, Mathematics (Spring 2024 - Spring 2025), sponsored by the McNair Scholars Program</li>
-                            <li>Sharif Akil, Electrical and Computer Engineering (Fall 2022)</li>
-                            <li>Eric Le, School of Computing (Fall 2018 - Fall 2019)</li>
-                            <li><a href="https://news.unl.edu/newsrooms/today/article/huskers-track-protect-wildlife-through-deep-learning-tech/" target="_blank">Rahul Prajapati, School of Computing (Summer 2019)</a></li>
-                        </ul>
+                        <!-- Helen Martinez -->
+                        <div class="person-card">
+                            <div class="photo-wrap">
+                                <img src="assets/images/Helen.jpg" alt="Helen Martinez">
+                                <span class="status-badge badge-alumni">Alumni</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-name">Helen Martinez</p>
+                                <p class="card-role">Undergraduate Researcher (McNair Scholars Program &amp; UCARE)</p>
+                                <p class="card-period">Spring 2024 &ndash; Spring 2025</p>
+                                <p class="card-role" style="margin-top:3px;">Mathematics</p>
+                            </div>
+                        </div>
 
-                        <h6>Undergraduate Creative Activities and Research Experience (UCARE) Students at the University of Nebraska-Lincoln</h6>
-                        <ul class="student-list">
-                            <li>Helen Martinez, Mathematics (Fall 2024 - Spring 2025)</li>
-                            <li>Sharif Akil, Electrical and Computer Engineering (Fall 2023 - Spring 2024)</li>
-                            <li><a href="https://news.unl.edu/newsrooms/today/article/undergraduate-and-graduate-research-days-winners-announced/" target="_blank">Nathan Roberts, Electrical and Computer Engineering (Fall 2022 - Spring 2024)</a></li>
-                            <li>Yusup Orazov, School of Computing (Summer 2023)</li>
-                            <li>Keyik Annagulyyeva, School of Computing (Summer 2023)</li>
-                            <li><a href="/downloads/files/Poster-Tom-2.pdf" target="_blank">Thomas Walton, School of Computing (Summer 2022)</a></li>
-                            <li>Taher Ahmed, School of Computing (Summer 2020)</li>
-                            <li>Fateh Karan Singh Sandhu, School of Computing (Summer 2020)</li>
-                            <li><a href="https://newsroom.unl.edu/announce/cse/11511/67386" target="_blank">Eylon Caplan, School of Computing (Summer 2020)</a></li>
-                            <li><a href="https://news.unl.edu/newsrooms/today/article/huskers-track-protect-wildlife-through-deep-learning-tech/" target="_blank">Brian Chong, School of Computing (Summer 2019)</a></li>
-                            <li>Mohamed Aly, School of Computing (Summer 2018 - Fall 2019)</li>
-                            <li>Hung Chu, School of Computing (Summer 2018 - Spring 2019)</li>
-                            <li>Vy Doan, School of Computing (Summer 2018 - Present)</li>
-                            <li>Trieu Hung Tran, School of Computing (Fall 2017 - Spring 2018)</li>
-                            <li>Sk Nasimul Gani, School of Computing (Summer 2017)</li>
-                            <li>Ayush Manish Agrawal, School of Computing (Fall 2016 - Spring 2018)</li>
-                            <li>Jeevan Rajagopal, School of Computing (Summer 2016)</li>
-                        </ul>
+                        <!-- Nathan Roberts -->
+                        <div class="person-card">
+                            <div class="photo-wrap">
+                                <img src="assets/images/Nathan.jpg" alt="Nathan Roberts">
+                                <span class="status-badge badge-alumni">Alumni</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-name"><a href="https://news.unl.edu/newsrooms/today/article/undergraduate-and-graduate-research-days-winners-announced/" target="_blank">Nathan Roberts</a></p>
+                                <p class="card-role">Undergraduate Researcher (UCARE)</p>
+                                <p class="card-period">Fall 2022 &ndash; Spring 2024</p>
+                                <p class="card-role" style="margin-top:3px;">Electrical &amp; Computer Engineering</p>
+                            </div>
+                        </div>
 
-                        <h6>Undergraduate Thesis Supervised at the School of Computing, University of Nebraska-Lincoln</h6>
-                        <ul class="student-list">
-                            <li>Alec Schneider (Spring 2019 - Fall 2019)</li>
-                        </ul>
+                        <!-- Sharif Akil -->
+                        <div class="person-card">
+                            <div class="photo-wrap">
+                                <img src="assets/images/Sharif.jpg" alt="Sharif Akil">
+                                <span class="status-badge badge-alumni">Alumni</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-name">Sharif Akil</p>
+                                <p class="card-role">Undergraduate Researcher (UCARE &amp; ECE)</p>
+                                <p class="card-period">Fall 2022 &ndash; Spring 2024</p>
+                                <p class="card-role" style="margin-top:3px;">Electrical &amp; Computer Engineering</p>
+                            </div>
+                        </div>
 
-                        <h6>Undergraduate Thesis Supervised at North South University</h6>
-                        <ul class="student-list">
-                            <li>Multiple Relay Selection Scheme for Optimized Power Distribution among the Relays in a Cooperative Diversity Network (Summer 2011)</li>
-                            <li>Cognitive Radio for Wireless Nodes in IEEE 802.11 Based Wireless Mesh Network (Spring 2011)</li>
-                            <li>Interference Mitigation Technique for Performance Enhancement in Coexisting Bluetooth and WLAN (Spring 2011)</li>
-                            <li>Rate Adaptive MAC Protocol for Wireless Ad Hoc Network (Spring 2011)</li>
-                            <li>Packet Segmentation for Efficient Data Transmission in a Bluetooth Piconet (Spring 2011)</li>
-                            <li>Interference Aware Gateway Placement Algorithm for Wireless Mesh Network (Spring 2011)</li>
-                            <li>Adaptive Multiple Relay Selection Scheme for OFDMA Relay Networks (Fall 2010)</li>
-                            <li>Broadcast-Storm Mitigation in Intelligent Traffic Information System for Vehicular Ad Hoc Networks (VANET) (Fall 2010)</li>
-                            <li>Integration of Cellular-IP with Wireless Mesh Network (WMN) for Future Generation Radio Access Networks (Fall 2010)</li>
-                            <li>Design of Efficient Scheduling Algorithm for Scatternets (Fall 2010)</li>
-                            <li>Cross-Layer Security Enhancement in Distributed Wireless Sensor Network (Summer 2010)</li>
-                            <li>Efficient Search Algorithm for Peer-to-Peer Network (Summer 2010)</li>
-                            <li>QoS Enabled MAC Protocol for Wireless Sensor Network (Summer 2010)</li>
-                            <li>Dynamic Channel Allocation through Base Station Coordination in Relay-Enhanced OFDMA Cellular Network (Spring 2010)</li>
-                            <li>Delaunay Triangulation Algorithm Based on Fractal Topology for Reliable Optical Radio Access Network (Spring 2010)</li>
-                            <li>A Scatternet Based Wireless Sensor Network for Traffic Monitoring (Spring 2010)</li>
-                            <li>Passive Optical Transmission Model for Smart Dust Network (Fall 2009)</li>
-                            <li>Energy-Efficient and QoS Enabled Multipath Routing Protocol for MANET (Fall 2009)</li>
-                            <li>Battery-Power Level Based Multiple Access Algorithm for the MAC Layer in MANET (Fall 2009)</li>
-                            <li>Hierarchical Foreign-Agent Based Solution for Smooth Handoff in Mobile IP (Fall 2009)</li>
-                            <li>Energy-Efficient Coordinated Scatternet Formation Protocol (Fall 2009)</li>
-                            <li>Congestion Control and Bandwidth Reallocation in a Cluster Based Wireless Sensor Network (Summer 2009)</li>
-                            <li>Design of Adaptable MANET to Combat Link-Failure (Fall 2008)</li>
-                            <li>An Adaptive Clustering Scheme for Mobile Ad-Hoc Networks (Fall 2007)</li>
+                        <!-- Youssef Nassef — no photo, use initial card -->
+                        <div class="person-card no-photo">
+                            <div class="avatar-initial" style="background:#7d3c98;">YN</div>
+                            <div class="card-body">
+                                <p class="card-name">Youssef Nassef <span class="inline-status badge-visiting" style="background:#7d3c98;">Visiting</span></p>
+                                <p class="card-role">USAID-Sponsored Visiting Undergraduate Researcher</p>
+                                <p class="card-period">Fall 2024</p>
+                                <p class="card-now">Ain Shams University, Egypt</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ════════════════════════════════════════════
+                         ERA 2 — School of Computing, UNL (pre-2022)
+                    ═════════════════════════════════════════════ -->
+                    <div class="era-banner" style="margin-top: 46px;">
+                        <div class="era-badge computing">Pre-2022</div>
+                        <h2 class="era-title">School of Computing, University of Nebraska-Lincoln</h2>
+                        <div class="era-line grey"></div>
+                    </div>
+
+                    <!-- Master's Students -->
+                    <div class="section-label grey">Master's Students Supervised</div>
+                    <div class="pre-era-section">
+                        <h4>M.S. Students</h4>
+                        <ul>
+                            <li>Atharva Tendle <span class="period">(2019 &ndash; 2021)</span></li>
+                            <li>Yuanzhi Chen <span class="period">(2019 &ndash; 2021)</span></li>
+                            <li>Rojina Deuja <span class="period">(2020 &ndash; 2021)</span></li>
+                            <li>Eric Le <span class="period">(2021)</span></li>
+                            <li>Yan Xia <span class="period">(Spring 2017)</span></li>
+                            <li>Pamungkas Prahara <span class="period">(Summer 2017)</span></li>
                         </ul>
                     </div>
+
+                    <!-- Undergraduate Students -->
+                    <div class="section-label grey">Undergraduate Researchers</div>
+                    <div class="pre-era-section">
+                        <h4>Undergraduate Students</h4>
+                        <ul>
+                            <li>Eric Le, School of Computing <span class="period">(Fall 2018 &ndash; Fall 2019)</span></li>
+                            <li><a href="https://news.unl.edu/newsrooms/today/article/huskers-track-protect-wildlife-through-deep-learning-tech/" target="_blank">Rahul Prajapati</a>, School of Computing <span class="period">(Summer 2019)</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- UCARE -->
+                    <div class="pre-era-section">
+                        <h4>UCARE (Undergraduate Creative Activities and Research Experience)</h4>
+                        <ul>
+                            <li>Yusup Orazov, School of Computing <span class="period">(Summer 2023)</span></li>
+                            <li>Keyik Annagulyyeva, School of Computing <span class="period">(Summer 2023)</span></li>
+                            <li><a href="/downloads/files/Poster-Tom-2.pdf" target="_blank">Thomas Walton</a>, School of Computing <span class="period">(Summer 2022)</span></li>
+                            <li>Taher Ahmed, School of Computing <span class="period">(Summer 2020)</span></li>
+                            <li>Fateh Karan Singh Sandhu, School of Computing <span class="period">(Summer 2020)</span></li>
+                            <li><a href="https://newsroom.unl.edu/announce/cse/11511/67386" target="_blank">Eylon Caplan</a>, School of Computing <span class="period">(Summer 2020)</span></li>
+                            <li><a href="https://news.unl.edu/newsrooms/today/article/huskers-track-protect-wildlife-through-deep-learning-tech/" target="_blank">Brian Chong</a>, School of Computing <span class="period">(Summer 2019)</span></li>
+                            <li>Mohamed Aly, School of Computing <span class="period">(Summer 2018 &ndash; Fall 2019)</span></li>
+                            <li>Hung Chu, School of Computing <span class="period">(Summer 2018 &ndash; Spring 2019)</span></li>
+                            <li>Vy Doan, School of Computing <span class="period">(Summer 2018)</span></li>
+                            <li>Trieu Hung Tran, School of Computing <span class="period">(Fall 2017 &ndash; Spring 2018)</span></li>
+                            <li>Sk Nasimul Gani, School of Computing <span class="period">(Summer 2017)</span></li>
+                            <li>Ayush Manish Agrawal, School of Computing <span class="period">(Fall 2016 &ndash; Spring 2018)</span></li>
+                            <li>Jeevan Rajagopal, School of Computing <span class="period">(Summer 2016)</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Undergraduate Thesis UNL -->
+                    <div class="pre-era-section">
+                        <h4>Undergraduate Thesis</h4>
+                        <ul>
+                            <li>Alec Schneider <span class="period">(Spring 2019 &ndash; Fall 2019)</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- ════════════════════════════════════════════
+                         ERA 3 — North South University (pre-UNL)
+                    ═════════════════════════════════════════════ -->
+                    <div class="era-banner" style="margin-top: 46px;">
+                        <div class="era-badge computing" style="background:#95a5a6;">Earlier</div>
+                        <h2 class="era-title">North South University, Bangladesh</h2>
+                        <div class="era-line grey"></div>
+                    </div>
+
+                    <div class="section-label grey">Undergraduate Thesis Supervised</div>
+                    <div class="pre-era-section">
+                        <h4>Thesis Projects (selected)</h4>
+                        <ul class="thesis-list">
+                            <li>Multiple Relay Selection Scheme for Optimized Power Distribution among the Relays in a Cooperative Diversity Network <span class="period">(Summer 2011)</span></li>
+                            <li>Cognitive Radio for Wireless Nodes in IEEE 802.11 Based Wireless Mesh Network <span class="period">(Spring 2011)</span></li>
+                            <li>Interference Mitigation Technique for Performance Enhancement in Coexisting Bluetooth and WLAN <span class="period">(Spring 2011)</span></li>
+                            <li>Rate Adaptive MAC Protocol for Wireless Ad Hoc Network <span class="period">(Spring 2011)</span></li>
+                            <li>Packet Segmentation for Efficient Data Transmission in a Bluetooth Piconet <span class="period">(Spring 2011)</span></li>
+                            <li>Interference Aware Gateway Placement Algorithm for Wireless Mesh Network <span class="period">(Spring 2011)</span></li>
+                            <li>Adaptive Multiple Relay Selection Scheme for OFDMA Relay Networks <span class="period">(Fall 2010)</span></li>
+                            <li>Broadcast-Storm Mitigation in Intelligent Traffic Information System for Vehicular Ad Hoc Networks (VANET) <span class="period">(Fall 2010)</span></li>
+                            <li>Integration of Cellular-IP with Wireless Mesh Network (WMN) for Future Generation Radio Access Networks <span class="period">(Fall 2010)</span></li>
+                            <li>Design of Efficient Scheduling Algorithm for Scatternets <span class="period">(Fall 2010)</span></li>
+                            <li>Cross-Layer Security Enhancement in Distributed Wireless Sensor Network <span class="period">(Summer 2010)</span></li>
+                            <li>Efficient Search Algorithm for Peer-to-Peer Network <span class="period">(Summer 2010)</span></li>
+                            <li>QoS Enabled MAC Protocol for Wireless Sensor Network <span class="period">(Summer 2010)</span></li>
+                            <li>Dynamic Channel Allocation through Base Station Coordination in Relay-Enhanced OFDMA Cellular Network <span class="period">(Spring 2010)</span></li>
+                            <li>Delaunay Triangulation Algorithm Based on Fractal Topology for Reliable Optical Radio Access Network <span class="period">(Spring 2010)</span></li>
+                            <li>A Scatternet Based Wireless Sensor Network for Traffic Monitoring <span class="period">(Spring 2010)</span></li>
+                            <li>Passive Optical Transmission Model for Smart Dust Network <span class="period">(Fall 2009)</span></li>
+                            <li>Energy-Efficient and QoS Enabled Multipath Routing Protocol for MANET <span class="period">(Fall 2009)</span></li>
+                            <li>Battery-Power Level Based Multiple Access Algorithm for the MAC Layer in MANET <span class="period">(Fall 2009)</span></li>
+                            <li>Hierarchical Foreign-Agent Based Solution for Smooth Handoff in Mobile IP <span class="period">(Fall 2009)</span></li>
+                            <li>Energy-Efficient Coordinated Scatternet Formation Protocol <span class="period">(Fall 2009)</span></li>
+                            <li>Congestion Control and Bandwidth Reallocation in a Cluster Based Wireless Sensor Network <span class="period">(Summer 2009)</span></li>
+                            <li>Design of Adaptable MANET to Combat Link-Failure <span class="period">(Fall 2008)</span></li>
+                            <li>An Adaptive Clustering Scheme for Mobile Ad-Hoc Networks <span class="period">(Fall 2007)</span></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <div>© M. R. Hasan 2025</div>
+        <div>&copy; M. R. Hasan 2026</div>
     </footer>
+
 </body>
 </html>
